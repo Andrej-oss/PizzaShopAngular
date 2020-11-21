@@ -18,6 +18,7 @@ import '@angular/compiler';
 import {FormPizzaPostingComponent} from './components/form-pizza-posting/form-pizza-posting.component';
 import { HeaderComponent } from './components/header/header.component';
 import { NavBarComponent } from './components/nav-bar/nav-bar.component';
+import { SnackBarComponent } from './components/snack-bar/snack-bar.component';
 
 
 
@@ -29,7 +30,8 @@ import { NavBarComponent } from './components/nav-bar/nav-bar.component';
     FormIngredientPostingComponent,
     FormPizzaPostingComponent,
     HeaderComponent,
-    NavBarComponent
+    NavBarComponent,
+    SnackBarComponent
   ],
   imports: [
     BrowserModule,
