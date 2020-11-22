@@ -1,0 +1,10 @@
+.user-card-avatar{
+  left: 50%;
+  margin: 10% 10% 10% 10%;
+}
+.user-card{
+margin: 10% 10% 10% 10%;
+}
+button:focus{
+  outline: none;
+}

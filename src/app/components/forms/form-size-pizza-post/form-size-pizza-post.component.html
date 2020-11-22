@@ -1,0 +1,35 @@
+
+<form [formGroup]="pizzaSizeForm">
+  <ng-template matStepLabel>Create sizes of pizza</ng-template>
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Choose pizza size</mat-label>
+    <mat-select name="size" [formControl]="sizePizza">
+      <mat-option *ngFor="let size of sizes" [value]="size.value" >
+        {{size.value.size + "     "}}{{size.value.diameter}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Choose pizza name</mat-label>
+    <mat-select name="pizza" [formControl]="pizzaId">
+      <mat-option *ngFor="let pizza of pizzas" value="{{pizza.id}}" [formControl]="pizzaId">{{pizza.name}}</mat-option>
+    </mat-select>
+  </mat-form-field>
+
+  <mat-form-field style="width: 100%">
+    <mat-label>Weight</mat-label>
+    <input matInput type="number" [formControl]="weight" placeholder="600"
+           required>
+  </mat-form-field>
+  <mat-form-field appearance="fill" style="width: 100%">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" class="example-left-align" [formControl]="priceSize">
+    <span matPrefix>$&nbsp;</span>
+    <span matSuffix>.00</span>
+  </mat-form-field>
+  <input type="file" (change)="upLoadFileSize($event)" accept=".jpg"/>
+  <div>
+    <button mat-button
+            (click)="onSave(pizzaSizeForm)"
+            [disabled]="pizzaSizeForm.invalid" style="left: 90%">Save</button>
+  </div>
+</form>

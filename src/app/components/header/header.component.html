@@ -1,0 +1,24 @@
+<div class="header">
+  HEADER
+  <div class="header-content">
+  <a class="header-content-logo">
+    Header
+  </a>
+    <a class="header-content-search">
+
+    </a>
+    <a class="header-content-buttons">
+      <button mat-button (click)="onLogin()" *ngIf="!userService.isAuthenticated()">Login</button>
+      <button mat-button (click)="userService.logOut()" *ngIf="userService.isAuthenticated()">Logout</button>
+      <button mat-button (click)="onRegistration()">Sing In</button>
+      <button mat-button (click)="onAdmin()" *ngIf="userService.isAdmin()">
+        ADMIN: {{userService.getUserName()}}
+      </button>
+      <button mat-button (click)="onRegistration()" *ngIf="userService.isUser()">
+        USER: {{userService.getUserName()}}
+      </button>
+    </a>
+  </div>
+</div>
+<app-nav-bar></app-nav-bar>
+<router-outlet></router-outlet>

@@ -1,0 +1,88 @@
+
+<mat-vertical-stepper [linear]="true" #stepper>
+  <mat-step [stepControl]="pizzaForm">
+    <form [formGroup]="pizzaForm">
+      <ng-template matStepLabel>Create pizza</ng-template>
+        <mat-label>New!!!</mat-label>
+        <mat-checkbox  [formControl]="new">
+        </mat-checkbox>
+      <mat-form-field style="width: 100%">
+        <mat-label>Pizza name</mat-label>
+        <input matInput placeholder="Name" [formControl]="pizzaName"  required>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <mat-label>Pizza Description</mat-label>
+        <textarea matInput placeholder="description" style="width: 300px; height: 80px"
+                  [formControl]="pizzaDescription" required></textarea>
+      </mat-form-field>
+      <mat-form-field appearance="fill" style="width: 100%">
+        <mat-label>Choose ingredients</mat-label>
+        <mat-select [formControl]="pizzaId">
+          <mat-option *ngFor="let ingredient of ingredients"
+                      value="{{ingredient.id}}">
+            {{ingredient.name}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-button-toggle (click)="onAddIngredient(pizzaId)">Add Ingredient</mat-button-toggle>
+      <mat-form-field appearance="fill" >
+        <mat-label>Price</mat-label>
+        <input matInput type="number" class="example-right-align" [formControl]="pricePizza">
+        <span matPrefix>$&nbsp;</span>
+        <span matSuffix>.00</span>
+      </mat-form-field>
+      <input type="file" (change)="upLoadFile($event)" accept=".jpg"/>
+      <div>
+        <button mat-button matStepperNext>Next</button>
+      </div>
+    </form>
+  </mat-step>
+<!--toDo Delete  <mat-step [stepControl]="pizzaSizeForm">-->
+<!--    <form [formGroup]="pizzaSizeForm">-->
+<!--      <ng-template matStepLabel>Create sizes of pizza</ng-template>-->
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Choose pizza size</mat-label>-->
+<!--        <mat-select name="size" [formControl]="sizePizza">-->
+<!--          <mat-option *ngFor="let size of sizes" [value]="size.value" >-->
+<!--            {{size.value.size + "     "}}{{size.value.diameter}}</mat-option>-->
+<!--        </mat-select>-->
+<!--      </mat-form-field>-->
+<!--        <mat-form-field appearance="fill">-->
+<!--          <mat-label>Choose pizza name</mat-label>-->
+<!--          <mat-select name="pizza" [formControl]="pizzaId">-->
+<!--            <mat-option *ngFor="let pizza of pizzas" value="{{pizza.id}}" [formControl]="pizzaId">{{pizza.name}}</mat-option>-->
+<!--          </mat-select>-->
+<!--        </mat-form-field>-->
+
+<!--      <mat-form-field>-->
+<!--        <mat-label>Weight</mat-label>-->
+<!--        <input matInput [formControl]="weight" placeholder="600"-->
+<!--               required>-->
+<!--      </mat-form-field>-->
+<!--      <mat-form-field appearance="fill">-->
+<!--        <mat-label>Price</mat-label>-->
+<!--        <input matInput type="number" class="example-left-align" [formControl]="priceSize">-->
+<!--        <span matPrefix>$&nbsp;</span>-->
+<!--        <span matSuffix>.00</span>-->
+<!--      </mat-form-field>-->
+<!--      <input type="file" (change)="upLoadFileSize($event)" accept=".jpg"/>-->
+<!--     <div>-->
+<!--        <button mat-button matStepperPrevious>Back</button>-->
+<!--        <button mat-button matStepperNext>Next</button>-->
+<!--       <button mat-button (click)="onTest(pizzaSizeForm)" >Save</button>-->
+<!--      </div>-->
+<!--    </form>-->
+<!--  </mat-step>-->
+  <mat-step>
+    <ng-template matStepLabel>Done</ng-template>
+    <p>You are now done.</p>
+    <div>
+      <button mat-button matStepperPrevious>Back</button>
+      <button mat-button (click)="stepper.reset()">Reset</button>
+      <button mat-button (click)="onSave(pizzaForm)" >Save</button>
+    </div>
+  </mat-step>
+</mat-vertical-stepper>
+<div *ngFor="let pizza of pizzas" style="background-color: black">
+  <img [src]="url+pizza.path" style="width: 50px; border-radius: 50%">
+</div>

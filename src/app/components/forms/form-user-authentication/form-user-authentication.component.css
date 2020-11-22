@@ -1,0 +1,17 @@
+.card-auth{
+  max-width: 40%;
+  padding: 10%;
+  left: 25%;
+  margin: 2%;
+}
+.card-auth-link{
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Candara;
+}
+.card-auth-link:hover{
+  color: gray;
+}
+.card-auth-error{
+  color: red;
+}

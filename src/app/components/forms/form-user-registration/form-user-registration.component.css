@@ -1,0 +1,9 @@
+button:focus{
+  outline: none;
+}
+.registration-card{
+  width: 40%;
+  left: 25%;
+  margin: 2%;
+  padding: 5%;
+}

@@ -1,0 +1,100 @@
+<mat-drawer-container class="example-container"  autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>
+      <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
+    </p>
+    <p *ngIf="admin">
+      {{admin.username}}
+    </p>
+<!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
+<!--      Toggle extra text-->
+<!--    </button>-->
+    <button  mat-raised-button  style="width: 70%; margin: 3%">
+      Administrating Profile
+    </button>
+    <button  mat-raised-button (click)="onPizzaCreate()"  style="width: 70%; margin: 3%" *ngIf="!isAdmin">
+     Administrating Pizza
+    </button>
+    <button  mat-raised-button style="width: 70%; margin: 3%">
+      Administrating Combo
+    </button>
+    <button  mat-raised-button style="width: 70%; margin: 3%">
+      Administrating Sushi
+    </button>
+    <button  mat-raised-button style="width: 70%; margin: 3%">
+      Administrating Hot Snacks
+    </button>
+    <button  mat-raised-button style="width: 70%; margin: 3%">
+      Administrating Drinks
+    </button>
+    <button  mat-raised-button style="width: 70%; margin: 3%" (click)="onUsersAdmin()">
+      Administrating Users
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()" style="margin: 2%">
+      Toggle sidenav
+    </button>
+    <div *ngIf="isOpenPizzaCreator">
+      <mat-accordion class="example-headers-align" style="padding: 10%">
+      <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+           Ingredient
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your new Ingredient
+            <mat-icon>account_circle</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-form-ingredient-posting></app-form-ingredient-posting>
+        <!-- #docregion action-bar -->
+        <mat-action-row>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+        <!-- #enddocregion action-bar -->
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Pizza
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your new pizza
+            <mat-icon>map</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-form-pizza-posting></app-form-pizza-posting>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">Next</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+      <mat-expansion-panel [expanded]="step === 2" (opened)="setStep(2)" hideToggle>
+        <mat-expansion-panel-header>
+          <mat-panel-title>
+            Pizza Size
+          </mat-panel-title>
+          <mat-panel-description>
+            Type your new Pizzas size
+            <mat-icon>date_range</mat-icon>
+          </mat-panel-description>
+        </mat-expansion-panel-header>
+        <app-form-size-pizza-post></app-form-size-pizza-post>
+        <mat-action-row>
+          <button mat-button color="warn" (click)="prevStep()">Previous</button>
+          <button mat-button color="primary" (click)="nextStep()">End</button>
+        </mat-action-row>
+      </mat-expansion-panel>
+
+    </mat-accordion>
+    </div>
+    <div *ngIf="isOpenUsersAdministrating" class="admin-users-content">
+        <app-user-card  *ngFor="let user of users" [user]="user"></app-user-card>
+    </div>
+  </div>
+
+</mat-drawer-container>

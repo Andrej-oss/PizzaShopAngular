@@ -1,0 +1,29 @@
+<mat-card class="card-auth">
+  <form [formGroup]="authForm">
+    <ng-template matStepLabel>Fill out your name</ng-template>
+    <mat-form-field style="width: 100%">
+      <mat-label>Login</mat-label>
+      <input matInput placeholder="Login" [formControl]="username" required>
+    </mat-form-field>
+    <mat-form-field appearance="fill" style="width: 100%">
+      <mat-label>Enter your password</mat-label>
+      <input matInput [type]="hide ? 'password' : 'text'" [formControl]="password" >
+      <button mat-icon-button matSuffix (click)="hide = !hide"
+              [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+      </button>
+    </mat-form-field>
+  </form>
+  <button  mat-stroked-button
+           aria-label="Show an example snack-bar"
+          (click)="onSave(authForm)"
+          [disabled]="authForm.invalid || authForm.disabled"
+          style="left: 70%">Login
+  </button>
+  <div *ngIf="error" class="card-auth-error">
+    <a>{{error}}</a>
+  </div>
+  <div class="card-auth-link">
+    <a (click)="onRegistration()">Don't registered?</a>
+  </div>
+</mat-card>
