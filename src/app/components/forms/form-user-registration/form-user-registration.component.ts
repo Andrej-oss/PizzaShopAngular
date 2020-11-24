@@ -1,8 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../logic/services/post.service/user/user.service';
-import {MatSnackBar} from "@angular/material/snack-bar";
-import {SnackBarRegistrationComponent} from "../../snack-bar/snack-bar-registration/snack-bar-registration.component";
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {SnackBarRegistrationComponent} from '../../snack-bar/snack-bar-registration/snack-bar-registration.component';
+import {User} from '../../models/User';
 
 @Component({
   selector: 'app-form-user-registration',
@@ -10,23 +11,24 @@ import {SnackBarRegistrationComponent} from "../../snack-bar/snack-bar-registrat
   styleUrls: ['./form-user-registration.component.css']
 })
 export class FormUserRegistrationComponent implements OnInit {
+  @Input()
+  user: User;
+
   isLinear = false;
   hide = true;
   firstFormGroup: FormGroup;
   secondFormGroup: FormGroup;
-  login: FormControl = new FormControl('', [Validators.maxLength(30), Validators.required]);
-  name: FormControl = new FormControl('', [Validators.maxLength(30), Validators.required]);
-  lastName: FormControl = new FormControl('', [Validators.maxLength(30), Validators.required]);
-  password: FormControl = new FormControl('', [Validators.minLength(10),
-    Validators.maxLength(30), Validators.required]);
+  login: FormControl;
+  name: FormControl;
+  lastName: FormControl;
+  password: FormControl;
   confirmPassword: FormControl = new FormControl('', [Validators.minLength(10),
     Validators.maxLength(30), Validators.required]);
-  email: FormControl = new FormControl('', [Validators.email, Validators.required]);
-  city: FormControl = new FormControl('', Validators.required);
-  address: FormControl = new FormControl('', Validators.required);
-  phone: FormControl = new FormControl('',
-    [Validators.required, Validators.minLength(10), Validators.maxLength(10)]);
-  postCode: FormControl = new FormControl('', Validators.required);
+  email: FormControl;
+  city: FormControl;
+  address: FormControl;
+  phone: FormControl;
+  postCode: FormControl;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
@@ -35,18 +37,24 @@ export class FormUserRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstFormGroup = new FormGroup({
-      login: this.login,
-      password: this.password,
+      login: this.login = new FormControl( this.user ? `${this.user.username}` : '',
+        [Validators.maxLength(30), Validators.required]),
+      password: this.password = new FormControl( '',
+        [Validators.minLength(10), Validators.maxLength(30), Validators.required]),
       confirmPassword: this.confirmPassword
     }, this.passwordValidator.bind(this.firstFormGroup));
     this.secondFormGroup = new FormGroup({
-      name: this.name,
-      lastName: this.lastName,
-      email: this.email,
-      city: this.city,
-      address: this.address,
-      postCode: this.postCode,
-      phone: this.phone,
+      name: this.name = new FormControl(this.user ? this.user.name : '',
+        [Validators.maxLength(30), Validators.required]),
+      lastName: this.lastName = new FormControl(this.user ? this.user.lastName : '',
+        [Validators.maxLength(30), Validators.required]),
+      email: this.email = new FormControl(this.user ? this.user.email : '',
+        [Validators.email, Validators.required]),
+      city: this.city  = new FormControl(this.user ? this.user.city : '', Validators.required),
+      address: this.address = new FormControl(this.user ? this.user.address : '', Validators.required),
+      postCode: this.postCode = new FormControl(this.user ? this.user.postCode : '', Validators.required),
+      phone: this.phone =  new FormControl(this.user ? this.user.phone : '',
+        [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     }, this.phoneValidator.bind(this));
   }
 

@@ -23,6 +23,7 @@ import { AdminPageComponent } from './components/admin-page/admin-page.component
 import { SnackBarRegistrationComponent } from './components/snack-bar/snack-bar-registration/snack-bar-registration.component';
 import { FormSizePizzaPostComponent } from './components/forms/form-size-pizza-post/form-size-pizza-post.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
+import { UserPageComponent } from './components/user-page/user-page.component';
 
 
 
@@ -39,7 +40,8 @@ import { UserCardComponent } from './components/user-card/user-card.component';
     AdminPageComponent,
     SnackBarRegistrationComponent,
     FormSizePizzaPostComponent,
-    UserCardComponent
+    UserCardComponent,
+    UserPageComponent
   ],
   imports: [
     BrowserModule,

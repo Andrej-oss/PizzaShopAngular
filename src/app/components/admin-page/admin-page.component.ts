@@ -15,6 +15,7 @@ export class AdminPageComponent implements OnInit {
   isAdmin = this.userService.isAdmin();
   isOpenPizzaCreator = false;
   isOpenUsersAdministrating = false;
+  isOpenUserUpdate = false;
   step = 0;
 
   constructor(private userGetService: UserGetService,
@@ -28,6 +29,8 @@ export class AdminPageComponent implements OnInit {
 
   onPizzaCreate(): void{
     this.isOpenPizzaCreator = !this.isOpenPizzaCreator;
+    this.isOpenUserUpdate = false;
+    this.isOpenUsersAdministrating = false;
   }
   setStep(index: number) {
     this.step = index;
@@ -43,6 +46,13 @@ export class AdminPageComponent implements OnInit {
 
   onUsersAdmin(): void{
     this.isOpenUsersAdministrating = !this.isOpenUsersAdministrating;
+    this.isOpenPizzaCreator = false;
+    this.isOpenUserUpdate = false;
+  }
+
+  onUserUpdate(): void{
+    this.isOpenUserUpdate = !this.isOpenUserUpdate;
+    this.isOpenUsersAdministrating = false;
     this.isOpenPizzaCreator = false;
   }
 }

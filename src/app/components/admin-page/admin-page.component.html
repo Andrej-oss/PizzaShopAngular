@@ -1,4 +1,4 @@
-<mat-drawer-container class="example-container"  autosize>
+<mat-drawer-container class="admin-card-menu"  autosize>
   <mat-drawer #drawer class="example-sidenav" mode="side">
     <p>
       <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
@@ -9,32 +9,32 @@
 <!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
 <!--      Toggle extra text-->
 <!--    </button>-->
-    <button  mat-raised-button  style="width: 70%; margin: 3%">
+    <button  mat-raised-button  (click)="onUserUpdate()">
       Administrating Profile
     </button>
-    <button  mat-raised-button (click)="onPizzaCreate()"  style="width: 70%; margin: 3%" *ngIf="!isAdmin">
+    <button  mat-raised-button (click)="onPizzaCreate()"   *ngIf="!isAdmin">
      Administrating Pizza
     </button>
-    <button  mat-raised-button style="width: 70%; margin: 3%">
+    <button  mat-raised-button >
       Administrating Combo
     </button>
-    <button  mat-raised-button style="width: 70%; margin: 3%">
+    <button  mat-raised-button>
       Administrating Sushi
     </button>
-    <button  mat-raised-button style="width: 70%; margin: 3%">
+    <button  mat-raised-button>
       Administrating Hot Snacks
     </button>
-    <button  mat-raised-button style="width: 70%; margin: 3%">
+    <button  mat-raised-button>
       Administrating Drinks
     </button>
-    <button  mat-raised-button style="width: 70%; margin: 3%" (click)="onUsersAdmin()">
+    <button  mat-raised-button  (click)="onUsersAdmin()">
       Administrating Users
     </button>
   </mat-drawer>
 
   <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()" style="margin: 2%">
-      Toggle sidenav
+    <button type="button" mat-button (click)="drawer.toggle()" style="width: 20%">
+      Toggle
     </button>
     <div *ngIf="isOpenPizzaCreator">
       <mat-accordion class="example-headers-align" style="padding: 10%">
@@ -94,6 +94,9 @@
     </div>
     <div *ngIf="isOpenUsersAdministrating" class="admin-users-content">
         <app-user-card  *ngFor="let user of users" [user]="user"></app-user-card>
+    </div>
+    <div *ngIf="isOpenUserUpdate">
+      <app-form-user-registration [user]="admin" style="width: 2vw"></app-form-user-registration>
     </div>
   </div>
 
