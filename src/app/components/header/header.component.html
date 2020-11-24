@@ -14,7 +14,7 @@
       <button mat-button (click)="onAdmin()" *ngIf="userService.isAdmin()">
         ADMIN: {{userService.getUserName()}}
       </button>
-      <button mat-button (click)="onRegistration()" *ngIf="userService.isUser()">
+      <button mat-button (click)="onUserPage()" *ngIf="userService.isUser()">
         USER: {{userService.getUserName()}}
       </button>
     </a>

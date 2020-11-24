@@ -4,12 +4,14 @@ import {FormPizzaPostingComponent} from '../../components/forms/form-pizza-posti
 import {FormUserAuthenticationComponent} from '../../components/forms/form-user-authentication/form-user-authentication.component';
 import {FormUserRegistrationComponent} from '../../components/forms/form-user-registration/form-user-registration.component';
 import {AdminPageComponent} from '../../components/admin-page/admin-page.component';
+import {UserPageComponent} from '../../components/user-page/user-page.component';
 
 export const routes: Routes = [
   {path: 'ingredient_post', component: FormIngredientPostingComponent},
   {path: 'pizza_post', component: FormPizzaPostingComponent},
   {path: 'authenticate', component: FormUserAuthenticationComponent},
   {path: 'registration', component: FormUserRegistrationComponent},
-  {path: 'admin', component: AdminPageComponent}
+  {path: 'admin', component: AdminPageComponent},
+  {path: 'user_page', component: UserPageComponent}
 ];
 

@@ -26,4 +26,8 @@ export class HeaderComponent implements OnInit {
   onAdmin(): void{
     this.router.navigateByUrl('/admin').then(data => console.log(data));
   }
+
+  onUserPage(): void{
+    this.router.navigateByUrl('/user_page').then(data => console.log(data));
+  }
 }

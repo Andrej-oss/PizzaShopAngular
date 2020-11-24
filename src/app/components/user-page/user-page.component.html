@@ -1,0 +1,28 @@
+<mat-drawer-container class="user-card-menu"  autosize>
+  <mat-drawer #drawer class="example-sidenav" mode="side">
+    <p>
+      <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
+    </p>
+    <p *ngIf="user">
+      {{user.username}}
+    </p>
+    <!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
+    <!--      Toggle extra text-->
+    <!--    </button>-->
+    <button  mat-raised-button  (click)="onUserUpdate()">
+      Administrating Profile
+    </button>
+    <button  mat-raised-button  (click)="onBasket()">
+      Basket
+    </button>
+  </mat-drawer>
+
+  <div class="example-sidenav-content">
+    <button type="button" mat-button (click)="drawer.toggle()" style="width: 20%">
+      Toggle
+    </button>
+    <div *ngIf="isUpdateInfoOpen">
+      <app-form-user-registration [user]="user" style="width: 2vw"></app-form-user-registration>
+    </div>
+  </div>
+</mat-drawer-container>
