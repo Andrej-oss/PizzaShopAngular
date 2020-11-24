@@ -2,9 +2,8 @@ import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../logic/services/post.service/user/user.service';
 import {Subscription} from 'rxjs';
-import {ActivatedRoute, Route, Router} from '@angular/router';
+import {ActivatedRoute, Params, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {FormPizzaPostingComponent} from '../form-pizza-posting/form-pizza-posting.component';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
 
 @Component({
@@ -21,7 +20,9 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   password: FormControl = new FormControl('', Validators.required);
   authority: string;
   constructor(private userService: UserService,
-              private router: Router, private snackBar: MatSnackBar) {
+              private router: Router,
+              private snackBar: MatSnackBar,
+              private activatedRoute: ActivatedRoute) {
     this.authForm = new FormGroup({
       username: this.username,
       password: this.password
@@ -34,14 +35,13 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     }
   }
   ngOnInit(): void {
-    // this.route.queryParams.subscribe((params) => {
-    //   if (params['registered']){
-    //
-    //   }
-    //   else if (params['accessDenied']){
-    //
-    //   }
-    // })
+    this.activatedRoute.queryParams.subscribe((params) => {
+      if (params.accessDenied){
+        console.log(params);
+        this.error = 'Please log in to Pizza shop first of all';
+      }
+      console.log(params);
+    });
     this.formCheck();
   }
 

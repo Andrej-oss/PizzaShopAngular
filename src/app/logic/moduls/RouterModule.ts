@@ -5,13 +5,15 @@ import {FormUserAuthenticationComponent} from '../../components/forms/form-user-
 import {FormUserRegistrationComponent} from '../../components/forms/form-user-registration/form-user-registration.component';
 import {AdminPageComponent} from '../../components/admin-page/admin-page.component';
 import {UserPageComponent} from '../../components/user-page/user-page.component';
+import {AdminGuardService} from '../guard-url/admin-guard.service/admin-guard.service';
+import {UserGuardService} from '../guard-url/user-guard.service/user-guard.service';
 
 export const routes: Routes = [
   {path: 'ingredient_post', component: FormIngredientPostingComponent},
   {path: 'pizza_post', component: FormPizzaPostingComponent},
   {path: 'authenticate', component: FormUserAuthenticationComponent},
   {path: 'registration', component: FormUserRegistrationComponent},
-  {path: 'admin', component: AdminPageComponent},
-  {path: 'user_page', component: UserPageComponent}
+  {path: 'admin', component: AdminPageComponent, canActivate: [AdminGuardService]},
+  {path: 'user_page', component: UserPageComponent, canActivate: [UserGuardService]}
 ];
 

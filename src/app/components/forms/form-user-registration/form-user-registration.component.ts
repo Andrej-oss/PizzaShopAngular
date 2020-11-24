@@ -4,6 +4,7 @@ import {UserService} from '../../../logic/services/post.service/user/user.servic
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarRegistrationComponent} from '../../snack-bar/snack-bar-registration/snack-bar-registration.component';
 import {User} from '../../models/User';
+import {ActivatedRoute, Params} from '@angular/router';
 
 @Component({
   selector: 'app-form-user-registration',
@@ -29,10 +30,12 @@ export class FormUserRegistrationComponent implements OnInit {
   address: FormControl;
   phone: FormControl;
   postCode: FormControl;
+  private message: Params;
 
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
-              private snackBar: MatSnackBar) {
+              private snackBar: MatSnackBar,
+              private route: ActivatedRoute) {
   }
 
   ngOnInit(): void {
@@ -57,7 +60,6 @@ export class FormUserRegistrationComponent implements OnInit {
         [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     }, this.phoneValidator.bind(this));
   }
-
   passwordValidator(form: FormGroup): null | object {
     const {value: password} = form.controls.password;
     const {value: confirmPassword} = form.controls.confirmPassword;
