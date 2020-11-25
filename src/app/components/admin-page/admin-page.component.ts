@@ -2,6 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {UserGetService} from '../../logic/services/get.services/user/user-get.service';
 import {UserService} from '../../logic/services/post.service/user/user.service';
 import {User} from '../models/User';
+import {UserActionsService} from '../../logic/store/actions/user-actions.service';
+import {select, Store } from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {selectPrincipal, selectUsers} from '../../logic/store/selectors/UserSelect';
 
 @Component({
   selector: 'app-admin-page',
@@ -10,8 +14,8 @@ import {User} from '../models/User';
 })
 export class AdminPageComponent implements OnInit {
   showFiller: boolean;
-  users: User[];
-  admin: User;
+  users: Observable<User[]> = this.store$.pipe(select(selectUsers));
+  admin: Observable<User> = this.store$.pipe(select(selectPrincipal));
   isAdmin = this.userService.isAdmin();
   isOpenPizzaCreator = false;
   isOpenUsersAdministrating = false;
@@ -19,12 +23,13 @@ export class AdminPageComponent implements OnInit {
   step = 0;
 
   constructor(private userGetService: UserGetService,
-              private userService: UserService) { }
+              private userService: UserService,
+              private userActionsService: UserActionsService,
+              private store$: Store) { }
 
   ngOnInit(): void {
-    this.userGetService.getUserByName(this.userService.getUserName())
-      .subscribe(data => this.admin = data);
-    this.userGetService.getAllUsers().subscribe(data => this.users = data);
+    this.userActionsService.getUsers();
+    this.userActionsService.getPrincipal(this.userService.getUserName());
   }
 
   onPizzaCreate(): void{

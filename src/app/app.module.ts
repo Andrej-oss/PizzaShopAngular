@@ -24,6 +24,10 @@ import { SnackBarRegistrationComponent } from './components/snack-bar/snack-bar-
 import { FormSizePizzaPostComponent } from './components/forms/form-size-pizza-post/form-size-pizza-post.component';
 import { UserCardComponent } from './components/user-card/user-card.component';
 import { UserPageComponent } from './components/user-page/user-page.component';
+import { StoreModule } from '@ngrx/store';
+import { metaReducers, reducers} from './logic/store/redusers';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import {environment} from '../environments/environment';
 
 
 
@@ -50,7 +54,15 @@ import { UserPageComponent } from './components/user-page/user-page.component';
     MaterialModules,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    StoreModule.forRoot(reducers, {
+      metaReducers,
+      runtimeChecks: {
+        strictStateImmutability: true,
+        strictActionImmutability: true
+      }
+    }),
+    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
   ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
