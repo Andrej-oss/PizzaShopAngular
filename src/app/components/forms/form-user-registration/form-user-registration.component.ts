@@ -5,6 +5,7 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarRegistrationComponent} from '../../snack-bar/snack-bar-registration/snack-bar-registration.component';
 import {User} from '../../models/User';
 import {ActivatedRoute, Params} from '@angular/router';
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 
 @Component({
   selector: 'app-form-user-registration',
@@ -14,6 +15,8 @@ import {ActivatedRoute, Params} from '@angular/router';
 export class FormUserRegistrationComponent implements OnInit {
   @Input()
   user: User;
+  darkTheme = 'registration-card-dark';
+  whiteTheme = 'registration-card';
 
   isLinear = false;
   hide = true;
@@ -35,7 +38,7 @@ export class FormUserRegistrationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private snackBar: MatSnackBar,
-              private route: ActivatedRoute) {
+              public themeSubjectService: ThemeObjectService) {
   }
 
   ngOnInit(): void {

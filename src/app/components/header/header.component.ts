@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../../logic/services/post.service/user/user.service';
+import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 
 @Component({
   selector: 'app-header',
@@ -10,7 +11,8 @@ import {UserService} from '../../logic/services/post.service/user/user.service';
 export class HeaderComponent implements OnInit {
 
   constructor(private router: Router,
-              public userService: UserService) { }
+              public userService: UserService,
+              public themeSubjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
   }
@@ -29,5 +31,9 @@ export class HeaderComponent implements OnInit {
 
   onUserPage(): void{
     this.router.navigateByUrl('/user_page').then(data => console.log(data));
+  }
+
+  onDark(): void{
+    this.themeSubjectService.data.value.isDarkTheme = ! this.themeSubjectService.data.value.isDarkTheme;
   }
 }

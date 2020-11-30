@@ -1,4 +1,4 @@
-<mat-card class="registration-card">
+<mat-card [className]="themeSubjectService.data.value.isDarkTheme ? darkTheme : whiteTheme">
 <mat-vertical-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="firstFormGroup">
     <form [formGroup]="firstFormGroup">

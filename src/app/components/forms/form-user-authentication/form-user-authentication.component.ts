@@ -5,6 +5,7 @@ import {Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
+import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -22,7 +23,8 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   constructor(private userService: UserService,
               private router: Router,
               private snackBar: MatSnackBar,
-              private activatedRoute: ActivatedRoute) {
+              private activatedRoute: ActivatedRoute,
+              public themeObjectService: ThemeObjectService) {
     this.authForm = new FormGroup({
       username: this.username,
       password: this.password
@@ -46,6 +48,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   }
 
   onSave(authForm: FormGroup): void{
+      this.themeObjectService.data.value.isAuthLoad = true;
       this.authForm.disable();
       this.sub = this.userService
       .authenticateUser({username: authForm.controls.username.value, password: authForm.controls.password.value})

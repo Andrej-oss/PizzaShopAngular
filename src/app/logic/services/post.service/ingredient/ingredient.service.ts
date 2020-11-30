@@ -12,7 +12,7 @@ export class IngredientService {
   constructor(private httpClient: HttpClient) { }
 
   saveIngredient(formData: FormData, append: void): Observable<Ingredient[]>{
-    console.log(formData)
+    console.log(formData);
     return this.httpClient.post<Ingredient[]>(this.baseUrl + '/ingredient', formData);
   }
 }

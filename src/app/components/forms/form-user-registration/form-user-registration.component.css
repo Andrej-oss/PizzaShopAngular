@@ -7,3 +7,7 @@ button:focus{
   margin: 2%;
   padding: 5%;
 }
+.registration-card-dark {
+background-color: black;
+  color: white;
+}

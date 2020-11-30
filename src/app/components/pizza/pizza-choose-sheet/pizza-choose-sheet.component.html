@@ -1,0 +1,28 @@
+<div class="pizza-sheet">
+  <div *ngFor="let pizza of pizzas">
+    <div *ngIf="themeObjectService.data.value.idChoose === pizza.id" class="pizza-sheet-content">
+      <div class="pizza-sheet-content-image">
+        <img [src]="url+pizza.path" class="pizza-card-image-content">
+      </div>
+      <div class="pizza-sheet-content-text">
+        <h1>
+          {{pizza.name}}
+        </h1>
+        <p class="pizza-sheet-content-text-description">
+          {{pizzaName.join(',')}}
+        </p>
+        <div class="pizza-sheet-content-text-ingredients">
+          <div *ngFor="let ingredient of ingredients | async">
+            <div *ngFor="let ingred, let i = index of pizza.ingredients.split(',')">
+              <div *ngIf="ingred == ingredient.id" style="margin-right: 10px">
+                <app-ingredient-card [ingredient]="ingredient" (click)="onAdd(ingredient.price, ingredient.name, i)">
+                </app-ingredient-card>
+              </div>
+            </div>
+          </div>
+        </div>
+        <button mat-button>Add to basket for {{pizzaPrice}}</button>
+      </div>
+    </div>
+  </div>
+</div>

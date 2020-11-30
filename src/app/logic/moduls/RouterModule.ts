@@ -7,8 +7,10 @@ import {AdminPageComponent} from '../../components/admin-page/admin-page.compone
 import {UserPageComponent} from '../../components/user-page/user-page.component';
 import {AdminGuardService} from '../guard-url/admin-guard.service/admin-guard.service';
 import {UserGuardService} from '../guard-url/user-guard.service/user-guard.service';
+import {PizzaPageComponent} from '../../components/pizza/pizza-page/pizza-page.component';
 
 export const routes: Routes = [
+  {path: '', component: PizzaPageComponent},
   {path: 'ingredient_post', component: FormIngredientPostingComponent},
   {path: 'pizza_post', component: FormPizzaPostingComponent},
   {path: 'authenticate', component: FormUserAuthenticationComponent},

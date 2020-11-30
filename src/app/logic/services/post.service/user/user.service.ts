@@ -4,6 +4,7 @@ import { User } from 'src/app/components/models/User';
 import {Observable} from 'rxjs';
 import {AuthUser} from '../../../../components/models/AuthUser';
 import {tap} from 'rxjs/operators';
+import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 
 @Injectable({
   providedIn: 'root'
@@ -14,7 +15,8 @@ export class UserService {
   private authority = null;
   private userName = null;
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient,
+              private themeObjectService: ThemeObjectService) { }
 
   saveUser(user: User): Observable<User[]>{
     console.log(user)
@@ -25,6 +27,7 @@ export class UserService {
       .post<{token: string, role: string, username: string}>(this.baseURL + '/user/authenticate', authUser)
       .pipe(
         tap(({token, role, username }) => {
+          this.themeObjectService.data.value.isAuthLoad = false;
           localStorage.setItem('token', token);
           this.setToken(token);
           if (role.startsWith('[ROLE_') && role.endsWith(']')) {

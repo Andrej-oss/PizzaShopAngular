@@ -9,7 +9,7 @@ export interface Pizza {
   description: string;
   price: number;
   path: string;
-  ingredients: number[];
+  ingredients: string;
   sizes: Size[];
   rating: Rating;
   comments: Comment[];

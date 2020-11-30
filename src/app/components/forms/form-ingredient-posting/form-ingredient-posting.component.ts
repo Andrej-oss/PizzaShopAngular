@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IngredientService} from '../../../logic/services/post.service/ingredient/ingredient.service';
+import {IngredientGetService} from '../../../logic/services/get.services/ingredient/ingredient.get.service';
+import {Ingredient} from "../../models/Ingredient";
 
 @Component({
   selector: 'app-form-ingredient-posting',
@@ -8,12 +10,14 @@ import {IngredientService} from '../../../logic/services/post.service/ingredient
   styleUrls: ['./form-ingredient-posting.component.css']
 })
 export class FormIngredientPostingComponent implements OnInit {
+  ingredients: Ingredient[];
   ingredientFormGroup: FormGroup;
   name: FormControl = new FormControl('', Validators.required);
   price: FormControl = new FormControl('', Validators.required);
   image: FormControl = new FormControl('', Validators.required);
   formData: FormData = new FormData();
-  constructor(private ingredientService: IngredientService) {
+  constructor(private ingredientService: IngredientService,
+              private ingredientGetService: IngredientGetService) {
     this.ingredientFormGroup = new FormGroup({
       name: this.name,
       price: this.price,

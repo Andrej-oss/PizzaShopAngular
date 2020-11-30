@@ -1,0 +1,23 @@
+.pizza-sheet{
+  width: 800px;
+margin: 10% 10% 10% 10%;
+}
+.pizza-card-image-content{
+  width: 200px;
+  border-radius: 50%;
+}
+.pizza-sheet-content{
+  display: flex;
+  justify-content: space-around;
+}
+.pizza-sheet-content-text{
+  /*margin: 10% 10% 0% 0%;*/
+  width: 50%;
+}
+.pizza-sheet-content-text-ingredients{
+  display: flex;
+  flex-direction: row;
+}
+button:focus{
+  outline: 0;
+}

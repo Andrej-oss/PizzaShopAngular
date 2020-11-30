@@ -4,7 +4,7 @@
       <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
     </p>
     <p *ngIf="admin">
-      {{admin.username}}
+      {{admin.username | async}}
     </p>
 <!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
 <!--      Toggle extra text-->
@@ -12,7 +12,7 @@
     <button  mat-raised-button  (click)="onUserUpdate()">
       Administrating Profile
     </button>
-    <button  mat-raised-button (click)="onPizzaCreate()"   *ngIf="!isAdmin">
+    <button  mat-raised-button (click)="onPizzaCreate()"   *ngIf="isAdmin">
      Administrating Pizza
     </button>
     <button  mat-raised-button >

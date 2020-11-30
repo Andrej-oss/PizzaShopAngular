@@ -28,6 +28,10 @@ import { StoreModule } from '@ngrx/store';
 import { metaReducers, reducers} from './logic/store/redusers';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 import {environment} from '../environments/environment';
+import { PizzaPageComponent } from './components/pizza/pizza-page/pizza-page.component';
+import { PizzaCardComponent } from './components/pizza/pizza-card/pizza-card.component';
+import {PizzaChooseSheetComponent} from './components/pizza/pizza-choose-sheet/pizza-choose-sheet.component';
+import { IngredientCardComponent } from './components/pizza/ingredient-card/ingredient-card.component';
 
 
 
@@ -45,7 +49,11 @@ import {environment} from '../environments/environment';
     SnackBarRegistrationComponent,
     FormSizePizzaPostComponent,
     UserCardComponent,
-    UserPageComponent
+    UserPageComponent,
+    PizzaPageComponent,
+    PizzaCardComponent,
+    PizzaChooseSheetComponent,
+    IngredientCardComponent
   ],
   imports: [
     BrowserModule,

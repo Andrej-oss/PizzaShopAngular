@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import {UserGetService} from '../../logic/services/get.services/user/user-get.service';
 import {UserService} from '../../logic/services/post.service/user/user.service';
 import {User} from '../models/User';
-import {UserActionsService} from '../../logic/store/actions/user-actions.service';
+import {UserActionsService} from '../../logic/store/actions/user/user-actions.service';
 import {select, Store } from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {selectPrincipal, selectUsers} from '../../logic/store/selectors/UserSelect';
@@ -15,7 +15,7 @@ import {selectPrincipal, selectUsers} from '../../logic/store/selectors/UserSele
 export class AdminPageComponent implements OnInit {
   showFiller: boolean;
   users: Observable<User[]> = this.store$.pipe(select(selectUsers));
-  admin: Observable<User> = this.store$.pipe(select(selectPrincipal));
+  admin: Observable<any> = this.store$.pipe(select(selectPrincipal));
   isAdmin = this.userService.isAdmin();
   isOpenPizzaCreator = false;
   isOpenUsersAdministrating = false;

@@ -1,10 +1,6 @@
-<div class="mat-app-background basic-container">
+
+<div [className]="themeSubjectService.data.value.isDarkTheme ? darkTheme : whiteTheme">
   <app-header></app-header>
-  <app-nav-bar></app-nav-bar>
-  <button [disabled]="!userService.isAdmin()" (click)="addIngredient()">Add Pizza</button>
-  <button [disabled]="!userService.isAdmin()" (click)="addPizza()">Add Pizza</button>
-  <input class="btn btn-primary" id="input-file-id" multiple type="file"/>
-  <label for="input-file-id" class="md-button md-raised md-primary">Choose Files</label>
 </div>
 
 <router-outlet></router-outlet>

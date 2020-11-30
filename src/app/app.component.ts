@@ -1,6 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {UserService} from './logic/services/post.service/user/user.service';
 import {Router} from '@angular/router';
+import {ThemeObjectService} from './logic/theme-object/theme-object.service';
 
 @Component({
   selector: 'app-root',
@@ -9,8 +10,12 @@ import {Router} from '@angular/router';
 })
 export class AppComponent implements OnInit {
   title = 'pizza-shop';
+  darkTheme = 'app-content-dark';
+  whiteTheme = 'app-content';
 
-  constructor(public userService: UserService, private router: Router) {
+  constructor(public userService: UserService,
+              private router: Router,
+              public themeSubjectService: ThemeObjectService) {
   }
 
   ngOnInit(): void {

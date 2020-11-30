@@ -17,6 +17,7 @@
       <button mat-button (click)="onUserPage()" *ngIf="userService.isUser()">
         USER: {{userService.getUserName()}}
       </button>
+      <mat-slide-toggle (click)="onDark()">To Dark</mat-slide-toggle>
     </a>
   </div>
 </div>
