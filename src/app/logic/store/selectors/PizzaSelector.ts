@@ -6,3 +6,4 @@ export const PizzaSelector = createFeatureSelector<DefaultPizzaState>(pizzaNode)
 
 export const AllPizzasSelector = createSelector(PizzaSelector, data => data.pizzas);
 export const IngredientsSelector = createSelector(PizzaSelector, data => data.ingredients);
+export const SizePizzaSelector = createSelector(PizzaSelector, data => data.size);

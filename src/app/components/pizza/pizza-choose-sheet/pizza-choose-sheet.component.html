@@ -1,16 +1,33 @@
 <div class="pizza-sheet">
   <div *ngFor="let pizza of pizzas">
     <div *ngIf="themeObjectService.data.value.idChoose === pizza.id" class="pizza-sheet-content">
-      <div class="pizza-sheet-content-image">
+      <div class="pizza-sheet-content-image" *ngIf="(size | async) === null">
         <img [src]="url+pizza.path" class="pizza-card-image-content">
+      </div>
+      <div class="pizza-sheet-content-image" *ngIf="(size | async) !== null">
+        <img [src]="sizeUrl+(size | async)?.path + '/' + (size | async)?.name" [className]="classSize">
       </div>
       <div class="pizza-sheet-content-text">
         <h1>
           {{pizza.name}}
         </h1>
+        <p>
+          {{(size | async)?.diameter}}cm,  {{(size | async)?.weight}}g
+        </p>
         <p class="pizza-sheet-content-text-description">
           {{pizzaName.join(',')}}
         </p>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle (click)="onSmallPizza(pizza.id)">Small</mat-button-toggle>
+          <mat-button-toggle (click)="onMediumPizza(pizza.id)">Medium</mat-button-toggle>
+          <mat-button-toggle (click)="onLargePizza(pizza.id)">Large</mat-button-toggle>
+        </mat-button-toggle-group>
+        <div>
+        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+          <mat-button-toggle>Traditional</mat-button-toggle>
+          <mat-button-toggle>Thin</mat-button-toggle>
+        </mat-button-toggle-group>
+        </div>
         <div class="pizza-sheet-content-text-ingredients">
           <div *ngFor="let ingredient of ingredients | async">
             <div *ngFor="let ingred, let i = index of pizza.ingredients.split(',')">
@@ -21,7 +38,12 @@
             </div>
           </div>
         </div>
-        <button mat-button>Add to basket for {{pizzaPrice}}</button>
+        <div *ngIf="(size | async) === null">
+          <button mat-button>Add to basket for {{pizzaPrice}}</button>
+        </div>
+        <div *ngIf="(size | async) !== null">
+          <button mat-button>Add to basket for {{(size | async)?.price}}</button>
+        </div>
       </div>
     </div>
   </div>

@@ -4,8 +4,11 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {select, Store} from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
 import {Pizza} from '../../models/Pizza';
-import {AllPizzasSelector, IngredientsSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {AllPizzasSelector, IngredientsSelector, SizePizzaSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {Ingredient} from '../../models/Ingredient';
+import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
+import {Size} from '../../models/Size';
+import {tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-pizza-choose-sheet',
@@ -13,9 +16,13 @@ import {Ingredient} from '../../models/Ingredient';
   styleUrls: ['./pizza-choose-sheet.component.css']
 })
 export class PizzaChooseSheetComponent implements OnInit {
-  // @Input()
+  diameter: number;
+  sizze: Size;
   url = 'http://localhost:8080/pizza/image/';
+  sizeUrl = 'http://localhost:8080/size/image/';
   // pizzas: Observable<Pizza[]> = this.store$.pipe(select(AllPizzasSelector));
+  classSize = 'pizza-card-image-content';
+  size: Observable<Size> =  this.store$.pipe(select(SizePizzaSelector));
   pizzas: Pizza[];
   ingredients: Observable<Ingredient[]> = this.store$.pipe(select(IngredientsSelector));
   pizza: Pizza;
@@ -28,6 +35,7 @@ export class PizzaChooseSheetComponent implements OnInit {
   isAddName: boolean;
   constructor(private bottomSheetRef: MatBottomSheetRef<PizzaChooseSheetComponent>,
               public themeObjectService: ThemeObjectService,
+              private pizzaService: PizzaService,
               private store$: Store) { }
 
   ngOnInit(): void {
@@ -75,5 +83,20 @@ export class PizzaChooseSheetComponent implements OnInit {
       this.pizzaPrice = this.pizzaPrice - price;
       this.pizzaName = this.pizzaName.filter(value => value !== name);
     }
+  }
+
+  onLargePizza(id: number): void{
+    this.pizzaService.getSizePizza(id, 'large');
+    this.classSize = 'pizza-card-image-content-large';
+  }
+
+  onMediumPizza(id: number): void{
+    this.pizzaService.getSizePizza(id, 'medium');
+    this.classSize = 'pizza-card-image-content-medium';
+  }
+
+  onSmallPizza(id: number): void{
+    this.pizzaService.getSizePizza(id, 'small');
+    this.classSize = 'pizza-card-image-content';
   }
 }

@@ -50,7 +50,7 @@ export class FormSizePizzaPostComponent implements OnInit {
     this.sizeFormData.delete('price');
     this.sizeFormData.delete('diameter');
     this.sizeFormData.delete('weight');
-    this.sizeFormData.delete('data');
+    this.sizeFormData.delete('file');
   }
 
   upLoadFileSize(event): void{
@@ -77,7 +77,7 @@ export class FormSizePizzaPostComponent implements OnInit {
     this.sizePostService.saveSizePizza(this.sizeFormData,
       pizzaSizeForm.controls.pizzaId.value,
       pizzaSizeForm.controls.file.value).subscribe(data => console.log(data));
-    // this.resetSizeFormData();
-    // pizzaSizeForm.reset();
+    this.resetSizeFormData();
+    pizzaSizeForm.reset();
   }
 }

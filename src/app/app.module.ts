@@ -35,6 +35,7 @@ import { IngredientCardComponent } from './components/pizza/ingredient-card/ingr
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -53,7 +54,7 @@ import { IngredientCardComponent } from './components/pizza/ingredient-card/ingr
     PizzaPageComponent,
     PizzaCardComponent,
     PizzaChooseSheetComponent,
-    IngredientCardComponent
+    IngredientCardComponent,
   ],
   imports: [
     BrowserModule,

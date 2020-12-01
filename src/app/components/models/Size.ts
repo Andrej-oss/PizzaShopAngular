@@ -8,4 +8,6 @@ export interface Size {
   size: SizePizza.SMALL | SizePizza.MEDIUM | SizePizza.LARGE;
   price: number;
   image: string;
+  path: string;
+  name: string;
 }

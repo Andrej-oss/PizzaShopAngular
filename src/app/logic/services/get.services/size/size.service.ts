@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Pizza} from '../../../../components/models/Pizza';
+import {Size} from '../../../../components/models/Size';
 
 @Injectable({
   providedIn: 'root'
 })
-export class PizzaGetService {
+export class SizeService {
   private baseUrl = 'http://localhost:8080';
 
   constructor(private httpClient: HttpClient) { }
-  getAllPizza(): Observable<Pizza[]>{
-    debugger;
-    return this.httpClient.get<Pizza[]>(this.baseUrl + '/pizza');
+
+  getPizzaSize(id: number, name: string): Observable<Size>{
+    return this.httpClient.get<Size>(this.baseUrl + `/size/${id}/${name}`);
   }
 }
