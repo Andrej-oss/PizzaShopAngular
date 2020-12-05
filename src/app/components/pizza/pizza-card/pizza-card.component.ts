@@ -3,6 +3,7 @@ import {Pizza} from '../../models/Pizza';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {PizzaChooseSheetComponent} from '../pizza-choose-sheet/pizza-choose-sheet.component';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 
 @Component({
   selector: 'app-pizza-card',
@@ -16,7 +17,8 @@ pizza: Pizza;
   ingredients: string[];
 
   constructor(private bottomSheet: MatBottomSheet,
-              private themeObjectService: ThemeObjectService) { }
+              private themeObjectService: ThemeObjectService,
+              private pizzaService: PizzaService) { }
 
   ngOnInit(): void {
     this.ingredients = this.pizza.ingredients.split(',');
@@ -29,5 +31,6 @@ pizza: Pizza;
     this.themeObjectService.data.value.idChoose = id;
     console.log(this.themeObjectService.data.value.idChoose);
     this.bottomSheet.open(PizzaChooseSheetComponent);
+    this.pizzaService.getSizePizza(id, 'small');
   }
 }

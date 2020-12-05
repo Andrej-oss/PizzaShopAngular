@@ -1,7 +1,7 @@
-<div class="ingredient-card">
+<div class="ingredient-card"  >
   <img [src]="url + ingredient.path" class="ingredient-card-image">
   <div>
-    {{ingredient.name}}
+    {{ingredient.name.split('_').join(' ')}}
   </div>
   <h2>
     {{ingredient.price}}

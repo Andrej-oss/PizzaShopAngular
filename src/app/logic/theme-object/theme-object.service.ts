@@ -11,6 +11,11 @@ export class ThemeObjectService {
     isAuthLoad: false,
     idChoose: 0,
     ingredients: [],
+    price: 0,
+    userName: '',
+    userId: 0,
+    message: '',
+    sizeCart: 0
   });
   constructor() { }
 }

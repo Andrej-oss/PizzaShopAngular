@@ -1,9 +1,11 @@
 import { Action } from '@ngrx/store';
 import {User} from '../../../components/models/User';
+import {Cart} from "../../../components/models/Cart";
 
 export enum UserActionsTypes {
   loadedUsers = '[USERS] loaded',
-  loadedPrincipal = '[PRINCIPAL] loaded'
+  loadedPrincipal = '[PRINCIPAL] loaded',
+  loadedCart = '[CART] user`s loaded',
 }
 export class UsersLoad implements  Action {
   readonly type = UserActionsTypes.loadedUsers;
@@ -17,5 +19,11 @@ export class PrincipalLoad implements Action {
   constructor(public payload: User[]){
   }
 }
-export type UserActions = UsersLoad | PrincipalLoad;
+export class CartLoad implements Action{
+  readonly type = UserActionsTypes.loadedCart;
+
+  constructor(public payload: Cart[]) {
+  }
+}
+export type UserActions = UsersLoad | PrincipalLoad | CartLoad;
 

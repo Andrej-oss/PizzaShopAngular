@@ -32,7 +32,7 @@ import { PizzaPageComponent } from './components/pizza/pizza-page/pizza-page.com
 import { PizzaCardComponent } from './components/pizza/pizza-card/pizza-card.component';
 import {PizzaChooseSheetComponent} from './components/pizza/pizza-choose-sheet/pizza-choose-sheet.component';
 import { IngredientCardComponent } from './components/pizza/ingredient-card/ingredient-card.component';
-
+import {NgxStripeModule} from 'ngx-stripe';
 
 
 
@@ -63,6 +63,8 @@ import { IngredientCardComponent } from './components/pizza/ingredient-card/ingr
     MaterialModules,
     ReactiveFormsModule,
     HttpClientModule,
+    NgxStripeModule.forRoot('pk_test_51Hv6uTGmmCaqYLZpH2DedxpEXPGQFNx7eM4i' +
+      'aTxkjowLq94xpVY5ORolZnmokcoiwQ51IAMCWsGC0B6cl6c7EbUg00Aefbn2rC'),
     RouterModule.forRoot(routes),
     StoreModule.forRoot(reducers, {
       metaReducers,

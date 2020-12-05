@@ -3,8 +3,8 @@
     <p>
       <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
     </p>
-    <p *ngIf="user">
-      {{user.username}}
+    <p *ngIf="user | async">
+      {{(user | async)?.username}}
     </p>
     <!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
     <!--      Toggle extra text-->
@@ -13,7 +13,7 @@
       Administrating Profile
     </button>
     <button  mat-raised-button  (click)="onBasket()">
-      Basket
+      Cart
     </button>
   </mat-drawer>
 
@@ -22,7 +22,7 @@
       Toggle
     </button>
     <div *ngIf="isUpdateInfoOpen">
-      <app-form-user-registration [user]="user" style="width: 2vw"></app-form-user-registration>
+      <app-form-user-registration [user]="user | async" style="width: 2vw"></app-form-user-registration>
     </div>
   </div>
 </mat-drawer-container>

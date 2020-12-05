@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 
 @Component({
   selector: 'app-snack-bar',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SnackBarComponent implements OnInit {
 
-  constructor() { }
+  constructor(public themeObjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
   }

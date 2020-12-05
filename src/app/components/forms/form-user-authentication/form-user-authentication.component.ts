@@ -1,11 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../logic/services/post.service/user/user.service';
-import {Subscription} from 'rxjs';
+import {forkJoin, of, pipe, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
-import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
+import {concatMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -24,6 +26,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
               private router: Router,
               private snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
+              private userActionsService: UserActionsService,
               public themeObjectService: ThemeObjectService) {
     this.authForm = new FormGroup({
       username: this.username,
@@ -46,12 +49,14 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     });
     this.formCheck();
   }
-
   onSave(authForm: FormGroup): void{
       this.themeObjectService.data.value.isAuthLoad = true;
       this.authForm.disable();
-      this.sub = this.userService
+      this.userService
       .authenticateUser({username: authForm.controls.username.value, password: authForm.controls.password.value})
+        .pipe(map(data => this.userActionsService.getPrincipal(data.username)))
+        // .pipe(mergeMap(async  (data1) => this.userActionsService.getPrincipal(data1.username)),
+        //   this.userActionsService.getAllCart(this.themeObjectService.data.value.userId))
       .subscribe((data) => {
         // if (data.role.startsWith('[ROLE_') && data.role.endsWith(']')){
         //  const role = data.role.split('');
@@ -61,9 +66,15 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
         //  this.authority = s;
         //  console.log(this.authority);
         // }
-        this.error = null;
-        console.log(data.role, data.username, 'login success');
-        this.snackBar.openFromComponent(SnackBarComponent, {
+          of(setTimeout(() => {
+            this.userActionsService.getAllCart(this.themeObjectService.data.value.userId)}, 10));
+          if (this.themeObjectService.data.value.userId !== 0) {
+            of(this.userActionsService.getAllCart(this.themeObjectService.data.value.userId));
+          }
+          this.error = null;
+          console.log(data, 'login success');
+          this.themeObjectService.data.value.message = 'Login success';
+          this.snackBar.openFromComponent(SnackBarComponent, {
             duration: 2000,
           });
         },

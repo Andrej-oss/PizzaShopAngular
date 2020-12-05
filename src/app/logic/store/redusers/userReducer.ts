@@ -18,6 +18,12 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
         principal: action.payload[0]
       };
     }
+    case UserActionsTypes.loadedCart: {
+      return {
+        ...state,
+        cart: action.payload,
+      };
+    }
     default: {
       return state;
     }

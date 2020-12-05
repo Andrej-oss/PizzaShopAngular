@@ -9,6 +9,8 @@ import {Ingredient} from '../../models/Ingredient';
 export class IngredientCardComponent implements OnInit {
 @Input()
 ingredient: Ingredient;
+@Input()
+isActive: boolean;
   url = 'http://localhost:8080/ingredient/image/';
 
   constructor() { }

@@ -32,18 +32,23 @@
           <div *ngFor="let ingredient of ingredients | async">
             <div *ngFor="let ingred, let i = index of pizza.ingredients.split(',')">
               <div *ngIf="ingred == ingredient.id" style="margin-right: 10px">
-                <app-ingredient-card [ingredient]="ingredient" (click)="onAdd(ingredient.price, ingredient.name, i)">
+                <app-ingredient-card [ingredient]="ingredient"
+                                     [matBadge]="isAddPrice3 && i === 2
+                                     || isAddPrice2 && i ===1
+                                     || isAddPrice1 && i === 0 ? '-' : '+'" matBadgePosition="before" matBadgeColor="accent"
+                                     (click)="onAdd(ingredient.price, ingredient.name, i)">
                 </app-ingredient-card>
               </div>
             </div>
           </div>
         </div>
-        <div *ngIf="(size | async) === null">
-          <button mat-button>Add to basket for {{pizzaPrice}}</button>
+        <div>
+          <button mat-button (click)="savePizzaInBasket(pizza.id)">
+            Add to basket for {{themeObjectService.data.value.price}}</button>
         </div>
-        <div *ngIf="(size | async) !== null">
-          <button mat-button>Add to basket for {{(size | async)?.price}}</button>
-        </div>
+<!--        <div *ngIf="(size | async) !== null">-->
+<!--          <button mat-button>Add to basket for {{(size | async)?.price}}</button>-->
+<!--        </div>-->
       </div>
     </div>
   </div>

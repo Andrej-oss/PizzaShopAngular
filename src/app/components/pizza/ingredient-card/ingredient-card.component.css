@@ -13,3 +13,10 @@
 .ingredient-card:hover{
   box-shadow: 0 0 5px;
 }
+.ingredient-card:active{
+  box-shadow: 0 0 0px;
+}
+.ingredient-card:visited{
+  outline: red;
+  box-shadow: 0 0 0px;
+}

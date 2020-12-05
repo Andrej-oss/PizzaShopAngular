@@ -1,9 +1,9 @@
 <div class="header">
   HEADER
   <div class="header-content">
-  <a class="header-content-logo">
-    Header
-  </a>
+    <a class="header-content-logo">
+      Header
+    </a>
     <a class="header-content-search">
 
     </a>
@@ -18,6 +18,12 @@
         USER: {{userService.getUserName()}}
       </button>
       <mat-slide-toggle (click)="onDark()">To Dark</mat-slide-toggle>
+      <button mat-button>
+      <span class="material-icons"
+            [matBadge]="themeSubjectService.data.value.sizeCart"
+            matBadgePosition="before"
+            matBadgeColor="warn">shopping_cart</span>
+      </button>
     </a>
   </div>
 </div>
