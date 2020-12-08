@@ -2,6 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 import {UserService} from '../../logic/services/post.service/user/user.service';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
+import {Observable} from 'rxjs';
+import {Cart} from '../models/Cart';
+import {select, Store} from '@ngrx/store';
+import {selectCart} from '../../logic/store/selectors/UserSelect';
+import {Pizza} from '../models/Pizza';
+import {AllPizzasSelector} from '../../logic/store/selectors/PizzaSelector';
 
 @Component({
   selector: 'app-header',
@@ -9,12 +15,16 @@ import {ThemeObjectService} from '../../logic/theme-object/theme-object.service'
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
+  isCartOpen: boolean;
+  cartElements: Observable<Cart[]> = this.store$.pipe(select(selectCart));
+  pizzas: Observable<Pizza[]> = this.store$.pipe(select(AllPizzasSelector));
   constructor(private router: Router,
               public userService: UserService,
+              private store$: Store,
               public themeSubjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
+    this.isCartOpen = true;
   }
 
   onLogin(): void{
@@ -35,5 +45,13 @@ export class HeaderComponent implements OnInit {
 
   onDark(): void{
     this.themeSubjectService.data.value.isDarkTheme = ! this.themeSubjectService.data.value.isDarkTheme;
+  }
+
+  showCart(): void{
+    this.isCartOpen = !this.isCartOpen;
+  }
+
+  hideCart(): void{
+    this.isCartOpen = !this.isCartOpen;
   }
 }

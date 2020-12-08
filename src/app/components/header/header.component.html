@@ -20,6 +20,7 @@
       <mat-slide-toggle (click)="onDark()">To Dark</mat-slide-toggle>
       <button mat-button>
       <span class="material-icons"
+            (mouseover)="showCart()"
             [matBadge]="themeSubjectService.data.value.sizeCart"
             matBadgePosition="before"
             matBadgeColor="warn">shopping_cart</span>
@@ -28,4 +29,9 @@
   </div>
 </div>
 <app-nav-bar></app-nav-bar>
+<div *ngIf="!isCartOpen && (cartElements | async).length !== 0">
+  <div class="header-content-buttons-cart" >
+        <app-pizza-cart-card [cartElements]="cartElements | async" [pizzas]="pizzas | async"></app-pizza-cart-card>
+  </div>
+</div>
 <router-outlet></router-outlet>

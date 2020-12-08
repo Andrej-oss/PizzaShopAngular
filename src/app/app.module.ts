@@ -1,6 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
 import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -10,7 +9,6 @@ import { FormUserRegistrationComponent } from './components/forms/form-user-regi
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormUserAuthenticationComponent } from './components/forms/form-user-authentication/form-user-authentication.component';
 import {RouterModule} from '@angular/router';
-
 import {TokenInterceptor} from './logic/shared/classes/tokenInterceptor';
 import { FormIngredientPostingComponent } from './components/forms/form-ingredient-posting/form-ingredient-posting.component';
 import {routes} from './logic/moduls/RouterModule';
@@ -33,6 +31,10 @@ import { PizzaCardComponent } from './components/pizza/pizza-card/pizza-card.com
 import {PizzaChooseSheetComponent} from './components/pizza/pizza-choose-sheet/pizza-choose-sheet.component';
 import { IngredientCardComponent } from './components/pizza/ingredient-card/ingredient-card.component';
 import {NgxStripeModule} from 'ngx-stripe';
+import { PaymentComponent } from './components/payment-components-stripe/payment/payment.component';
+import { PaymentModalComponent } from './components/payment-components-stripe/payment-modal/payment-modal.component';
+import {ToastrModule} from 'ngx-toastr';
+import { PizzaCartCardComponent } from './components/pizza/pizza-cart-card/pizza-cart-card.component';
 
 
 
@@ -55,6 +57,9 @@ import {NgxStripeModule} from 'ngx-stripe';
     PizzaCardComponent,
     PizzaChooseSheetComponent,
     IngredientCardComponent,
+    PaymentComponent,
+    PaymentModalComponent,
+    PizzaCartCardComponent,
   ],
   imports: [
     BrowserModule,
@@ -63,6 +68,7 @@ import {NgxStripeModule} from 'ngx-stripe';
     MaterialModules,
     ReactiveFormsModule,
     HttpClientModule,
+    ToastrModule.forRoot(),
     NgxStripeModule.forRoot('pk_test_51Hv6uTGmmCaqYLZpH2DedxpEXPGQFNx7eM4i' +
       'aTxkjowLq94xpVY5ORolZnmokcoiwQ51IAMCWsGC0B6cl6c7EbUg00Aefbn2rC'),
     RouterModule.forRoot(routes),

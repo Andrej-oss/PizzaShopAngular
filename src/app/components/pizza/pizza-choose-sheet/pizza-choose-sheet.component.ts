@@ -8,7 +8,6 @@ import {AllPizzasSelector, IngredientsSelector, SizePizzaSelector} from '../../.
 import {Ingredient} from '../../models/Ingredient';
 import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 import {Size} from '../../models/Size';
-import {tap} from 'rxjs/operators';
 import {CartService} from '../../../logic/services/post.service/cart/cart.service';
 import {Cart} from '../../models/Cart';
 import {MatSnackBar} from '@angular/material/snack-bar';

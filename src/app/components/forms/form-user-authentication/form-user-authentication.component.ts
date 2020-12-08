@@ -1,13 +1,13 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../logic/services/post.service/user/user.service';
-import {forkJoin, of, pipe, Subscription} from 'rxjs';
+import {forkJoin, Observable, of, pipe, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
-import {concatMap, map, mergeMap, switchMap, tap} from 'rxjs/operators';
+import {concatMap, map} from 'rxjs/operators';
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -67,7 +67,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
         //  console.log(this.authority);
         // }
           of(setTimeout(() => {
-            this.userActionsService.getAllCart(this.themeObjectService.data.value.userId)}, 10));
+            this.userActionsService.getAllCart(this.themeObjectService.data.value.userId); }, 200));
           if (this.themeObjectService.data.value.userId !== 0) {
             of(this.userActionsService.getAllCart(this.themeObjectService.data.value.userId));
           }

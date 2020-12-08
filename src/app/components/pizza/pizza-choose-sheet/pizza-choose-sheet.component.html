@@ -52,4 +52,8 @@
       </div>
     </div>
   </div>
+  <app-payment [description]="pizzaName.join(', ')"
+               [tittle]="pizza.name"
+               [price]="themeObjectService.data.value.price"
+               [pizzaId]="themeObjectService.data.value.idChoose"></app-payment>
 </div>

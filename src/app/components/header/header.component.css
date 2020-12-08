@@ -9,6 +9,16 @@
   display: flex;
   justify-content: space-around;
 }
+.header-content-buttons-cart{
+  width: 20%;
+  height: 60%;
+  border-radius: 2%;
+  border: black solid 1px;
+  transition-delay: 1000ms;
+  margin: 0% 0% 0% 70%;
+  background-color: coral;
+  position: absolute;
+}
 .header-content-buttons{
   color: cornsilk;
   margin: 5px 5px 5px 5px;
