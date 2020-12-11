@@ -32,19 +32,19 @@ export class CartLoad implements Action{
 export class IncAmountPizzaCart {
   readonly type = UserActionsTypes.incrementAmountPizzaCart;
 
-  constructor(public payload: {id: number, price: number}) {
+  constructor(public payload: { cart1: Cart; id: number }) {
   }
 }
 export class DecAmountPizzaCart {
   readonly type = UserActionsTypes.decrementAmountPizzaCart;
 
-  constructor(public payload: {id: number, price: number}) {
+  constructor(public payload: { id: number; cart1: Cart }) {
   }
 }
 export class DeletePizzaCart {
   readonly type = UserActionsTypes.deletePizzaCart;
 
-  constructor(public payload: {id: number}) {
+  constructor(public payload: { id: number }) {
   }
 }
 export type UserActions = UsersLoad

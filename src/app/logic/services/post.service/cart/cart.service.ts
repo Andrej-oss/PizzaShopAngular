@@ -13,6 +13,7 @@ export class CartService {
   savePizzaInCart(cart: Cart): Observable<Cart[]>{
     return this.httpClient.post<Cart[]>(this.baseUrl + `/${cart.userId}`, cart);
   }
+
   addAmountPizzaCart(id: number, price: number): Observable<boolean>{
    return  this.httpClient.post<boolean>(this.baseUrl + `/increment/${id}`, price);
   }

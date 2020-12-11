@@ -65,12 +65,11 @@ export class UserActionsService {
         return this.store.dispatch(new CartLoad(data));
       });
   }
-  incAmountPizzaCartInStore(id: number, price: number): | {}{
-    // @ts-ignore
-    return this.store.dispatch(new IncAmountPizzaCart({id, price}));
+  incAmountPizzaCartInStore(id: number, cart1: Cart): | void{
+    return this.store.dispatch(new IncAmountPizzaCart({id, cart1}));
   }
-  decAmountPizzaCartInStore(id: number, price: number): void{
-    this.store.dispatch(new DecAmountPizzaCart({id, price}));
+  decAmountPizzaCartInStore(id: number, cart1: Cart): void{
+    this.store.dispatch(new DecAmountPizzaCart({id, cart1}));
   }
   deletePizzaCartInStore(id: number): void{
     this.store.dispatch(new DeletePizzaCart({id}));

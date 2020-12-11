@@ -4,6 +4,6 @@ export interface Cart {
   pizzaId: number;
   price: number;
   amount: number;
-  userId: number;
+  userId?: number;
   size: string;
 }

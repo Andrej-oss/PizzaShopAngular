@@ -26,12 +26,11 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
     }
     case UserActionsTypes.incrementAmountPizzaCart: {
       const { cart } = state;
-      const { id, price} = action.payload;
-      const cart1 = cart.find(value => value.id === id);
+      const {cart1, id} = action.payload;
       const newCart = [...cart];
+      const index = newCart.findIndex(value => value.id === id);
       debugger;
-      Object.defineProperty(newCart, 'amount', {value: cart1.amount + 1} );
-      Object.defineProperty(newCart, 'price', {value: cart1.price + price});
+      newCart.splice(index, 1, cart1);
       return {
         ...state,
         cart: newCart,
@@ -39,25 +38,14 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
     }
     case UserActionsTypes.decrementAmountPizzaCart: {
       const { cart } = state;
-      const { id, price} = action.payload;
-      const cart1 = cart.find(value => value.id === id);
+      const {cart1, id} = action.payload;
       const newCart = [...cart];
-      Object.defineProperty(newCart, 'amount', {value: cart1.amount - 1} );
-      Object.defineProperty(newCart, 'price', {value: cart1.price - price});
+      const index = newCart.findIndex(value => value.id === id);
+      debugger;
+      newCart.splice(index, 1, cart1);
       return {
         ...state,
         cart: newCart,
-      };
-    }
-    case UserActionsTypes.deletePizzaCart: {
-      const { cart } = state;
-      const cartFind = cart.findIndex(value => value.id === action.payload.id);
-      debugger;
-      const newCart = [...cart];
-      newCart.splice(cartFind, 1);
-      return {
-        ...state,
-        cart: newCart
       };
     }
     default: {

@@ -7,7 +7,6 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {CartDeleteService} from '../../../logic/services/delete.services/cart/cart-delete.service';
 
 
-
 @Component({
   selector: 'app-pizza-card-cart-item',
   templateUrl: './pizza-card-cart-item.component.html',
@@ -23,6 +22,7 @@ export class PizzaCardCartItemComponent implements OnInit {
   url = 'http://localhost:8080/pizza/image/';
   count: number;
   price: number;
+  cart: Cart;
 
   constructor(private themeObjectService: ThemeObjectService,
               private userService: UserActionsService,
@@ -31,32 +31,48 @@ export class PizzaCardCartItemComponent implements OnInit {
 
   ngOnInit(): void {
     // tslint:disable-next-line:no-unused-expression
-    this.cartElement.amount ? this.count = this.cartElement.amount : this.count = 1 ;
+    this.cartElement.amount !== null ? this.count = this.cartElement.amount : this.count = 1;
     this.price = this.cartElement.price;
   }
 
   onInc(): void {
     try {
+      this.cart = {
+        id: this.cartElement.id,
+        description: this.cartElement.description,
+        pizzaId: this.cartElement.pizzaId,
+        price: this.cartElement.price + this.pizza.price,
+        amount: this.cartElement.amount + 1,
+        size: this.cartElement.size
+      };
+      debugger;
       this.cartService.addAmountPizzaCart(this.cartElement.id, this.pizza.price).subscribe(data => console.log(data));
-      this.userService.incAmountPizzaCartInStore(this.cartElement.id, this.pizza.price);
+      this.userService.incAmountPizzaCartInStore(this.cartElement.id, this.cart);
       this.count = this.count + 1;
       this.price = this.price + this.pizza.price;
       this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.cartElement.price;
-    }
-    catch (e) {
+    } catch (e) {
       console.log(e);
     }
   }
 
   onDec(): void {
+    this.cart = {
+      id: this.cartElement.id,
+      description: this.cartElement.description,
+      pizzaId: this.cartElement.pizzaId,
+      price: this.cartElement.price - this.pizza.price,
+      amount: this.cartElement.amount - 1,
+      size: this.cartElement.size
+    };
     this.cartService.removeAmountPizzaCart(this.cartElement.id, this.pizza.price).subscribe(data => console.log(data));
-    this.userService.decAmountPizzaCartInStore(this.cartElement.id, this.pizza.price);
+    this.userService.decAmountPizzaCartInStore(this.cartElement.id, this.cart);
     this.count = this.count - 1;
     this.price = this.price - this.pizza.price;
     this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.cartElement.price;
   }
 
-  onDelete(id: number): void{
+  onDelete(id: number): void {
     this.cartDeleteService.deleteCart(id).subscribe(data => console.log(data));
     this.userService.deletePizzaCartInStore(id);
     this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.cartElement.price;
