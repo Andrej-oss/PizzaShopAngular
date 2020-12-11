@@ -7,10 +7,16 @@ import {Cart} from '../../../../components/models/Cart';
   providedIn: 'root'
 })
 export class CartService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = 'http://localhost:8080/cart';
 
   constructor(private httpClient: HttpClient) { }
   savePizzaInCart(cart: Cart): Observable<Cart[]>{
-    return this.httpClient.post<Cart[]>(this.baseUrl + `/cart/${cart.userId}`, cart);
+    return this.httpClient.post<Cart[]>(this.baseUrl + `/${cart.userId}`, cart);
+  }
+  addAmountPizzaCart(id: number, price: number): Observable<boolean>{
+   return  this.httpClient.post<boolean>(this.baseUrl + `/increment/${id}`, price);
+  }
+  removeAmountPizzaCart(id: number, price: number): Observable<boolean>{
+    return this.httpClient.post<boolean>(this.baseUrl + `/decrement/${id}`, price);
   }
 }

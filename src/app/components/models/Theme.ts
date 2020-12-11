@@ -8,4 +8,5 @@ export interface Theme {
   userId: number;
   message: string;
   sizeCart: number;
+  totalPrice: number;
 }

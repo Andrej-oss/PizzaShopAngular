@@ -1,7 +1,11 @@
 import { Injectable } from '@angular/core';
 import {PizzaGetService} from '../../../services/get.services/pizza/pizza.get.service';
 import {Store} from '@ngrx/store';
-import {IngredientsLoad, PizzasLoad, SizePizzaLoad} from '../../actions-type/pizzaAction';
+import {
+  IngredientsLoad,
+  PizzasLoad,
+  SizePizzaLoad
+} from '../../actions-type/pizzaAction';
 import {IngredientGetService} from '../../../services/get.services/ingredient/ingredient.get.service';
 import {SizeService} from '../../../services/get.services/size/size.service';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';

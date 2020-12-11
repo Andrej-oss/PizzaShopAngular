@@ -8,6 +8,7 @@ import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.compo
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {concatMap, map} from 'rxjs/operators';
+import {PizzaService} from "../../../logic/store/actions/pizza/pizza.service";
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -27,7 +28,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar,
               private activatedRoute: ActivatedRoute,
               private userActionsService: UserActionsService,
-              public themeObjectService: ThemeObjectService) {
+              public themeObjectService: ThemeObjectService, private pizzaService: PizzaService) {
     this.authForm = new FormGroup({
       username: this.username,
       password: this.password
@@ -48,6 +49,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
       console.log(params);
     });
     this.formCheck();
+    this.pizzaService.getAllPizzas();
   }
   onSave(authForm: FormGroup): void{
       this.themeObjectService.data.value.isAuthLoad = true;

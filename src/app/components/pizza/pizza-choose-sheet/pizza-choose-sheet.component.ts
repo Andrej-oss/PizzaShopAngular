@@ -124,6 +124,7 @@ export class PizzaChooseSheetComponent implements OnInit {
     this.cart = {
       description: this.pizzaName.join(', '),
       pizzaId: id,
+      amount: 1,
       price: this.themeObjectService.data.value.price,
       userId: this.themeObjectService.data.value.userId,
       size: this.pizzaSize,
@@ -135,6 +136,6 @@ export class PizzaChooseSheetComponent implements OnInit {
     //   });
     //   console.log(data);
     // });
-    this.userActionsService.postElementInCart(this.cart)
+    this.userActionsService.postElementInCart(this.cart);
   }
 }

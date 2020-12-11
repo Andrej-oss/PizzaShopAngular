@@ -10,13 +10,12 @@
   justify-content: space-around;
 }
 .header-content-buttons-cart{
-  width: 20%;
+  width: 30%;
   height: 60%;
   border-radius: 2%;
-  border: black solid 1px;
   transition-delay: 1000ms;
   margin: 0% 0% 0% 70%;
-  background-color: coral;
+  box-shadow:0 0 15px;
   position: absolute;
 }
 .header-content-buttons{

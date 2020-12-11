@@ -2,13 +2,21 @@ import { Injectable } from '@angular/core';
 import {UserService} from '../../../services/post.service/user/user.service';
 import {UserGetService} from '../../../services/get.services/user/user-get.service';
 import { Store } from '@ngrx/store';
-import {CartLoad, PrincipalLoad, UsersLoad} from '../../actions-type/userActions';
+import {
+  CartLoad,
+  PrincipalLoad,
+  UsersLoad,
+  IncAmountPizzaCart,
+  DecAmountPizzaCart,
+  DeletePizzaCart
+} from '../../actions-type/userActions';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {CartGetService} from '../../../services/get.services/cart/cart.get.service';
 import {CartService} from '../../../services/post.service/cart/cart.service';
 import {Cart} from '../../../../components/models/Cart';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {SnackBarComponent} from "../../../../components/snack-bar/snack-bar-login/snack-bar.component";
+import {SnackBarComponent} from '../../../../components/snack-bar/snack-bar-login/snack-bar.component';
+
 
 
 @Injectable({
@@ -56,5 +64,15 @@ export class UserActionsService {
         });
         return this.store.dispatch(new CartLoad(data));
       });
+  }
+  incAmountPizzaCartInStore(id: number, price: number): | {}{
+    // @ts-ignore
+    return this.store.dispatch(new IncAmountPizzaCart({id, price}));
+  }
+  decAmountPizzaCartInStore(id: number, price: number): void{
+    this.store.dispatch(new DecAmountPizzaCart({id, price}));
+  }
+  deletePizzaCartInStore(id: number): void{
+    this.store.dispatch(new DeletePizzaCart({id}));
   }
 }

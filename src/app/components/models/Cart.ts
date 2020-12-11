@@ -3,6 +3,7 @@ export interface Cart {
   description: string;
   pizzaId: number;
   price: number;
+  amount: number;
   userId: number;
   size: string;
 }

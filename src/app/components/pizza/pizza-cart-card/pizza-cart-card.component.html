@@ -1,0 +1,13 @@
+<link rel="stylesheet" href="pizza-cart-card.component.css">
+<div class="pizza-cart-cart">
+<div *ngFor="let element of cartElements">
+  <div *ngFor="let pizza of pizzas ">
+  <div *ngIf="pizza.id == element.pizzaId" class="pizza-cart-cart-element">
+    <app-pizza-card-cart-item [pizza]="pizza" [cartElement]="element"></app-pizza-card-cart-item>
+  </div>
+  </div>
+</div>
+  <h2 style="margin-left: 40%">
+    Total price: <a style="margin-left: 30%">{{themeObjectService.data.value.totalPrice}}</a>
+  </h2>
+</div>

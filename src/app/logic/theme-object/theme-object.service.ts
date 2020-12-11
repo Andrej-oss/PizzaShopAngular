@@ -15,7 +15,8 @@ export class ThemeObjectService {
     userName: '',
     userId: 0,
     message: '',
-    sizeCart: 0
+    sizeCart: 0,
+    totalPrice: 0,
   });
   constructor() { }
 }
