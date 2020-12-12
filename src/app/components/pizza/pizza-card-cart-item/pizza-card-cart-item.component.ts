@@ -50,7 +50,7 @@ export class PizzaCardCartItemComponent implements OnInit {
       this.userService.incAmountPizzaCartInStore(this.cartElement.id, this.cart);
       this.count = this.count + 1;
       this.price = this.price + this.pizza.price;
-      this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.cartElement.price;
+      this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.pizza.price;
     } catch (e) {
       console.log(e);
     }
@@ -69,7 +69,7 @@ export class PizzaCardCartItemComponent implements OnInit {
     this.userService.decAmountPizzaCartInStore(this.cartElement.id, this.cart);
     this.count = this.count - 1;
     this.price = this.price - this.pizza.price;
-    this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.cartElement.price;
+    this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.pizza.price;
   }
 
   onDelete(id: number): void {
