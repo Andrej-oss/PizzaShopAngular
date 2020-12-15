@@ -17,6 +17,7 @@ export class ThemeObjectService {
     message: '',
     sizeCart: 0,
     totalPrice: 0,
+    isOpenPayment: false,
   });
   constructor() { }
 }

@@ -15,7 +15,7 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
     case UserActionsTypes.loadedPrincipal: {
       return {
         ...state,
-        principal: action.payload[0]
+        principal: action.payload
       };
     }
     case UserActionsTypes.loadedCart: {
@@ -43,6 +43,17 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
       const index = newCart.findIndex(value => value.id === id);
       debugger;
       newCart.splice(index, 1, cart1);
+      return {
+        ...state,
+        cart: newCart,
+      };
+    }
+    case UserActionsTypes.deletePizzaCart: {
+      const { id } = action.payload;
+      const { cart } = state;
+      const newCart = [...cart];
+      const index = newCart.findIndex(value => value.id === id);
+      newCart.splice(index, 1);
       return {
         ...state,
         cart: newCart,

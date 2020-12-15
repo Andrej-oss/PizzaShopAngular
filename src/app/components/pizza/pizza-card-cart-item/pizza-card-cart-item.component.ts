@@ -73,6 +73,7 @@ export class PizzaCardCartItemComponent implements OnInit {
   }
 
   onDelete(id: number): void {
+    debugger;
     this.cartDeleteService.deleteCart(id).subscribe(data => console.log(data));
     this.userService.deletePizzaCartInStore(id);
     this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.cartElement.price;

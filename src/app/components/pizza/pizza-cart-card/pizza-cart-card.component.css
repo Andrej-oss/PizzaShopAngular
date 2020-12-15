@@ -19,9 +19,9 @@
 }
 
 ::-webkit-scrollbar-track {
-  background-color:wheat;
-  box-shadow:0px 0px 3px wheat inset;
-  -webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;
+  opacity: 1;
+  /*box-shadow:0px 0px 3px wheat inset;*/
+  /*-webkit-box-shadow: 5px 5px 5px -5px rgba(34, 60, 80, 0.2) inset;*/
 }
 
 ::-webkit-scrollbar-thumb {

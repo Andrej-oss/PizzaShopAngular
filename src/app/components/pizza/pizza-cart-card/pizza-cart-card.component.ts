@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Cart} from '../../models/Cart';
 import {Pizza} from '../../models/Pizza';
-import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 
 
 @Component({

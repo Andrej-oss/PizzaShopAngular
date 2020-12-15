@@ -2,8 +2,11 @@ import {Component, Input, OnInit} from '@angular/core';
 import {PaymentService} from '../../../logic/services/post.service/payment/payment.service';
 import {ToastrService} from 'ngx-toastr';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
-import {Purchase} from "../../models/Purchase";
-import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
+import {Purchase} from '../../models/Purchase';
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import { Router } from '@angular/router';
+import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Component({
   selector: 'app-payment-modal',
@@ -16,42 +19,72 @@ export class PaymentModalComponent implements OnInit {
   @Input() description;
   @Input() price;
   @Input() pizzaId;
+  @Input() allCart;
   purchase: Purchase;
 
   constructor(private paymentService: PaymentService,
               private toastrService: ToastrService,
               public activeModal: NgbActiveModal,
-              private themeObjectService: ThemeObjectService) { }
+              private themeObjectService: ThemeObjectService,
+              private router: Router,
+              private snackBar: MatSnackBar) {
+  }
 
   ngOnInit(): void {
     debugger;
   }
+
   confirm(id: string): void {
-    this.purchase =  {
-      ingredients: this.description,
-      name: this.tittle,
-      pizzaId: this.pizzaId,
-      price: this.price,
-      userId: this.themeObjectService.data.value.userId
-    };
-    this.paymentService.confirm(id, this.purchase).subscribe(
-      data => {
+    debugger;
+    if (this.allCart && this.allCart.length) {
+      this.paymentService.confirmAllCart(id, this.themeObjectService.data.value.userId, this.allCart)
+        .subscribe(data => {
+          this.activeModal.close();
+          // tslint:disable-next-line:no-shadowed-variable
+          this.router.navigate(['/']).then(data => console.log(data));
+          this.toastrService.success
+          ('Your payment is success, thank you', 'Payment success' + data[`id`],
+            {positionClass: 'toast-center-center', timeOut: 3000});
+          this.themeObjectService.data.value.message = `Thank you for a payment!!!`;
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+          });
+        });
+    } else {
+      this.purchase = {
+        ingredients: this.description,
+        name: this.tittle,
+        pizzaId: this.pizzaId,
+        price: this.price,
+        userId: this.themeObjectService.data.value.userId
+      };
+      this.paymentService.confirm(id, this.purchase).subscribe(data => {
+        this.activeModal.close();
+        // tslint:disable-next-line:no-shadowed-variable
         this.toastrService.success
-        ('!!!!!!!!!!!!', '!!!!!!!!!!!! ' + data[`id`], {positionClass: 'toast-top-center', timeOut: 3000});
-        this.activeModal.close();
+        ('Your payment is success, thank you', 'Payment success' + data[`id`],
+          {positionClass: 'toast-center-center', timeOut: 3000});
+        this.themeObjectService.data.value.message = `Thank you for a payment!!!`;
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+        });
       },
-      err => {
-        console.log(err);
-        this.activeModal.close();
-      }
-    );
+        err => {
+          console.log(err);
+          this.activeModal.close();
+        }
+      );
+    }
   }
 
   cancel(id: string): void {
     this.paymentService.cancel(id).subscribe(
       data => {
         this.toastrService.show
-        ('pago cancelado', 'se ha cancelado el pago con id ' + data[`id`], {positionClass: 'toast-top-center', timeOut: 3000});
+        ('pago cancelado', 'se ha cancelado el pago con id ' + data[`id`], {
+          positionClass: 'toast-top-center',
+          timeOut: 3000
+        });
         this.activeModal.close();
       },
       err => {

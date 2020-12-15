@@ -5,6 +5,8 @@ import {PizzaChooseSheetComponent} from '../pizza-choose-sheet/pizza-choose-shee
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 
+
+
 @Component({
   selector: 'app-pizza-card',
   templateUrl: './pizza-card.component.html',
@@ -33,4 +35,5 @@ pizza: Pizza;
     this.bottomSheet.open(PizzaChooseSheetComponent);
     this.pizzaService.getSizePizza(id, 'small');
   }
+
 }

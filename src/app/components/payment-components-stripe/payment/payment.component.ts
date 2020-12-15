@@ -1,12 +1,13 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PaymentService} from '../../../logic/services/post.service/payment/payment.service';
-import {StripeService} from 'ngx-stripe';
-import {StripeCardElement, StripeElementsOptions} from '@stripe/stripe-js';
+import {StripeService,  } from 'ngx-stripe';
+import {StripeCardElement, StripeElementsOptions, StripeElements} from '@stripe/stripe-js';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Payment} from '../../models/Payment';
 import {PaymentModalComponent} from '../payment-modal/payment-modal.component';
+import {Cart} from '../../models/Cart';
 
 @Component({
   selector: 'app-payment',
@@ -18,8 +19,9 @@ export class PaymentComponent implements OnInit {
   @Input() description;
   @Input() tittle;
   @Input() pizzaId;
+  @Input() allCart;
   error: any;
-  elements: any;
+  elements: StripeElements;
   card: StripeCardElement;
   elementsOptions: StripeElementsOptions = {
     locale: 'en'
@@ -32,26 +34,31 @@ public StripeControl = new FormGroup({
   name: new FormControl('', Validators.required)
 });
   ngOnInit(): void {
+    debugger;
     this.stripeService.elements(this.elementsOptions)
-      .subscribe(elements => this.elements = elements);
-    if (!this.card){
-      this.card = this.elements.create('card', {
-        style: {
-          base: {
-            iconColor: '#666EE8',
-            color: '#31325F',
-            lineHeight: '40px',
-            fontWeight: 300,
-            fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
-            fontSize: '18px',
-            '::placeholder': {
-              color: '#CFD7E0'
+      .subscribe(elements => {
+        this.elements = elements;
+        console.log(this.elements);
+        if (!this.card) {
+          // @ts-ignore
+          this.card = this.elements.create('card', {
+            style: {
+              base: {
+                iconColor: '#666EE8',
+                color: '#31325F',
+                lineHeight: '40px',
+                fontWeight: 300,
+                fontFamily: '"Helvetica Neue", Helvetica, sans-serif',
+                fontSize: '18px',
+                '::placeholder': {
+                  color: '#CFD7E0'
+                }
+              }
             }
-          }
+          });
         }
+        this.card.mount('#card-element');
       });
-    }
-    this.card.mount('#card-element');
   }
   buy(): void{
     const name = this.StripeControl.get('name').value;
@@ -69,7 +76,6 @@ public StripeControl = new FormGroup({
             .subscribe(data1 => {
               console.log(data1);
               this.openModal(data1[`id`], this.tittle, data1[`description`], data1[`amount`]);
-              this.router.navigate(['/']).then(r => console.log(r));
             });
           this.error = undefined;
         } else if (data.error) {
@@ -85,5 +91,6 @@ public StripeControl = new FormGroup({
     modalRef.componentInstance.description = description;
     modalRef.componentInstance.price = price;
     modalRef.componentInstance.pizzaId = this.pizzaId;
+    modalRef.componentInstance.allCart = this.allCart;
   }
 }

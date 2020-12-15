@@ -20,7 +20,7 @@ export class UsersLoad implements  Action {
 export class PrincipalLoad implements Action {
   readonly type = UserActionsTypes.loadedPrincipal;
 
-  constructor(public payload: User[]){
+  constructor(public payload: User){
   }
 }
 export class CartLoad implements Action{

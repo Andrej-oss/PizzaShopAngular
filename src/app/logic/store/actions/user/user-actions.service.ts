@@ -42,7 +42,7 @@ export class UserActionsService {
       this.themeObjectService.data.value.userName = data.username;
       this.themeObjectService.data.value.userId = data.id;
       debugger;
-      return this.store.dispatch(new PrincipalLoad([data]));
+      return this.store.dispatch(new PrincipalLoad(data));
      });
    }
    getAllCart(id): | {}{
@@ -54,7 +54,7 @@ export class UserActionsService {
         return this.store.dispatch(new CartLoad(data));
       });
    }
-  postElementInCart(cart: Cart): | {}{
+  saveElementInCart(cart: Cart): | {}{
     return this.cartService.savePizzaInCart(cart)
       .subscribe(data => {
         this.themeObjectService.data.value.message = 'Pizza added to basket';

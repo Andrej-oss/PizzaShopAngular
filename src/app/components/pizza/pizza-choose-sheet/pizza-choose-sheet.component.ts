@@ -120,7 +120,7 @@ export class PizzaChooseSheetComponent implements OnInit {
     this.pizzaSize = 'small';
   }
 
-  savePizzaInBasket(id: number): void {
+  savePizzaInCart(id: number): void {
     this.cart = {
       description: this.pizzaName.join(', '),
       pizzaId: id,
@@ -129,13 +129,13 @@ export class PizzaChooseSheetComponent implements OnInit {
       userId: this.themeObjectService.data.value.userId,
       size: this.pizzaSize,
     };
-    this.themeObjectService.data.value.message = 'Pizza added to basket';
+    this.themeObjectService.data.value.message = 'Pizza added to cart';
     // this.cartService.savePizzaInCart(this.basket).subscribe(data => {
     //   this.snackBar.openFromComponent(SnackBarComponent, {
     //     duration: 2000,
     //   });
     //   console.log(data);
     // });
-    this.userActionsService.postElementInCart(this.cart);
+    this.userActionsService.saveElementInCart(this.cart);
   }
 }

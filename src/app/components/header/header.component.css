@@ -13,10 +13,11 @@
   width: 30%;
   height: 60%;
   border-radius: 2%;
-  transition-delay: 1000ms;
+  transition: top 1s ease-out 0.5s;
   margin: 0% 0% 0% 70%;
   box-shadow:0 0 15px;
   position: absolute;
+  background-color: white;
 }
 .header-content-buttons{
   color: cornsilk;

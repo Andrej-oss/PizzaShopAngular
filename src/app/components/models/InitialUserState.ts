@@ -3,12 +3,12 @@ import {Cart} from './Cart';
 
 export interface DefaultUserStore {
   users: User[];
-  principal: User[];
+  principal: User;
   cart: Cart[];
 }
 
 export const InitialUserState: DefaultUserStore =  {
   users: [],
-  principal: [],
+  principal: null,
   cart: [],
 };

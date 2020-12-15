@@ -9,4 +9,5 @@ export interface Theme {
   message: string;
   sizeCart: number;
   totalPrice: number;
+  isOpenPayment: boolean;
 }

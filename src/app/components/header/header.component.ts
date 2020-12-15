@@ -54,4 +54,8 @@ export class HeaderComponent implements OnInit {
   hideCart(): void{
     this.isCartOpen = !this.isCartOpen;
   }
+
+  onCartPage(): void{
+    this.router.navigate(['/cart']).then(data => console.log(data));
+  }
 }
