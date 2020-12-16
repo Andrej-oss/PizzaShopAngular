@@ -3,12 +3,14 @@ import {PizzaGetService} from '../../../services/get.services/pizza/pizza.get.se
 import {Store} from '@ngrx/store';
 import {
   IngredientsLoad,
-  PizzasLoad,
+  PizzasLoad, RatingLoad,
   SizePizzaLoad
 } from '../../actions-type/pizzaAction';
 import {IngredientGetService} from '../../../services/get.services/ingredient/ingredient.get.service';
 import {SizeService} from '../../../services/get.services/size/size.service';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
+import {Rating} from '../../../../components/models/Rating';
+import {RatingService} from '../../../services/post.service/rating/rating.service';
 
 @Injectable({
   providedIn: 'root'
@@ -19,6 +21,7 @@ export class PizzaService {
               private ingredientGetService: IngredientGetService,
               private sizeService: SizeService,
               private themeService: ThemeObjectService,
+              private ratingService: RatingService,
               private store: Store) { }
   getAllPizzas(): | {}{
     return this.pizzaGetService.getAllPizza()
@@ -38,5 +41,10 @@ export class PizzaService {
         this.themeService.data.value.price = data.price;
         this.store.dispatch(new SizePizzaLoad(data));
       });
+  }
+  postRating(pizzaId: number, rating: Rating): | {}{
+    return this.ratingService.saveRating(rating, pizzaId).subscribe(data => {
+      this.store.dispatch(new RatingLoad(data));
+    });
   }
 }

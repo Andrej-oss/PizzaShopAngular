@@ -2,11 +2,13 @@ import {Action} from '@ngrx/store';
 import {Pizza} from '../../../components/models/Pizza';
 import {Ingredient} from '../../../components/models/Ingredient';
 import {Size} from '../../../components/models/Size';
+import {Rating} from "../../../components/models/Rating";
 
 export enum PizzaActionType {
   pizzaAllLoaded = '[PIZZA] all loaded',
   pizzaSizeLoaded = '[PIZZA] size loaded',
   pizzaIngredientsLoaded = '[INGREDIENTS] pizza loaded',
+  pizzaRatingLoaded = '[Rating] pizza loaded'
 }
 export class PizzasLoad implements Action{
   readonly type = PizzaActionType.pizzaAllLoaded;
@@ -26,6 +28,13 @@ export class SizePizzaLoad implements Action{
   constructor(public payload: Size) {
   }
 }
+export class RatingLoad implements Action{
+  readonly type = PizzaActionType.pizzaRatingLoaded;
+
+  constructor(public payload: Rating[]) {
+  }
+}
 export type PizzaAction = PizzasLoad
   | IngredientsLoad
-  | SizePizzaLoad;
+  | SizePizzaLoad
+  | RatingLoad;

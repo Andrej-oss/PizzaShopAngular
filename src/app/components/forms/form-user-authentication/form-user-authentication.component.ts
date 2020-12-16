@@ -49,7 +49,6 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
       console.log(params);
     });
     this.formCheck();
-    this.pizzaService.getAllPizzas();
   }
   onSave(authForm: FormGroup): void{
       this.themeObjectService.data.value.isAuthLoad = true;
@@ -68,6 +67,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
         //  this.authority = s;
         //  console.log(this.authority);
         // }
+        // ToDo 2 async request
           of(setTimeout(() => {
             this.userActionsService.getAllCart(this.themeObjectService.data.value.userId); }, 200));
           if (this.themeObjectService.data.value.userId !== 0) {

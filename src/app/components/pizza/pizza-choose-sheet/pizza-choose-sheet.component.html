@@ -6,6 +6,7 @@
       </div>
       <div class="pizza-sheet-content-image" *ngIf="(size | async) !== null">
         <img [src]="sizeUrl+(size | async)?.path + '/' + (size | async)?.name" [className]="classSize">
+        <app-star-rating-vote [pizzaId]="pizza.id" [pizzaRating]="pizza.rating"></app-star-rating-vote>
       </div>
       <div class="pizza-sheet-content-text">
         <h1>

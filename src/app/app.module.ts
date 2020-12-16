@@ -37,8 +37,9 @@ import {ToastrModule} from 'ngx-toastr';
 import { PizzaCartCardComponent } from './components/pizza/pizza-cart-card/pizza-cart-card.component';
 import { PizzaCardCartItemComponent } from './components/pizza/pizza-card-cart-item/pizza-card-cart-item.component';
 import { PizzaCartPageComponent } from './components/pizza/pizza-cart-page/pizza-cart-page.component';
-import { StarRatingComponent } from './components/star-rating/star-rating.component';
+import { StarRatingVoteComponent } from './components/star-rating-vote/star-rating-vote.component';
 import { CommentComponent } from './components/comment/comment.component';
+import { StarRatingComponent } from './components/star-rating/star-rating.component';
 
 
 
@@ -66,8 +67,9 @@ import { CommentComponent } from './components/comment/comment.component';
     PizzaCartCardComponent,
     PizzaCardCartItemComponent,
     PizzaCartPageComponent,
-    StarRatingComponent,
+    StarRatingVoteComponent,
     CommentComponent,
+    StarRatingComponent,
   ],
   imports: [
     BrowserModule,

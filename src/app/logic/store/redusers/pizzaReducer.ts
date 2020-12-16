@@ -23,6 +23,12 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
         size: action.payload,
       };
     }
+    case PizzaActionType.pizzaRatingLoaded: {
+      return {
+        ...state,
+        rating: action.payload
+      };
+    }
     default: {
       return state;
     }
