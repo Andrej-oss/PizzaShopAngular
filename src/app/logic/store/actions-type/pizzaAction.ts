@@ -2,39 +2,77 @@ import {Action} from '@ngrx/store';
 import {Pizza} from '../../../components/models/Pizza';
 import {Ingredient} from '../../../components/models/Ingredient';
 import {Size} from '../../../components/models/Size';
-import {Rating} from "../../../components/models/Rating";
+import {Rating} from '../../../components/models/Rating';
+import {Comment} from '../../../components/models/Comment';
 
 export enum PizzaActionType {
   pizzaAllLoaded = '[PIZZA] all loaded',
   pizzaSizeLoaded = '[PIZZA] size loaded',
   pizzaIngredientsLoaded = '[INGREDIENTS] pizza loaded',
-  pizzaRatingLoaded = '[Rating] pizza loaded'
+  pizzaRatingLoaded = '[RATING] pizza loaded',
+  pizzaCommentSaveLoaded = '[COMMENT] pizza save & loaded',
+  pizzaCommentsLoaded = '[COMMENT] pizza by id loaded',
+  pizzaCommentDeleteInState = '[Comment] delete',
+  pizzaCommentUpdateInState = '[Comment] pizza update',
 }
-export class PizzasLoad implements Action{
+
+export class PizzasLoad implements Action {
   readonly type = PizzaActionType.pizzaAllLoaded;
 
   constructor(public payload: Pizza[]) {
   }
 }
-export class IngredientsLoad  implements Action{
+
+export class IngredientsLoad implements Action {
   readonly type = PizzaActionType.pizzaIngredientsLoaded;
 
   constructor(public payload: Ingredient[]) {
   }
 }
-export class SizePizzaLoad implements Action{
+
+export class SizePizzaLoad implements Action {
   readonly type = PizzaActionType.pizzaSizeLoaded;
 
   constructor(public payload: Size) {
   }
 }
-export class RatingLoad implements Action{
+
+export class RatingLoad implements Action {
   readonly type = PizzaActionType.pizzaRatingLoaded;
 
   constructor(public payload: Rating[]) {
   }
 }
+
+export class PizzaCommentSaveLoad implements Action {
+  readonly type = PizzaActionType.pizzaCommentSaveLoaded;
+
+  constructor(public payload: Comment[]) {
+  }
+}
+export class PizzaCommentsLoad  implements Action{
+  readonly type = PizzaActionType.pizzaCommentsLoaded;
+
+  constructor(public payload: Comment[]) {
+  }
+}
+export class CommentDeleteInState implements Action{
+  readonly type = PizzaActionType.pizzaCommentDeleteInState;
+
+  constructor(public payload: {id: number}) {
+  }
+}
+export class CommentUpdateInState implements Action{
+  readonly type = PizzaActionType.pizzaCommentUpdateInState;
+
+  constructor(public payload: {id: number, comment: Comment}) {
+  }
+}
 export type PizzaAction = PizzasLoad
   | IngredientsLoad
   | SizePizzaLoad
-  | RatingLoad;
+  | RatingLoad
+  | PizzaCommentSaveLoad
+  | PizzaCommentsLoad
+  | CommentDeleteInState
+  | CommentUpdateInState;

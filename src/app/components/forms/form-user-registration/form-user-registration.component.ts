@@ -43,9 +43,9 @@ export class FormUserRegistrationComponent implements OnInit {
 
   ngOnInit(): void {
     this.firstFormGroup = new FormGroup({
-      login: this.login = new FormControl( this.user ? `${this.user.username}` : '',
+      login: this.login = new FormControl(this.user ? `${this.user.username}` : '',
         [Validators.maxLength(30), Validators.required]),
-      password: this.password = new FormControl( '',
+      password: this.password = new FormControl('',
         [Validators.minLength(10), Validators.maxLength(30), Validators.required]),
       confirmPassword: this.confirmPassword
     }, this.passwordValidator.bind(this.firstFormGroup));
@@ -56,13 +56,14 @@ export class FormUserRegistrationComponent implements OnInit {
         [Validators.maxLength(30), Validators.required]),
       email: this.email = new FormControl(this.user ? this.user.email : '',
         [Validators.email, Validators.required]),
-      city: this.city  = new FormControl(this.user ? this.user.city : '', Validators.required),
+      city: this.city = new FormControl(this.user ? this.user.city : '', Validators.required),
       address: this.address = new FormControl(this.user ? this.user.address : '', Validators.required),
       postCode: this.postCode = new FormControl(this.user ? this.user.postCode : '', Validators.required),
-      phone: this.phone =  new FormControl(this.user ? this.user.phone : '',
+      phone: this.phone = new FormControl(this.user ? this.user.phone : '',
         [Validators.required, Validators.minLength(10), Validators.maxLength(10)]),
     }, this.phoneValidator.bind(this));
   }
+
   passwordValidator(form: FormGroup): null | object {
     const {value: password} = form.controls.password;
     const {value: confirmPassword} = form.controls.confirmPassword;

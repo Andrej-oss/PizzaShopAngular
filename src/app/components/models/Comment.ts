@@ -1,8 +1,11 @@
+import {Voice} from './Voice';
+
 export interface Comment {
   id?: number;
-  pizza_id?: number;
-  author: string;
+  pizzaId?: number;
+  userId?: number;
+  author?: string;
   tittle: string;
   body: string;
-  like: number;
+  voice?: Voice[];
 }

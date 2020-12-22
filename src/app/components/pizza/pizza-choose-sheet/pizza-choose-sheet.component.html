@@ -24,10 +24,10 @@
           <mat-button-toggle (click)="onLargePizza(pizza.id)">Large</mat-button-toggle>
         </mat-button-toggle-group>
         <div>
-        <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
-          <mat-button-toggle>Traditional</mat-button-toggle>
-          <mat-button-toggle>Thin</mat-button-toggle>
-        </mat-button-toggle-group>
+          <mat-button-toggle-group name="fontStyle" aria-label="Font Style">
+            <mat-button-toggle>Traditional</mat-button-toggle>
+            <mat-button-toggle>Thin</mat-button-toggle>
+          </mat-button-toggle-group>
         </div>
         <div class="pizza-sheet-content-text-ingredients">
           <div *ngFor="let ingredient of ingredients | async">
@@ -36,7 +36,8 @@
                 <app-ingredient-card [ingredient]="ingredient"
                                      [matBadge]="isAddPrice3 && i === 2
                                      || isAddPrice2 && i ===1
-                                     || isAddPrice1 && i === 0 ? '-' : '+'" matBadgePosition="before" matBadgeColor="accent"
+                                     || isAddPrice1 && i === 0 ? '-' : '+'" matBadgePosition="before"
+                                     matBadgeColor="accent"
                                      (click)="onAdd(ingredient.price, ingredient.name, i)">
                 </app-ingredient-card>
               </div>
@@ -45,16 +46,31 @@
         </div>
         <div>
           <button mat-button (click)="savePizzaInCart(pizza.id)">
-            Add to basket for {{themeObjectService.data.value.price}}</button>
+            Add to cart for {{themeObjectService.data.value.price}}</button>
+          <button mat-button style="margin-left: 2%" (click)="openPayment()">
+            {{isPaymentOpen ?  'hide payment form': "Buy pizza for " + themeObjectService.data.value.price}}
+          </button>
         </div>
-<!--        <div *ngIf="(size | async) !== null">-->
-<!--          <button mat-button>Add to basket for {{(size | async)?.price}}</button>-->
-<!--        </div>-->
       </div>
     </div>
   </div>
-  <app-payment [description]="pizzaName.join(', ')"
-               [tittle]="pizza.name"
-               [price]="themeObjectService.data.value.price"
-               [pizzaId]="themeObjectService.data.value.idChoose"></app-payment>
+  <div *ngIf="isPaymentOpen">
+    <mat-card>
+      <app-payment [description]="pizzaName.join(', ')"
+                   [tittle]="pizza.name"
+                   [price]="themeObjectService.data.value.price"
+                   [pizzaId]="themeObjectService.data.value.idChoose"></app-payment>
+    </mat-card>
+  </div>
+  <div *ngIf="isOpenComments">
+    <div *ngFor="let comment of comments | async">
+      <app-comment-card [comment]="comment" [pizzaId]="pizza.id"></app-comment-card>
+    </div>
+    <div *ngIf="isOpenCommentForm">
+      <app-form-comment [pizzaId]="pizza.id"></app-form-comment>
+    </div>
+    <button mat-button
+            (click)="openCommentFrom()">{{isOpenCommentForm ? 'back' : 'Write something about this pizza'}}</button>
+  </div>
+  <button mat-button (click)="openComments()">{{!isOpenComments ? 'show comments' : 'hide comments'}}</button>
 </div>

@@ -1,0 +1,20 @@
+<mat-card>
+  <form [formGroup]="comment">
+    <ng-template matStepLabel>Creat comment</ng-template>
+    <mat-form-field style="width: 100%">
+      <mat-label>Tittle</mat-label>
+      <input matInput placeholder="Tittle" [formControl]="tittle" required>
+    </mat-form-field>
+    <mat-form-field style="width: 100%">
+      <mat-label>Comment body</mat-label>
+      <textarea matInput placeholder="Comment" style="width: 300px; height: 80px"
+                [formControl]="body" required></textarea>
+    </mat-form-field>
+    <p *ngIf="!commentUser">
+      <button mat-button (click)="onSave(comment)">save</button>
+    </p>
+    <p *ngIf="commentUser">
+      <button mat-button (click)="onUpdate(comment)">update</button>
+    </p>
+  </form>
+</mat-card>

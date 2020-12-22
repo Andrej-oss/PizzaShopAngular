@@ -1,0 +1,43 @@
+<mat-card class="example-card" *ngIf="!isEditComment">
+  <div style="display: flex; justify-content: space-between">
+    <mat-card-header>
+      <div mat-card-avatar class="example-header-image"></div>
+      <mat-card-title>{{comment.tittle}}</mat-card-title>
+      <mat-card-subtitle>{{comment.author}}</mat-card-subtitle>
+    </mat-card-header>
+    <div *ngIf="themeObjectService.data.value.userName === comment.author.toLowerCase()">
+    <span class="material-icons" (click)="onDeleteComment(comment.id)">
+       delete
+    </span>
+      <p>
+        <button mat-button (click)="onEdit(comment.id)">edit</button>
+      </p>
+    </div>
+  </div>
+  <mat-card-content>
+    <p>
+      {{comment.body}}
+    </p>
+  </mat-card-content>
+  <div style="display: flex; justify-content: space-between">
+    <div>
+      <mat-card-actions>
+        <button mat-button (click)="onLikeComment(comment.id)" [disabled]="isLiked">LIKE</button>
+        <button mat-button>SHARE</button>
+      </mat-card-actions>
+    </div>
+    <div>
+    <mat-button (click)="onDeleteVoice(comment.id)"
+            class="material-icons"
+            [style]="isLiked ? 'color: red' : 'color: grey'"
+            [disabled]="themeObjectService.data.value.userId === 0">
+        favorite
+    </mat-button>
+      <p>{{this.voiceSum}}</p>
+    </div>
+  </div>
+</mat-card>
+<p *ngIf="isEditComment">
+  <app-form-comment [commentUser]="comment" [pizzaId]="pizzaId"></app-form-comment>
+  <button mat-button (click)="onEdit(comment.id)">back</button>
+</p>

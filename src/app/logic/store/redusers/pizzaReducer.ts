@@ -29,6 +29,42 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
         rating: action.payload
       };
     }
+    case PizzaActionType.pizzaCommentSaveLoaded: {
+      return {
+        ...state,
+        comments: action.payload,
+      };
+    }
+    case PizzaActionType.pizzaCommentsLoaded: {
+      return {
+        ...state,
+        comments: action.payload,
+      };
+    }
+    case PizzaActionType.pizzaCommentDeleteInState: {
+      const { comments } = state;
+      const { id } = action.payload;
+      const newComments = [...comments];
+      const index = newComments.findIndex(value => value.id === id);
+      newComments.splice(index, 1);
+      return {
+        ...state,
+        comments: newComments,
+      };
+    }
+    case PizzaActionType.pizzaCommentUpdateInState: {
+      const { comments } = state;
+      const { id, comment } = action.payload;
+      debugger;
+      const newComments = [...comments];
+      const index = newComments.findIndex(value => value.id === id);
+      newComments.splice(index, 1, comment);
+      return {
+        ...state,
+        comments: newComments,
+      }
+
+    }
     default: {
       return state;
     }

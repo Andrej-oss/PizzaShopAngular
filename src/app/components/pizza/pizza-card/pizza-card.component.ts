@@ -34,6 +34,7 @@ pizza: Pizza;
     console.log(this.themeObjectService.data.value.idChoose);
     this.bottomSheet.open(PizzaChooseSheetComponent);
     this.pizzaService.getSizePizza(id, 'small');
+    this.pizzaService.getPizzaComments(id);
   }
 
 }

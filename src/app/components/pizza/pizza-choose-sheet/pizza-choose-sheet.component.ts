@@ -4,7 +4,12 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {select, Store} from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
 import {Pizza} from '../../models/Pizza';
-import {AllPizzasSelector, IngredientsSelector, SizePizzaSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {
+  AllPizzasSelector,
+  CommentSelector,
+  IngredientsSelector,
+  SizePizzaSelector
+} from '../../../logic/store/selectors/PizzaSelector';
 import {Ingredient} from '../../models/Ingredient';
 import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 import {Size} from '../../models/Size';
@@ -12,6 +17,7 @@ import {CartService} from '../../../logic/services/post.service/cart/cart.servic
 import {Cart} from '../../models/Cart';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
+import {Comment} from "../../models/Comment";
 
 @Component({
   selector: 'app-pizza-choose-sheet',
@@ -25,9 +31,10 @@ export class PizzaChooseSheetComponent implements OnInit {
   cart: Cart;
   classSize = 'pizza-card-image-content';
   size: Observable<Size> = this.store$.pipe(select(SizePizzaSelector));
+  comments: Observable<Comment[]> = this.store$.pipe(select(CommentSelector));
+  ingredients: Observable<Ingredient[]> = this.store$.pipe(select(IngredientsSelector));
   pizzaSize: string;
   pizzas: Pizza[];
-  ingredients: Observable<Ingredient[]> = this.store$.pipe(select(IngredientsSelector));
   pizza: Pizza;
   subscription: Subscription;
   pizzaName: string[];
@@ -36,7 +43,9 @@ export class PizzaChooseSheetComponent implements OnInit {
   isAddPrice2: boolean;
   isAddPrice3: boolean;
   isAddName: boolean;
-
+  isOpenCommentForm: boolean;
+  isOpenComments: boolean;
+  isPaymentOpen: boolean;
   constructor(private bottomSheetRef: MatBottomSheetRef<PizzaChooseSheetComponent>,
               public themeObjectService: ThemeObjectService,
               private pizzaService: PizzaService,
@@ -137,5 +146,17 @@ export class PizzaChooseSheetComponent implements OnInit {
     //   console.log(data);
     // });
     this.userActionsService.saveElementInCart(this.cart);
+  }
+
+  openCommentFrom(): void{
+    this.isOpenCommentForm = !this.isOpenCommentForm;
+  }
+
+  openComments(): void{
+    this.isOpenComments = !this.isOpenComments;
+  }
+
+  openPayment(): void{
+    this.isPaymentOpen = !this.isPaymentOpen;
   }
 }

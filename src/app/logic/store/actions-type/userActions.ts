@@ -7,9 +7,9 @@ export enum UserActionsTypes {
   loadedUsers = '[USERS] loaded',
   loadedPrincipal = '[PRINCIPAL] loaded',
   loadedCart = '[CART] user`s loaded',
-  incrementAmountPizzaCart = '[INCREMENT] amount pizza cart',
-  decrementAmountPizzaCart = '[DECREMENT] amount pizza cart',
-  deletePizzaCart = '[DELETE] amount pizza cart'
+  incrementAmountPizzaCart = '[Increment] amount pizza cart',
+  decrementAmountPizzaCart = '[Decrement] amount pizza cart',
+  deletePizzaCart = '[Delete] amount pizza cart'
 }
 export class UsersLoad implements  Action {
   readonly type = UserActionsTypes.loadedUsers;
