@@ -55,6 +55,8 @@ export class UserService {
     this.token = null;
     localStorage.removeItem('token');
     this.authority = null;
+    this.themeObjectService.data.value.userId = 0;
+    this.themeObjectService.data.value.userName = '';
   }
   setAuthority(role: string): void{
     this.authority = role;

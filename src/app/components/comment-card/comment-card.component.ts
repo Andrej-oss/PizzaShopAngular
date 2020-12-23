@@ -6,6 +6,8 @@ import {ThemeObjectService} from '../../logic/theme-object/theme-object.service'
 import {Voice} from '../models/Voice';
 import {VoicePostService} from '../../logic/services/post.service/voice/voice.post.service';
 import {VoiceService} from '../../logic/services/delete.services/voice/voice.service';
+import {SnackBarComponent} from "../snack-bar/snack-bar-login/snack-bar.component";
+import {MatSnackBar} from "@angular/material/snack-bar";
 
 @Component({
   selector: 'app-comment-card',
@@ -21,10 +23,11 @@ export class CommentCardComponent implements OnInit {
   voice: Voice;
   isLiked: boolean;
   voiceSum: number;
-
+  voiceId: number;
   constructor(private pizzaService: PizzaService,
               private commentDeleteService: CommentDeleteService,
               private voiceDeleteService: VoiceService,
+              private snackBar: MatSnackBar,
               private voicePostService: VoicePostService,
               public themeObjectService: ThemeObjectService) {
   }
@@ -38,6 +41,10 @@ export class CommentCardComponent implements OnInit {
     debugger;
     this.commentDeleteService.deleteComment(id).subscribe(data => console.log(data));
     this.pizzaService.deleteCommentPizza(id);
+    this.themeObjectService.data.value.message = `your comment was deleted`;
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 2000,
+    });
   }
 
   onEdit(id: number): void {
@@ -54,6 +61,10 @@ export class CommentCardComponent implements OnInit {
     });
     this.isLiked = true;
     this.voiceSum += 1;
+    this.themeObjectService.data.value.message = `you liked comment from  ${this.comment.author}`;
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 2000,
+    });
   }
   voiceSummary(): void{
     debugger;
@@ -65,8 +76,18 @@ export class CommentCardComponent implements OnInit {
     user && user.userId !== 0 ? this.isLiked = true : this.isLiked = false;
   }
   onDeleteVoice(id: number): void{
-    this.voiceDeleteService.deleteVoiceComment(id).subscribe(data => console.log(data));
-    this.voiceSum -= 1;
-    this.isLiked = false;
+    debugger;
+    const voice = this.comment.voice.find(value => {
+      return value.userId === this.themeObjectService.data.value.userId;
+    });
+    if (voice) {
+      this.voiceDeleteService.deleteVoiceComment(voice.id).subscribe(data => console.log(data));
+      this.voiceSum -= 1;
+      this.isLiked = false;
+      this.themeObjectService.data.value.message = `you deleted your like comment from  ${this.comment.author}`;
+      this.snackBar.openFromComponent(SnackBarComponent, {
+        duration: 2000,
+      });
+    }
   }
 }

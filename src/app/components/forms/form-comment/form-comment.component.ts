@@ -3,7 +3,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {Comment} from '../../models/Comment';
-import {CommentService} from "../../../logic/services/post.service/comment/comment.service";
+import {CommentService} from '../../../logic/services/post.service/comment/comment.service';
+import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {Voice} from '../../models/Voice';
 
 @Component({
   selector: 'app-form-comment',
@@ -19,8 +22,10 @@ export class FormCommentComponent implements OnInit {
   comment: FormGroup;
   tittle: FormControl;
   body: FormControl = new FormControl('', [Validators.required]);
+  defaultVoice: Voice[];
   constructor(private pizzaService: PizzaService,
               private commentService: CommentService,
+              private snackBar: MatSnackBar,
               private themeObjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
@@ -36,6 +41,10 @@ export class FormCommentComponent implements OnInit {
       body: comment.controls.body.value,
     };
     this.pizzaService.postComment(this.pizzaId, this.themeObjectService.data.value.userId, this.pizzaComment);
+    this.themeObjectService.data.value.message = `thank you for your comment`;
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 2000,
+    });
   }
 
   onUpdate(comment: FormGroup): void{
@@ -44,11 +53,16 @@ export class FormCommentComponent implements OnInit {
       tittle: comment.controls.tittle.value,
       body: comment.controls.body.value,
       pizzaId: this.pizzaId,
+      voice: this.commentUser.voice,
       userId: this.themeObjectService.data.value.userId,
     };
     debugger;
     this.commentService.editComment(this.commentUser.id, this.pizzaComment)
       .subscribe(data => console.log(data));
     this.pizzaService.updateComment(this.commentUser.id, this.pizzaComment);
+    this.themeObjectService.data.value.message = `your comment was updated`;
+    this.snackBar.openFromComponent(SnackBarComponent, {
+      duration: 2000,
+    });
   }
 }

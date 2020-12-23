@@ -38,7 +38,6 @@ import { PizzaCartCardComponent } from './components/pizza/pizza-cart-card/pizza
 import { PizzaCardCartItemComponent } from './components/pizza/pizza-card-cart-item/pizza-card-cart-item.component';
 import { PizzaCartPageComponent } from './components/pizza/pizza-cart-page/pizza-cart-page.component';
 import { StarRatingVoteComponent } from './components/star-rating-vote/star-rating-vote.component';
-import { CommentComponent } from './components/comment/comment.component';
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { FormCommentComponent } from './components/forms/form-comment/form-comment.component';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
@@ -70,7 +69,6 @@ import { CommentCardComponent } from './components/comment-card/comment-card.com
     PizzaCardCartItemComponent,
     PizzaCartPageComponent,
     StarRatingVoteComponent,
-    CommentComponent,
     StarRatingComponent,
     FormCommentComponent,
     CommentCardComponent,

@@ -6,7 +6,9 @@
       <mat-card-subtitle>{{comment.author}}</mat-card-subtitle>
     </mat-card-header>
     <div *ngIf="themeObjectService.data.value.userName === comment.author.toLowerCase()">
-    <span class="material-icons" (click)="onDeleteComment(comment.id)">
+    <span class="material-icons"
+          style="margin: 50% 0% 20% 40%"
+          (click)="onDeleteComment(comment.id)">
        delete
     </span>
       <p>
@@ -22,7 +24,8 @@
   <div style="display: flex; justify-content: space-between">
     <div>
       <mat-card-actions>
-        <button mat-button (click)="onLikeComment(comment.id)" [disabled]="isLiked">LIKE</button>
+        <button mat-button (click)="onLikeComment(comment.id)"
+                [disabled]="isLiked || themeObjectService.data.value.userId === 0">LIKE</button>
         <button mat-button>SHARE</button>
       </mat-card-actions>
     </div>
@@ -33,7 +36,7 @@
             [disabled]="themeObjectService.data.value.userId === 0">
         favorite
     </mat-button>
-      <p>{{this.voiceSum}}</p>
+      <p style="margin: 50% 0% 0% 40%">{{this.voiceSum}}</p>
     </div>
   </div>
 </mat-card>

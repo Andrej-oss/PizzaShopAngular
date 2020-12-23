@@ -14,9 +14,6 @@
       </button>
     </mat-form-field>
   </form>
-  <div class="spinner-border" role="status" *ngIf="themeObjectService.data.value.isAuthLoad">
-    <span class="sr-only">Loading...</span>
-  </div>
   <button  mat-stroked-button
            aria-label="Show an example snack-bar"
           (click)="onSave(authForm)"
