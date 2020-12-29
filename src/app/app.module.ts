@@ -41,6 +41,10 @@ import { StarRatingVoteComponent } from './components/star-rating-vote/star-rati
 import { StarRatingComponent } from './components/star-rating/star-rating.component';
 import { FormCommentComponent } from './components/forms/form-comment/form-comment.component';
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
+import { PurchaseComponent } from './components/purchase/purchase/purchase.component';
+import { PurchasesItemComponent } from './components/purchase/purchases-item/purchases-item.component';
+import { PizzaAdminTableComponent } from './components/pizza/pizza-admin-table/pizza-admin-table.component';
+import { IngredientPipe } from './pipes/ingredient.pipe';
 
 
 
@@ -72,6 +76,10 @@ import { CommentCardComponent } from './components/comment-card/comment-card.com
     StarRatingComponent,
     FormCommentComponent,
     CommentCardComponent,
+    PurchaseComponent,
+    PurchasesItemComponent,
+    PizzaAdminTableComponent,
+    IngredientPipe,
   ],
   imports: [
     BrowserModule,

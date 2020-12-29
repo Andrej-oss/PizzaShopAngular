@@ -1,7 +1,7 @@
 import { Action } from '@ngrx/store';
 import {User} from '../../../components/models/User';
 import {Cart} from '../../../components/models/Cart';
-import {PizzaActionType} from './pizzaAction';
+import {Purchase} from '../../../components/models/Purchase';
 
 export enum UserActionsTypes {
   loadedUsers = '[USERS] loaded',
@@ -9,7 +9,9 @@ export enum UserActionsTypes {
   loadedCart = '[CART] user`s loaded',
   incrementAmountPizzaCart = '[Increment] amount pizza cart',
   decrementAmountPizzaCart = '[Decrement] amount pizza cart',
-  deletePizzaCart = '[Delete] amount pizza cart'
+  deletePizzaCart = '[Delete] amount pizza cart',
+  purchasesUserLoaded = '[PURCHASE] user loaded',
+  deletePurchase = '[Purchase] delete'
 }
 export class UsersLoad implements  Action {
   readonly type = UserActionsTypes.loadedUsers;
@@ -47,10 +49,24 @@ export class DeletePizzaCart {
   constructor(public payload: { id: number }) {
   }
 }
+export class PurchasesByUserLoad implements Action{
+  readonly type = UserActionsTypes.purchasesUserLoaded;
+
+  constructor(public payload: Purchase[]) {
+  }
+}
+export class DeletePurchase implements Action{
+  readonly type = UserActionsTypes.deletePurchase;
+
+  constructor(public payload: {id: number}) {
+  }
+}
 export type UserActions = UsersLoad
   | PrincipalLoad
   | CartLoad
   | IncAmountPizzaCart
   | DecAmountPizzaCart
-  | DeletePizzaCart;
+  | DeletePizzaCart
+  | PurchasesByUserLoad
+  | DeletePurchase;
 

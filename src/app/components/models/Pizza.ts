@@ -11,6 +11,7 @@ export interface Pizza {
   path: string;
   ingredients: string;
   sizes: Size[];
-  rating: Rating;
+  rating: Rating | Rating[];
   comments: Comment[];
+  ordersCount?: number;
 }

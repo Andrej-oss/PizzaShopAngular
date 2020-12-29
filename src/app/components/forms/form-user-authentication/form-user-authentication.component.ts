@@ -76,7 +76,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
             duration: 2000,
           });
           // tslint:disable-next-line:no-shadowed-variable
-          this.router.navigate(['/home']).then(data => console.log(data));
+          this.router.navigate(['/']).then(data => console.log(data));
         },
         (error) => {
           if (error.status === 403) {

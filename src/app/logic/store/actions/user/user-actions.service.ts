@@ -8,14 +8,14 @@ import {
   UsersLoad,
   IncAmountPizzaCart,
   DecAmountPizzaCart,
-  DeletePizzaCart
+  DeletePizzaCart, PurchasesByUserLoad, DeletePurchase
 } from '../../actions-type/userActions';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
-import {CartGetService} from '../../../services/get.services/cart/cart.get.service';
-import {CartService} from '../../../services/post.service/cart/cart.service';
 import {Cart} from '../../../../components/models/Cart';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../../../components/snack-bar/snack-bar-login/snack-bar.component';
+import {PurchaseService} from '../../../services/purchaseDao/purchase.service';
+import {CartService} from '../../../services/cartDao/cart.service';
 
 
 
@@ -26,7 +26,7 @@ export class UserActionsService {
 
   constructor(private userService: UserService,
               private userGetService: UserGetService,
-              private cartGetService: CartGetService,
+              private purchaseService: PurchaseService,
               private store: Store,
               private cartService: CartService,
               private snackBar: MatSnackBar,
@@ -47,7 +47,7 @@ export class UserActionsService {
    }
    getAllCart(id): | {}{
     debugger;
-    return this.cartGetService.getAllCartsElements(this.themeObjectService.data.value.userId)
+    return this.cartService.getAllCartsElements(this.themeObjectService.data.value.userId)
       .subscribe(data => {
         this.themeObjectService.data.value.sizeCart = data.length;
         debugger;
@@ -73,5 +73,17 @@ export class UserActionsService {
   }
   deletePizzaCartInStore(id: number): void{
     this.store.dispatch(new DeletePizzaCart({id}));
+  }
+  getPurchasesByUser(id: number): | {}{
+    return this.purchaseService.getPurchasesByUser(id)
+      .subscribe(data => this.store.dispatch(new PurchasesByUserLoad(data)));
+  }
+  deletePurchaseInStore(id: number): |{}{
+    return this.purchaseService.deletePurchase(id)
+      .subscribe(data => {
+        if (data === true){
+          this.store.dispatch(new DeletePurchase({id}));
+        }
+      });
   }
 }

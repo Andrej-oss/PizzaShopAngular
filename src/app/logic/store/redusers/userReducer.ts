@@ -59,6 +59,22 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
         cart: newCart,
       };
     }
+    case UserActionsTypes.purchasesUserLoaded: {
+      return {
+        ...state,
+        purchases: action.payload,
+      };
+    }
+    case UserActionsTypes.deletePurchase: {
+      const { purchases } = state;
+      const newPurchases = [...purchases];
+      const findIndex = newPurchases.findIndex(value => value.id === action.payload.id);
+      newPurchases.splice(findIndex, 1);
+      return {
+        ...state,
+        purchases: newPurchases,
+      };
+    }
     default: {
       return state;
     }

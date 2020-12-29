@@ -13,11 +13,11 @@ import {
 import {Ingredient} from '../../models/Ingredient';
 import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 import {Size} from '../../models/Size';
-import {CartService} from '../../../logic/services/post.service/cart/cart.service';
 import {Cart} from '../../models/Cart';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
-import {Comment} from "../../models/Comment";
+import {Comment} from '../../models/Comment';
+import {CartService} from '../../../logic/services/cartDao/cart.service';
 
 @Component({
   selector: 'app-pizza-choose-sheet',

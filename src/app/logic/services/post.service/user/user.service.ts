@@ -5,6 +5,7 @@ import {Observable} from 'rxjs';
 import {AuthUser} from '../../../../components/models/AuthUser';
 import {tap} from 'rxjs/operators';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
+import {Router} from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +17,8 @@ export class UserService {
   private userName = null;
 
   constructor(private httpClient: HttpClient,
-              private themeObjectService: ThemeObjectService) { }
+              private themeObjectService: ThemeObjectService,
+              private router: Router) { }
 
   saveUser(user: User): Observable<User[]>{
     console.log(user)
@@ -57,6 +59,7 @@ export class UserService {
     this.authority = null;
     this.themeObjectService.data.value.userId = 0;
     this.themeObjectService.data.value.userName = '';
+    this.router.navigate(['/']).then(data => console.log(data));
   }
   setAuthority(role: string): void{
     this.authority = role;

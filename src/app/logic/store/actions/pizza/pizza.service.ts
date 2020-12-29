@@ -12,9 +12,8 @@ import {SizeService} from '../../../services/get.services/size/size.service';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Rating} from '../../../../components/models/Rating';
 import {RatingService} from '../../../services/post.service/rating/rating.service';
-import {CommentService} from '../../../services/post.service/comment/comment.service';
 import {Comment} from '../../../../components/models/Comment';
-import {CommentGetService} from '../../../services/get.services/comment/comment.get.service';
+import {CommentService} from '../../../services/commentDao/comment.service';
 
 @Injectable({
   providedIn: 'root'
@@ -27,7 +26,6 @@ export class PizzaService {
               private themeService: ThemeObjectService,
               private ratingService: RatingService,
               private commentService: CommentService,
-              private commentGetService: CommentGetService,
               private store: Store) { }
   getAllPizzas(): | {}{
     return this.pizzaGetService.getAllPizza()
@@ -58,7 +56,7 @@ export class PizzaService {
       .subscribe(data => this.store.dispatch(new PizzaCommentSaveLoad(data)));
   }
   getPizzaComments(pizzaId: number): | {}{
-    return this.commentGetService.getComments(pizzaId)
+    return this.commentService.getComments(pizzaId)
       .subscribe(data => this.store.dispatch(new PizzaCommentsLoad(data)));
   }
   deleteCommentPizza(id: number): void{

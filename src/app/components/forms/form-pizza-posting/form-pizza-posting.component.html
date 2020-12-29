@@ -24,13 +24,21 @@
           </mat-option>
         </mat-select>
       </mat-form-field>
-      <mat-button-toggle (click)="onAddIngredient(pizzaId)">Add Ingredient</mat-button-toggle>
+      <button mat-button (click)="onAddIngredient(pizzaId)">Add Ingredient</button>
+      <button mat-button>Delete ingredient</button>
+      <ul *ngFor="let ingredient of arrayIngredients">
+        <li>
+          {{ingredient}}
+        </li>
+      </ul>
+      <p>
       <mat-form-field appearance="fill" >
         <mat-label>Price</mat-label>
         <input matInput type="number" class="example-right-align" [formControl]="pricePizza">
         <span matPrefix>$&nbsp;</span>
         <span matSuffix>.00</span>
       </mat-form-field>
+      </p>
       <input type="file" (change)="upLoadFile($event)" accept=".jpg"/>
       <div>
         <button mat-button matStepperNext>Next</button>
@@ -83,6 +91,4 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
-<div *ngFor="let pizza of pizzas" style="background-color: black">
-  <img [src]="url+pizza.path" style="width: 50px; border-radius: 50%">
-</div>
+

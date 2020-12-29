@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Comment} from '../../../../components/models/Comment';
+import {Comment} from '../../../components/models/Comment';
 
 @Injectable({
   providedIn: 'root'
@@ -9,6 +9,12 @@ import {Comment} from '../../../../components/models/Comment';
 export class CommentService {
   private baseUrl = 'http://localhost:8080/comment/';
   constructor(private httpClient: HttpClient) { }
+  getComments(pizzaId: number): Observable<Comment[]>{
+    return this.httpClient.get<Comment[]>(this.baseUrl + `${pizzaId}`);
+  }
+  deleteComment(id: number): Observable<boolean>{
+    return this.httpClient.delete<boolean>(this.baseUrl + `${id}`);
+  }
   saveComment(pizzaId: number, userId: number, comment: Comment): Observable<Comment[]>{
     return this.httpClient.post<Comment[]>(this.baseUrl + `${userId}/${pizzaId}`, comment);
   }

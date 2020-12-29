@@ -1,0 +1,16 @@
+.purchase-item-black{
+  color: white;
+  background-color: black;
+}
+.purchase-item{
+  color: black;
+  background-color: white;
+}
+.purchases-delete:hover{
+  color: grey;
+  cursor: pointer;
+}
+.purchases-add-cart:hover{
+  color: grey;
+  cursor: pointer;
+}

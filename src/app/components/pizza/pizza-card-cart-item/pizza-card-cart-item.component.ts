@@ -2,9 +2,8 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Cart} from '../../models/Cart';
 import {Pizza} from '../../models/Pizza';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
-import {CartService} from '../../../logic/services/post.service/cart/cart.service';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
-import {CartDeleteService} from '../../../logic/services/delete.services/cart/cart-delete.service';
+import {CartService} from '../../../logic/services/cartDao/cart.service';
 
 
 @Component({
@@ -26,7 +25,7 @@ export class PizzaCardCartItemComponent implements OnInit {
 
   constructor(private themeObjectService: ThemeObjectService,
               private userService: UserActionsService,
-              private cartService: CartService, private cartDeleteService: CartDeleteService) {
+              private cartService: CartService) {
   }
 
   ngOnInit(): void {
@@ -74,7 +73,7 @@ export class PizzaCardCartItemComponent implements OnInit {
 
   onDelete(id: number): void {
     debugger;
-    this.cartDeleteService.deleteCart(id).subscribe(data => console.log(data));
+    this.cartService.deleteCart(id).subscribe(data => console.log(data));
     this.userService.deletePizzaCartInStore(id);
     this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.cartElement.price;
   }

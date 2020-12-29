@@ -7,6 +7,8 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import { Router } from '@angular/router';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
+import DateTimeFormat = Intl.DateTimeFormat;
+
 
 @Component({
   selector: 'app-payment-modal',
@@ -21,7 +23,6 @@ export class PaymentModalComponent implements OnInit {
   @Input() pizzaId;
   @Input() allCart;
   purchase: Purchase;
-
   constructor(private paymentService: PaymentService,
               private toastrService: ToastrService,
               public activeModal: NgbActiveModal,
@@ -36,7 +37,34 @@ export class PaymentModalComponent implements OnInit {
 
   confirm(id: string): void {
     debugger;
-    if (this.allCart && this.allCart.length) {
+    if (!(this.allCart && this.allCart.length)) {
+      this.purchase = {
+        description: this.description,
+        name: this.tittle,
+        pizzaId: this.pizzaId,
+        price: this.price,
+        userId: this.themeObjectService.data.value.userId,
+        // tslint:disable-next-line:max-line-length
+        // date: this.date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear(),
+      };
+      console.log(this.purchase);
+      this.paymentService.confirm(id, this.purchase).subscribe(data => {
+          this.activeModal.close();
+          // tslint:disable-next-line:no-shadowed-variable
+          this.toastrService.success
+          ('Your payment is success, thank you', 'Payment success' + data[`id`],
+            {positionClass: 'toast-center-center', timeOut: 3000});
+          this.themeObjectService.data.value.message = `Thank you for a payment!!!`;
+          this.snackBar.openFromComponent(SnackBarComponent, {
+            duration: 2000,
+          });
+        },
+        err => {
+          console.log(err);
+          this.activeModal.close();
+        }
+      );
+    } else {
       this.paymentService.confirmAllCart(id, this.themeObjectService.data.value.userId, this.allCart)
         .subscribe(data => {
           this.activeModal.close();
@@ -50,30 +78,6 @@ export class PaymentModalComponent implements OnInit {
             duration: 2000,
           });
         });
-    } else {
-      this.purchase = {
-        ingredients: this.description,
-        name: this.tittle,
-        pizzaId: this.pizzaId,
-        price: this.price,
-        userId: this.themeObjectService.data.value.userId
-      };
-      this.paymentService.confirm(id, this.purchase).subscribe(data => {
-        this.activeModal.close();
-        // tslint:disable-next-line:no-shadowed-variable
-        this.toastrService.success
-        ('Your payment is success, thank you', 'Payment success' + data[`id`],
-          {positionClass: 'toast-center-center', timeOut: 3000});
-        this.themeObjectService.data.value.message = `Thank you for a payment!!!`;
-        this.snackBar.openFromComponent(SnackBarComponent, {
-          duration: 2000,
-        });
-      },
-        err => {
-          console.log(err);
-          this.activeModal.close();
-        }
-      );
     }
   }
 

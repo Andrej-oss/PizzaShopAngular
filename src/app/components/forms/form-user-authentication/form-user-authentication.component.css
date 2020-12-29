@@ -15,3 +15,6 @@
 .card-auth-error{
   color: red;
 }
+button:focus{
+  outline: none;
+}

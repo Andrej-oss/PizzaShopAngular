@@ -7,7 +7,6 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Payment} from '../../models/Payment';
 import {PaymentModalComponent} from '../payment-modal/payment-modal.component';
-import {Cart} from '../../models/Cart';
 
 @Component({
   selector: 'app-payment',

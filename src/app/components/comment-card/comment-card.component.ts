@@ -1,13 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from '../models/Comment';
 import {PizzaService} from '../../logic/store/actions/pizza/pizza.service';
-import {CommentDeleteService} from '../../logic/services/delete.services/comment/comment-delete.service';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {Voice} from '../models/Voice';
-import {VoicePostService} from '../../logic/services/post.service/voice/voice.post.service';
-import {VoiceService} from '../../logic/services/delete.services/voice/voice.service';
-import {SnackBarComponent} from "../snack-bar/snack-bar-login/snack-bar.component";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackBarComponent} from '../snack-bar/snack-bar-login/snack-bar.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {CommentService} from '../../logic/services/commentDao/comment.service';
+import {VoiceService} from '../../logic/services/voiceDao/voice.service';
 
 @Component({
   selector: 'app-comment-card',
@@ -25,10 +24,9 @@ export class CommentCardComponent implements OnInit {
   voiceSum: number;
   voiceId: number;
   constructor(private pizzaService: PizzaService,
-              private commentDeleteService: CommentDeleteService,
-              private voiceDeleteService: VoiceService,
+              private commentService: CommentService,
+              private voiceService: VoiceService,
               private snackBar: MatSnackBar,
-              private voicePostService: VoicePostService,
               public themeObjectService: ThemeObjectService) {
   }
 
@@ -39,7 +37,7 @@ export class CommentCardComponent implements OnInit {
 
   onDeleteComment(id: number): void {
     debugger;
-    this.commentDeleteService.deleteComment(id).subscribe(data => console.log(data));
+    this.commentService.deleteComment(id).subscribe(data => console.log(data));
     this.pizzaService.deleteCommentPizza(id);
     this.themeObjectService.data.value.message = `your comment was deleted`;
     this.snackBar.openFromComponent(SnackBarComponent, {
@@ -56,7 +54,7 @@ export class CommentCardComponent implements OnInit {
       voice: 1,
       userId: this.themeObjectService.data.value.userId
     };
-    this.voicePostService.saveVoice(id, this.voice).subscribe(data => {
+    this.voiceService.saveVoice(id, this.voice).subscribe(data => {
       console.log(data);
     });
     this.isLiked = true;
@@ -81,7 +79,7 @@ export class CommentCardComponent implements OnInit {
       return value.userId === this.themeObjectService.data.value.userId;
     });
     if (voice) {
-      this.voiceDeleteService.deleteVoiceComment(voice.id).subscribe(data => console.log(data));
+      this.voiceService.deleteVoiceComment(voice.id).subscribe(data => console.log(data));
       this.voiceSum -= 1;
       this.isLiked = false;
       this.themeObjectService.data.value.message = `you deleted your like comment from  ${this.comment.author}`;
