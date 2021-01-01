@@ -1,0 +1,12 @@
+.table-admin-image{
+  width: 50px;
+  border-radius: 50%;
+}
+.admin-table-pizza-delete:hover{
+  color: grey;
+  cursor: pointer;
+}
+.admin-table-pizza-settings:hover{
+  color: grey;
+  cursor: pointer;
+}

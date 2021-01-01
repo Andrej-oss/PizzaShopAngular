@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {Comment} from '../../models/Comment';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {Voice} from '../../models/Voice';
 import {CommentService} from '../../../logic/services/commentDao/comment.service';
+import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
 
 @Component({
   selector: 'app-form-comment',
@@ -23,7 +23,7 @@ export class FormCommentComponent implements OnInit {
   tittle: FormControl;
   body: FormControl = new FormControl('', [Validators.required]);
   defaultVoice: Voice[];
-  constructor(private pizzaService: PizzaService,
+  constructor(private pizzaService: PizzaActionService,
               private commentService: CommentService,
               private snackBar: MatSnackBar,
               private themeObjectService: ThemeObjectService) { }

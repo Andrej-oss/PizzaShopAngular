@@ -4,7 +4,7 @@
     <form [formGroup]="pizzaForm">
       <ng-template matStepLabel>Create pizza</ng-template>
         <mat-label>New!!!</mat-label>
-        <mat-checkbox  [formControl]="new">
+        <mat-checkbox  [formControl]="newPizza">
         </mat-checkbox>
       <mat-form-field style="width: 100%">
         <mat-label>Pizza name</mat-label>
@@ -25,10 +25,10 @@
         </mat-select>
       </mat-form-field>
       <button mat-button (click)="onAddIngredient(pizzaId)">Add Ingredient</button>
-      <button mat-button>Delete ingredient</button>
+      <button mat-button (click)="onDeleteIngredient()">Delete ingredient</button>
       <ul *ngFor="let ingredient of arrayIngredients">
         <li>
-          {{ingredient}}
+          {{ingredient | ingredient: ingredients}}
         </li>
       </ul>
       <p>
@@ -87,7 +87,8 @@
     <div>
       <button mat-button matStepperPrevious>Back</button>
       <button mat-button (click)="stepper.reset()">Reset</button>
-      <button mat-button (click)="onSave(pizzaForm)" >Save</button>
+      <button mat-button (click)="onSave(pizzaForm)" *ngIf="!pizza">Save</button>
+      <button mat-button (click)="onUpdate(pizzaForm)" *ngIf="pizza">Update</button>
     </div>
   </mat-step>
 </mat-vertical-stepper>

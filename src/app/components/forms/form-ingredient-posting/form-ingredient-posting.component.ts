@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {IngredientService} from '../../../logic/services/post.service/ingredient/ingredient.service';
 import {IngredientGetService} from '../../../logic/services/get.services/ingredient/ingredient.get.service';
@@ -10,30 +10,29 @@ import {Ingredient} from "../../models/Ingredient";
   styleUrls: ['./form-ingredient-posting.component.css']
 })
 export class FormIngredientPostingComponent implements OnInit {
+  @Input()
+  ingredient: Ingredient;
   ingredients: Ingredient[];
   ingredientFormGroup: FormGroup;
-  name: FormControl = new FormControl('', Validators.required);
-  price: FormControl = new FormControl('', Validators.required);
+  name: FormControl;
+  price: FormControl;
   image: FormControl = new FormControl('', Validators.required);
   formData: FormData = new FormData();
   constructor(private ingredientService: IngredientService,
               private ingredientGetService: IngredientGetService) {
-    this.ingredientFormGroup = new FormGroup({
-      name: this.name,
-      price: this.price,
-      image: this.image
-    });
   }
 
   ngOnInit(): void {
+    this.ingredientFormGroup = new FormGroup({
+      name: this.name = new FormControl(this.ingredient ? this.ingredient.name : '', Validators.required),
+      price: this.price = new FormControl(this.ingredient ? this.ingredient.price : '', Validators.required),
+      image: this.image
+    });
   }
 
   saveIngredient(ingredientFormGroup: FormGroup): void{
     this.formData.append('name', ingredientFormGroup.controls.name.value);
     this.formData.append('price', ingredientFormGroup.controls.price.value);
-   // this.formData.append('image', ingredientFormGroup.controls.image.value);
-    console.log(ingredientFormGroup.controls.name);
-    console.log(this.ingredientFormGroup);
     this.ingredientService.saveIngredient(this.formData,
       this.formData.append('image', ingredientFormGroup.controls.image.value)).subscribe(data => console.log(data));
     this.ingredientFormGroup.reset();

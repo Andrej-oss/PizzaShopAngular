@@ -6,7 +6,7 @@ import {IngredientService} from '../../../logic/services/post.service/ingredient
 import {SizePostService} from '../../../logic/services/post.service/size/size.post.service';
 import {Pizza} from '../../models/Pizza';
 import {sizes} from '../../../constants/Constants';
-import {PizzaGetService} from '../../../logic/services/get.services/pizza/pizza.get.service';
+import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
 
 @Component({
   selector: 'app-form-size-pizza-post',
@@ -29,7 +29,7 @@ export class FormSizePizzaPostComponent implements OnInit {
   weight: FormControl = new FormControl('', Validators.required);
   constructor(private ingredientGetService: IngredientGetService,
               private ingredientService: IngredientService,
-              private pizzaGetService: PizzaGetService,
+              private pizzaService: PizzaService,
               private sizePostService: SizePostService) {
     this.pizzaSizeForm = new FormGroup({
       sizePizza: this.sizePizza,
@@ -42,7 +42,7 @@ export class FormSizePizzaPostComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this.pizzaGetService.getAllPizza().subscribe(data => this.pizzas = data);
+    this.pizzaService.getAllPizza().subscribe(data => this.pizzas = data);
     this.ingredientGetService.getAllIngredients().subscribe(data => this.ingredients = data);
   }
   resetSizeFormData(): void{

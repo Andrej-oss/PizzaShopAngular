@@ -3,7 +3,7 @@ import {Pizza} from '../../models/Pizza';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {PizzaChooseSheetComponent} from '../pizza-choose-sheet/pizza-choose-sheet.component';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
-import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 
 
 
@@ -20,7 +20,7 @@ pizza: Pizza;
 
   constructor(private bottomSheet: MatBottomSheet,
               private themeObjectService: ThemeObjectService,
-              private pizzaService: PizzaService) { }
+              private pizzaService: PizzaActionService) { }
 
   ngOnInit(): void {
     this.ingredients = this.pizza.ingredients.split(',');

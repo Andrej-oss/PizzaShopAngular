@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Comment} from '../models/Comment';
-import {PizzaService} from '../../logic/store/actions/pizza/pizza.service';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {Voice} from '../models/Voice';
 import {SnackBarComponent} from '../snack-bar/snack-bar-login/snack-bar.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CommentService} from '../../logic/services/commentDao/comment.service';
 import {VoiceService} from '../../logic/services/voiceDao/voice.service';
+import {PizzaActionService} from "../../logic/store/actions/pizza/pizza-action.service";
 
 @Component({
   selector: 'app-comment-card',
@@ -23,7 +23,7 @@ export class CommentCardComponent implements OnInit {
   isLiked: boolean;
   voiceSum: number;
   voiceId: number;
-  constructor(private pizzaService: PizzaService,
+  constructor(private pizzaService: PizzaActionService,
               private commentService: CommentService,
               private voiceService: VoiceService,
               private snackBar: MatSnackBar,

@@ -13,7 +13,6 @@ import {selectPrincipal, selectUsers} from '../../logic/store/selectors/UserSele
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-  showFiller: boolean;
   users: Observable<User[]> = this.store$.pipe(select(selectUsers));
   admin: Observable<any> = this.store$.pipe(select(selectPrincipal));
   isAdmin = this.userService.isAdmin();
@@ -21,6 +20,7 @@ export class AdminPageComponent implements OnInit {
   isOpenUsersAdministrating = false;
   isOpenUserUpdate = false;
   step = 0;
+  isOpenPizzaOptions: boolean;
 
   constructor(private userGetService: UserGetService,
               private userService: UserService,
@@ -34,30 +34,34 @@ export class AdminPageComponent implements OnInit {
 
   onPizzaCreate(): void{
     this.isOpenPizzaCreator = !this.isOpenPizzaCreator;
-    this.isOpenUserUpdate = false;
-    this.isOpenUsersAdministrating = false;
   }
-  setStep(index: number) {
+  setStep(index: number): void{
     this.step = index;
   }
 
-  nextStep() {
+  nextStep(): void{
     this.step++;
   }
 
-  prevStep() {
+  prevStep(): void{
     this.step--;
   }
 
   onUsersAdmin(): void{
     this.isOpenUsersAdministrating = !this.isOpenUsersAdministrating;
-    this.isOpenPizzaCreator = false;
+    this.isOpenPizzaOptions = false;
     this.isOpenUserUpdate = false;
   }
 
   onUserUpdate(): void{
     this.isOpenUserUpdate = !this.isOpenUserUpdate;
     this.isOpenUsersAdministrating = false;
-    this.isOpenPizzaCreator = false;
+    this.isOpenPizzaOptions = false;
+  }
+
+  onPizzaUpdate(): void{
+    this.isOpenPizzaOptions = !this.isOpenPizzaOptions;
+    this.isOpenUserUpdate = false;
+    this.isOpenUsersAdministrating = false;
   }
 }

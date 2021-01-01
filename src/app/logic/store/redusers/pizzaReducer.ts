@@ -62,8 +62,19 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
       return {
         ...state,
         comments: newComments,
+      };
+    }
+    case PizzaActionType.pizzaSaveAndLoaded: {
+      return {
+        ...state,
+        pizzas: action.payload,
+      };
+    }
+    case PizzaActionType.pizzaDeleteAndLoaded: {
+      return {
+        ...state,
+        pizzas: action.payload,
       }
-
     }
     default: {
       return state;

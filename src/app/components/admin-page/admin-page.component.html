@@ -1,5 +1,5 @@
-<mat-drawer-container class="admin-card-menu"  autosize>
-  <mat-drawer #drawer class="example-sidenav" mode="side">
+<div class="admin-card-menu"    style="margin: 2% 2% 2% 2%">
+  <div class="example-sidenav" >
     <p>
       <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
     </p>
@@ -12,7 +12,7 @@
     <button  mat-raised-button  (click)="onUserUpdate()">
       Administrating Profile
     </button>
-    <button  mat-raised-button (click)="onPizzaCreate()"   *ngIf="isAdmin">
+    <button  mat-raised-button (click)="onPizzaUpdate()"  *ngIf="isAdmin">
      Administrating Pizza
     </button>
     <button  mat-raised-button >
@@ -30,13 +30,14 @@
     <button  mat-raised-button  (click)="onUsersAdmin()">
       Administrating Users
     </button>
-  </mat-drawer>
+  </div>
 
   <div class="example-sidenav-content">
-    <button type="button" mat-button (click)="drawer.toggle()" style="width: 20%">
-      Toggle
-    </button>
-    <div *ngIf="isOpenPizzaCreator">
+    <div *ngIf="isOpenPizzaOptions">
+      <button mat-button (click)="onPizzaCreate()">Create new pizza</button>
+      <app-pizza-admin-table></app-pizza-admin-table>
+    </div>
+    <div *ngIf="isOpenPizzaOptions && isOpenPizzaCreator">
       <mat-accordion class="example-headers-align" style="padding: 10%">
       <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
         <mat-expansion-panel-header>
@@ -100,4 +101,4 @@
     </div>
   </div>
 
-</mat-drawer-container>
+</div>

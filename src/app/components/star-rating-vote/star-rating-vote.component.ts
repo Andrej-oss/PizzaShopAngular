@@ -1,12 +1,12 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PizzaService} from '../../logic/store/actions/pizza/pizza.service';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {Rating} from '../models/Rating';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {RatingSelector} from '../../logic/store/selectors/PizzaSelector';
-import {SnackBarComponent} from "../snack-bar/snack-bar-login/snack-bar.component";
-import {MatSnackBar} from "@angular/material/snack-bar";
+import {SnackBarComponent} from '../snack-bar/snack-bar-login/snack-bar.component';
+import {MatSnackBar} from '@angular/material/snack-bar';
+import {PizzaActionService} from "../../logic/store/actions/pizza/pizza-action.service";
 
 @Component({
   selector: 'app-star-rating-vote',
@@ -25,7 +25,7 @@ export class StarRatingVoteComponent implements OnInit {
   isRated: boolean;
   userRating: Rating;
   averageRating: number;
-  constructor(private pizzaService: PizzaService,
+  constructor(private pizzaService: PizzaActionService,
               public themeObjectService: ThemeObjectService,
               private snackBar: MatSnackBar,
               private store$: Store) { }
@@ -37,7 +37,7 @@ export class StarRatingVoteComponent implements OnInit {
 
   countStar(star: number): void{
     this.selectedValue = star;
-    this.rating = {value: star, userId: this.themeObjectService.data.value.userId}
+    this.rating = {value: star, userId: this.themeObjectService.data.value.userId};
     this.pizzaService.postRating(this.pizzaId, this.rating);
     this.themeObjectService.data.value.message = 'Thank you for your vote';
     this.snackBar.openFromComponent(SnackBarComponent, {

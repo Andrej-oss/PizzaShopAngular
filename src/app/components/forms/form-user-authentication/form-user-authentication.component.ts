@@ -8,7 +8,7 @@ import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.compo
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {concatMap, map} from 'rxjs/operators';
-import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
+import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
 
 @Component({
   selector: 'app-form-user-authentication',

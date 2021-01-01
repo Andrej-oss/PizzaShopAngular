@@ -4,7 +4,7 @@ import {Comment} from './Comment';
 
 export interface Pizza {
   id?: number;
-  new: boolean;
+  newPizza: boolean;
   name: string;
   description: string;
   price: number;

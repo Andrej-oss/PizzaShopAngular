@@ -11,13 +11,13 @@ import {
   SizePizzaSelector
 } from '../../../logic/store/selectors/PizzaSelector';
 import {Ingredient} from '../../models/Ingredient';
-import {PizzaService} from '../../../logic/store/actions/pizza/pizza.service';
 import {Size} from '../../models/Size';
 import {Cart} from '../../models/Cart';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {Comment} from '../../models/Comment';
 import {CartService} from '../../../logic/services/cartDao/cart.service';
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 
 @Component({
   selector: 'app-pizza-choose-sheet',
@@ -48,7 +48,7 @@ export class PizzaChooseSheetComponent implements OnInit {
   isPaymentOpen: boolean;
   constructor(private bottomSheetRef: MatBottomSheetRef<PizzaChooseSheetComponent>,
               public themeObjectService: ThemeObjectService,
-              private pizzaService: PizzaService,
+              private pizzaService: PizzaActionService,
               private cartService: CartService,
               private userActionsService: UserActionsService,
               private snackBar: MatSnackBar,
