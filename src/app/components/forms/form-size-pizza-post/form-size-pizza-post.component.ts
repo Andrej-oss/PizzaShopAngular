@@ -1,12 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../../models/Ingredient';
-import {IngredientGetService} from '../../../logic/services/get.services/ingredient/ingredient.get.service';
-import {IngredientService} from '../../../logic/services/post.service/ingredient/ingredient.service';
-import {SizePostService} from '../../../logic/services/post.service/size/size.post.service';
 import {Pizza} from '../../models/Pizza';
 import {sizes} from '../../../constants/Constants';
 import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
+import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
+import {SizeService} from '../../../logic/services/sizeDao/size.service';
+import {Size} from '../../models/Size';
+import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
 
 @Component({
   selector: 'app-form-size-pizza-post',
@@ -14,6 +15,10 @@ import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
   styleUrls: ['./form-size-pizza-post.component.css']
 })
 export class FormSizePizzaPostComponent implements OnInit {
+  @Input()
+  size: Size;
+  @Input()
+  pizzaName: string;
   url = 'http://localhost:8080/pizza/image/';
   sizes = sizes;
   pizzas: Pizza[];
@@ -22,28 +27,28 @@ export class FormSizePizzaPostComponent implements OnInit {
   pizzaSizeForm: FormGroup;
   file: FormControl = new FormControl('', Validators.required);
   sizeFormData: FormData = new FormData();
-  sizePizza: FormControl = new FormControl('', Validators.required);
-  priceSize: FormControl = new FormControl('', Validators.required);
-  pizzaId: FormControl = new FormControl('', Validators.required);
-  diameter: FormControl = new FormControl('', Validators.required);
-  weight: FormControl = new FormControl('', Validators.required);
-  constructor(private ingredientGetService: IngredientGetService,
-              private ingredientService: IngredientService,
+  sizePizza: FormControl;
+  priceSize: FormControl;
+  pizzaId: FormControl;
+  diameter: FormControl;
+  weight: FormControl;
+  constructor(private ingredientService: IngredientService,
               private pizzaService: PizzaService,
-              private sizePostService: SizePostService) {
-    this.pizzaSizeForm = new FormGroup({
-      sizePizza: this.sizePizza,
-      priceSize: this.priceSize,
-      pizzaId: this.pizzaId,
-      diameter: this.diameter,
-      weight: this.weight,
-      file: this.file
-    });
+              private pizzaActionService: PizzaActionService,
+              private sizeService: SizeService) {
   }
 
   ngOnInit(): void {
     this.pizzaService.getAllPizza().subscribe(data => this.pizzas = data);
-    this.ingredientGetService.getAllIngredients().subscribe(data => this.ingredients = data);
+    this.ingredientService.getAllIngredients().subscribe(data => this.ingredients = data);
+    this.pizzaSizeForm = new FormGroup({
+      sizePizza: this.sizePizza  = new FormControl(this.size ? this.size.size : '', Validators.required),
+      priceSize: this.priceSize = new FormControl(this.size ? this.size.price : '', Validators.required),
+      pizzaId: this.pizzaId = new FormControl(this.size ? this.size.pizza_id : '', Validators.required),
+      diameter: this.diameter = new FormControl(this.size ? this.size.diameter : '', Validators.required),
+      weight: this.weight = new FormControl(this.size ? this.size.weight : '', Validators.required),
+      file: this.file
+    });
   }
   resetSizeFormData(): void{
     this.sizeFormData.delete('name');
@@ -67,17 +72,26 @@ export class FormSizePizzaPostComponent implements OnInit {
   }
 
   onSave(pizzaSizeForm: FormGroup): void {
-    console.log(pizzaSizeForm);
-    console.log(pizzaSizeForm.controls.sizePizza.value);
     this.sizeFormData.append('name', pizzaSizeForm.controls.sizePizza.value.size);
     this.sizeFormData.append('price', pizzaSizeForm.controls.priceSize.value);
     this.sizeFormData.append('diameter', pizzaSizeForm.controls.sizePizza.value.diameter);
     this.sizeFormData.append('weight', pizzaSizeForm.controls.weight.value);
     this.sizeFormData.append('file',  pizzaSizeForm.controls.file.value);
-    this.sizePostService.saveSizePizza(this.sizeFormData,
+    this.sizeService.saveSizePizza(this.sizeFormData,
       pizzaSizeForm.controls.pizzaId.value,
       pizzaSizeForm.controls.file.value).subscribe(data => console.log(data));
     this.resetSizeFormData();
     pizzaSizeForm.reset();
+  }
+
+  onUpdate(pizzaSizeForm: FormGroup): void{
+    this.sizeFormData.append('name', this.size ? this.size.name : pizzaSizeForm.controls.sizePizza.value.size);
+    this.sizeFormData.append('price', pizzaSizeForm.controls.priceSize.value);
+    this.sizeFormData.append('diameter', this.size ? this.size.diameter : pizzaSizeForm.controls.sizePizza.value.diameter);
+    this.sizeFormData.append('weight', pizzaSizeForm.controls.weight.value);
+    this.sizeFormData.append('file',  pizzaSizeForm.controls.file.value);
+    this.pizzaActionService.upgradePizzaSize(this.size.id, this.sizeFormData,
+      pizzaSizeForm.controls.file.value);
+    this.resetSizeFormData();
   }
 }

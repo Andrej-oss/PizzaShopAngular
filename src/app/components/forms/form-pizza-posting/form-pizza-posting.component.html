@@ -2,7 +2,7 @@
 <mat-vertical-stepper [linear]="true" #stepper>
   <mat-step [stepControl]="pizzaForm">
     <form [formGroup]="pizzaForm">
-      <ng-template matStepLabel>Create pizza</ng-template>
+      <ng-template matStepLabel>{{pizza ? 'Update Pizza' : 'Create pizza'}}</ng-template>
         <mat-label>New!!!</mat-label>
         <mat-checkbox  [formControl]="newPizza">
         </mat-checkbox>
@@ -92,4 +92,8 @@
     </div>
   </mat-step>
 </mat-vertical-stepper>
+<div *ngIf="pizza">
+  <h1>{{pizza.name}} sizes</h1>
+  <app-pizza-size-admin-table [pizzaName]="pizza.name"></app-pizza-size-admin-table>
+</div>
 

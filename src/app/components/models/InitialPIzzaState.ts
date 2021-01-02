@@ -2,7 +2,7 @@ import {Pizza} from './Pizza';
 import {Ingredient} from './Ingredient';
 import {Size} from './Size';
 import {Rating} from './Rating';
-import {Comment} from "./Comment";
+import {Comment} from './Comment';
 
 export interface DefaultPizzaState {
   pizzas: Pizza[];
@@ -10,6 +10,7 @@ export interface DefaultPizzaState {
   size: Size;
   rating: Rating;
   comments: Comment[];
+  sizes: Size[];
 }
 
 export const InitialPizzaState: DefaultPizzaState = {
@@ -18,5 +19,6 @@ export const InitialPizzaState: DefaultPizzaState = {
   size: null,
   rating: null,
   comments: [],
+  sizes: [],
 };
 

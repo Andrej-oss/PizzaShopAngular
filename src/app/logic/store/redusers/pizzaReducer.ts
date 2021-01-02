@@ -74,7 +74,13 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
       return {
         ...state,
         pizzas: action.payload,
-      }
+      };
+    }
+    case PizzaActionType.pizzaSizesLoaded: {
+      return {
+        ...state,
+        sizes: action.payload,
+      };
     }
     default: {
       return state;

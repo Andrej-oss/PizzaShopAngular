@@ -21,7 +21,8 @@ export class AdminPageComponent implements OnInit {
   isOpenUserUpdate = false;
   step = 0;
   isOpenPizzaOptions: boolean;
-
+  isOpenIngredientUpdate: boolean;
+  isOpenIngredientCreator: boolean;
   constructor(private userGetService: UserGetService,
               private userService: UserService,
               private userActionsService: UserActionsService,
@@ -51,17 +52,31 @@ export class AdminPageComponent implements OnInit {
     this.isOpenUsersAdministrating = !this.isOpenUsersAdministrating;
     this.isOpenPizzaOptions = false;
     this.isOpenUserUpdate = false;
+    this.isOpenIngredientUpdate = false;
   }
 
   onUserUpdate(): void{
     this.isOpenUserUpdate = !this.isOpenUserUpdate;
     this.isOpenUsersAdministrating = false;
     this.isOpenPizzaOptions = false;
+    this.isOpenIngredientUpdate = false;
   }
 
   onPizzaUpdate(): void{
     this.isOpenPizzaOptions = !this.isOpenPizzaOptions;
     this.isOpenUserUpdate = false;
     this.isOpenUsersAdministrating = false;
+    this.isOpenIngredientUpdate = false;
+  }
+
+  onIngredientPage(): void{
+    this.isOpenIngredientUpdate = !this.isOpenIngredientUpdate;
+    this.isOpenUserUpdate = false;
+    this.isOpenPizzaOptions = false;
+    this.isOpenUsersAdministrating = false;
+  }
+
+  onOpenIngredientCreator(): void{
+    this.isOpenIngredientCreator = !this.isOpenIngredientCreator;
   }
 }

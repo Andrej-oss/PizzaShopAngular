@@ -2,15 +2,15 @@
 <form [formGroup]="pizzaSizeForm">
   <ng-template matStepLabel>Create sizes of pizza</ng-template>
   <mat-form-field appearance="fill" style="width: 100%">
-    <mat-label>Choose pizza size</mat-label>
-    <mat-select name="size" [formControl]="sizePizza">
+    <mat-label>{{size ? size.name : 'Choose pizza size'}}</mat-label>
+    <mat-select name="size" [formControl]="sizePizza" [disabled]="size">
       <mat-option *ngFor="let size of sizes" [value]="size.value" >
-        {{size.value.size + "     "}}{{size.value.diameter}}</mat-option>
+        {{size.value.size + "     " + size.value.diameter}}</mat-option>
     </mat-select>
   </mat-form-field>
   <mat-form-field appearance="fill" style="width: 100%">
-    <mat-label>Choose pizza name</mat-label>
-    <mat-select name="pizza" [formControl]="pizzaId">
+    <mat-label>{{size ? pizzaName : 'Choose pizza name'}}</mat-label>
+    <mat-select name="pizza" [formControl]="pizzaId" [disabled]="size">
       <mat-option *ngFor="let pizza of pizzas" value="{{pizza.id}}" [formControl]="pizzaId">{{pizza.name}}</mat-option>
     </mat-select>
   </mat-form-field>
@@ -30,6 +30,13 @@
   <div>
     <button mat-button
             (click)="onSave(pizzaSizeForm)"
-             style="left: 90%">Save</button>
+             style="left: 90%" *ngIf="!size">
+      Save
+    </button>
+    <button mat-button
+            (click)="onUpdate(pizzaSizeForm)"
+            style="left: 90%" *ngIf="size">
+      Update
+    </button>
   </div>
 </form>

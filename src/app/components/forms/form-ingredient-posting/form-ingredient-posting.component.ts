@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {IngredientService} from '../../../logic/services/post.service/ingredient/ingredient.service';
-import {IngredientGetService} from '../../../logic/services/get.services/ingredient/ingredient.get.service';
-import {Ingredient} from "../../models/Ingredient";
+import {Ingredient} from '../../models/Ingredient';
+import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 
 @Component({
   selector: 'app-form-ingredient-posting',
@@ -19,7 +19,7 @@ export class FormIngredientPostingComponent implements OnInit {
   image: FormControl = new FormControl('', Validators.required);
   formData: FormData = new FormData();
   constructor(private ingredientService: IngredientService,
-              private ingredientGetService: IngredientGetService) {
+              private pizzaActionService: PizzaActionService) {
   }
 
   ngOnInit(): void {
@@ -52,5 +52,13 @@ export class FormIngredientPostingComponent implements OnInit {
     this.formData.delete('name');
     this.formData.delete('price');
     this.formData.delete('image');
+  }
+
+  updateIngredient(ingredientFormGroup: FormGroup): void{
+    this.formData.append('name', ingredientFormGroup.controls.name.value);
+    this.formData.append('price', ingredientFormGroup.controls.price.value);
+    this.pizzaActionService.updateAndGetIngredients(this.ingredient.id, this.formData,
+      this.formData.append('image', ingredientFormGroup.controls.image.value));
+    this.clearFormData();
   }
 }

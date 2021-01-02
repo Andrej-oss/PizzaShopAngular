@@ -2,18 +2,18 @@ import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {
   CommentDeleteInState, CommentUpdateInState,
-  IngredientsLoad, PizzaCommentSaveLoad, PizzaCommentsLoad, PizzaDeleteLoaded, PizzaSaveLoaded,
+  IngredientsLoad, PizzaCommentSaveLoad, PizzaCommentsLoad, PizzaDeleteLoaded, PizzaSaveLoaded, PizzaSizesLoaded,
   PizzasLoad, RatingLoad,
   SizePizzaLoad
 } from '../../actions-type/pizzaAction';
-import {IngredientGetService} from '../../../services/get.services/ingredient/ingredient.get.service';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Rating} from '../../../../components/models/Rating';
 import {RatingService} from '../../../services/post.service/rating/rating.service';
 import {Comment} from '../../../../components/models/Comment';
 import {CommentService} from '../../../services/commentDao/comment.service';
 import {PizzaService} from '../../../services/pizzaDao/pizza.service';
-import {SizeService} from '../../../services/get.services/size/size.service';
+import {IngredientService} from '../../../services/ingredientDao/ingredient.service';
+import {SizeService} from '../../../services/sizeDao/size.service';
 
 @Injectable({
   providedIn: 'root'
@@ -21,7 +21,7 @@ import {SizeService} from '../../../services/get.services/size/size.service';
 export class PizzaActionService {
 
   constructor(private pizzaService: PizzaService,
-              private ingredientGetService: IngredientGetService,
+              private ingredientService: IngredientService,
               private sizeService: SizeService,
               private themeService: ThemeObjectService,
               private ratingService: RatingService,
@@ -42,10 +42,18 @@ export class PizzaActionService {
       .subscribe(data => this.store.dispatch(new PizzaDeleteLoaded(data)));
   }
   getIngredients(): | {}{
-    return this.ingredientGetService.getAllIngredients()
+    return this.ingredientService.getAllIngredients()
       .subscribe(data => {
         this.store.dispatch(new IngredientsLoad(data));
       });
+  }
+  updateAndGetIngredients(id: number, formData: FormData, append: void): | {}{
+    return this.ingredientService.upDateIngredient(id, formData, append)
+      .subscribe(data => this.store.dispatch(new IngredientsLoad(data)));
+  }
+  deleteIngredient(id: number): | {}{
+    return this.ingredientService.deleteIngredient(id)
+      .subscribe(data => this.store.dispatch(new IngredientsLoad(data)));
   }
   getSizePizza(id: number, name: string): | {}{
     return this.sizeService.getPizzaSize(id, name)
@@ -53,6 +61,18 @@ export class PizzaActionService {
         this.themeService.data.value.price = data.price;
         this.store.dispatch(new SizePizzaLoad(data));
       });
+  }
+  getSizesPizza(id: number): | {}{
+    return this.sizeService.getPizzaSizes(id)
+      .subscribe(data => this.store.dispatch(new PizzaSizesLoaded(data)));
+  }
+  upgradePizzaSize(id: number, formData: FormData, append: void): | {}{
+    return this.sizeService.updatePizzaSize(id, formData, append)
+      .subscribe(data => this.store.dispatch(new PizzaSizesLoaded(data)));
+  }
+  deletePizzaSize(id: number): | {}{
+    return this.sizeService.deletePizzaSize(id)
+      .subscribe(data => this.store.dispatch(new PizzaSizesLoaded(data)));
   }
   postRating(pizzaId: number, rating: Rating): | {}{
     return this.ratingService.saveRating(rating, pizzaId).subscribe(data => {

@@ -15,7 +15,8 @@ export enum PizzaActionType {
   pizzaCommentDeleteInState = '[Comment] deleted',
   pizzaCommentUpdateInState = '[Comment] pizza update',
   pizzaSaveAndLoaded = '[PIZZA] updated and loaded',
-  pizzaDeleteAndLoaded = '[PIZZA] deleted and loaded'
+  pizzaDeleteAndLoaded = '[PIZZA] deleted and loaded',
+  pizzaSizesLoaded = '[PIZZA] sizes loaded',
 }
 
 export class PizzasLoad implements Action {
@@ -81,6 +82,11 @@ export class PizzaDeleteLoaded implements Action{
   constructor(public payload: Pizza[]) {
   }
 }
+export class PizzaSizesLoaded implements Action{
+  readonly type = PizzaActionType.pizzaSizesLoaded;
+  constructor(public payload: Size[]) {
+  }
+}
 export type PizzaAction = PizzasLoad
   | IngredientsLoad
   | SizePizzaLoad
@@ -90,4 +96,5 @@ export type PizzaAction = PizzasLoad
   | CommentDeleteInState
   | CommentUpdateInState
   | PizzaSaveLoaded
-  | PizzaDeleteLoaded;
+  | PizzaDeleteLoaded
+  | PizzaSizesLoaded;

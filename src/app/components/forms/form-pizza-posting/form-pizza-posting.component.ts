@@ -2,10 +2,9 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Pizza} from '../../models/Pizza';
 import {Ingredient} from '../../models/Ingredient';
-import {IngredientGetService} from '../../../logic/services/get.services/ingredient/ingredient.get.service';
-import {SizePostService} from '../../../logic/services/post.service/size/size.post.service';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
+import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
 
 @Component({
   selector: 'app-form-pizza-posting',
@@ -30,8 +29,7 @@ export class FormPizzaPostingComponent implements OnInit {
 
   constructor(private pizzaActionService: PizzaActionService,
               private pizzaService: PizzaService,
-              private ingredientGetService: IngredientGetService,
-              private sizePostService: SizePostService) {
+              private ingredientService: IngredientService) {
   }
 
   ngOnInit(): void {
@@ -43,7 +41,10 @@ export class FormPizzaPostingComponent implements OnInit {
       image: this.image
     });
     this.pizza ? this.arrayIngredients = this.pizza.ingredients.split(',').map(value => +value) : this.arrayIngredients = [];
-    this.ingredientGetService.getAllIngredients().subscribe(data => this.ingredients = data);
+    this.ingredientService.getAllIngredients().subscribe(data => this.ingredients = data);
+    if (this.pizza){
+      this.pizzaActionService.getSizesPizza(this.pizza.id);
+    }
   }
 
   upLoadFile(event): void {

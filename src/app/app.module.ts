@@ -43,8 +43,11 @@ import { FormCommentComponent } from './components/forms/form-comment/form-comme
 import { CommentCardComponent } from './components/comment-card/comment-card.component';
 import { PurchaseComponent } from './components/purchase/purchase/purchase.component';
 import { PurchasesItemComponent } from './components/purchase/purchases-item/purchases-item.component';
-import { PizzaAdminTableComponent } from './components/pizza/pizza-admin-table/pizza-admin-table.component';
+import { PizzaAdminTableComponent } from './components/admin-tables/pizza-admin-table/pizza-admin-table.component';
 import { IngredientPipe } from './pipes/ingredient.pipe';
+import { IngredientAdminPageComponent } from './components/admin-tables/ingredient-admin-page/ingredient-admin-page.component';
+import { PizzaSizeAdminTableComponent } from './components/admin-tables/pizza-size-admin-table/pizza-size-admin-table.component';
+import { UserAdminTableComponent } from './components/admin-tables/user-admin-table/user-admin-table.component';
 
 
 
@@ -80,6 +83,9 @@ import { IngredientPipe } from './pipes/ingredient.pipe';
     PurchasesItemComponent,
     PizzaAdminTableComponent,
     IngredientPipe,
+    IngredientAdminPageComponent,
+    PizzaSizeAdminTableComponent,
+    UserAdminTableComponent,
   ],
   imports: [
     BrowserModule,
