@@ -22,10 +22,10 @@
       Administrating Sushi
     </button>
     <button mat-raised-button>
-      Administrating Hot Snacks
-    </button>
-    <button mat-raised-button>
       Administrating Drinks
+    </button>
+    <button mat-raised-button (click)="onAllPurchases()">
+      Administrating Purchases
     </button>
     <button mat-raised-button (click)="onUsersAdmin()">
       Administrating Users
@@ -72,12 +72,12 @@
         </mat-accordion>
       </div>
     </div>
-    <div *ngIf="isOpenUsersAdministrating" class="admin-users-content">
-      <app-user-card *ngFor="let user of users | async" [user]="user"></app-user-card>
-    </div>
-    <div *ngIf="isOpenUserUpdate">
-      <app-form-user-registration [user]="admin | async" style="width: 2vw"></app-form-user-registration>
-    </div>
+  </div>
+  <div *ngIf="isOpenUsersAdministrating" class="admin-users-content">
+    <app-user-admin-table></app-user-admin-table>
+  </div>
+  <div *ngIf="isOpenUserUpdate">
+    <app-form-user-registration [user]="admin | async" style="width: 2vw"></app-form-user-registration>
   </div>
   <div *ngIf="isOpenIngredientUpdate">
     <button mat-button (click)="onOpenIngredientCreator()">

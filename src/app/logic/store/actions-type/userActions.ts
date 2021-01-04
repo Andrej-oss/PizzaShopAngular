@@ -2,6 +2,7 @@ import { Action } from '@ngrx/store';
 import {User} from '../../../components/models/User';
 import {Cart} from '../../../components/models/Cart';
 import {Purchase} from '../../../components/models/Purchase';
+import {Comment} from "../../../components/models/Comment";
 
 export enum UserActionsTypes {
   loadedUsers = '[USERS] loaded',
@@ -11,7 +12,8 @@ export enum UserActionsTypes {
   decrementAmountPizzaCart = '[Decrement] amount pizza cart',
   deletePizzaCart = '[Delete] amount pizza cart',
   purchasesUserLoaded = '[PURCHASE] user loaded',
-  deletePurchase = '[Purchase] delete'
+  deletePurchase = '[Purchase] delete',
+  commentsUserLoaded = '[COMMENTS] user loaded',
 }
 export class UsersLoad implements  Action {
   readonly type = UserActionsTypes.loadedUsers;
@@ -61,6 +63,12 @@ export class DeletePurchase implements Action{
   constructor(public payload: {id: number}) {
   }
 }
+export class CommentUsersLoad implements Action{
+  readonly type = UserActionsTypes.commentsUserLoaded;
+
+  constructor(public payload: Comment[]) {
+  }
+}
 export type UserActions = UsersLoad
   | PrincipalLoad
   | CartLoad
@@ -68,5 +76,6 @@ export type UserActions = UsersLoad
   | DecAmountPizzaCart
   | DeletePizzaCart
   | PurchasesByUserLoad
-  | DeletePurchase;
+  | DeletePurchase
+  | CommentUsersLoad;
 

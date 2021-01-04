@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
-import {UserService} from '../../logic/services/post.service/user/user.service';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {Observable} from 'rxjs';
 import {Cart} from '../models/Cart';
@@ -8,6 +7,7 @@ import {select, Store} from '@ngrx/store';
 import {selectCart} from '../../logic/store/selectors/UserSelect';
 import {Pizza} from '../models/Pizza';
 import {AllPizzasSelector} from '../../logic/store/selectors/PizzaSelector';
+import {UserService} from '../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-header',

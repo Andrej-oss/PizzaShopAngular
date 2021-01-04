@@ -1,11 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import {UserGetService} from '../../logic/services/get.services/user/user-get.service';
-import {UserService} from '../../logic/services/post.service/user/user.service';
 import {User} from '../models/User';
 import {UserActionsService} from '../../logic/store/actions/user/user-actions.service';
 import {select, Store } from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {selectPrincipal, selectUsers} from '../../logic/store/selectors/UserSelect';
+import {UserService} from '../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-admin-page',
@@ -23,8 +22,7 @@ export class AdminPageComponent implements OnInit {
   isOpenPizzaOptions: boolean;
   isOpenIngredientUpdate: boolean;
   isOpenIngredientCreator: boolean;
-  constructor(private userGetService: UserGetService,
-              private userService: UserService,
+  constructor(private userService: UserService,
               private userActionsService: UserActionsService,
               private store$: Store) { }
 
@@ -49,6 +47,7 @@ export class AdminPageComponent implements OnInit {
   }
 
   onUsersAdmin(): void{
+    debugger;
     this.isOpenUsersAdministrating = !this.isOpenUsersAdministrating;
     this.isOpenPizzaOptions = false;
     this.isOpenUserUpdate = false;
@@ -78,5 +77,9 @@ export class AdminPageComponent implements OnInit {
 
   onOpenIngredientCreator(): void{
     this.isOpenIngredientCreator = !this.isOpenIngredientCreator;
+  }
+
+  onAllPurchases(): void{
+
   }
 }

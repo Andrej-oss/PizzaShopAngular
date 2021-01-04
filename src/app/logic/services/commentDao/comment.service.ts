@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Comment} from '../../../components/models/Comment';
+import {strict} from "assert";
 
 @Injectable({
   providedIn: 'root'
@@ -20,5 +21,8 @@ export class CommentService {
   }
   editComment(id: number, comment: Comment): Observable<boolean>{
     return this.httpClient.put<boolean>(this.baseUrl + `${id}`, comment);
+  }
+  getCommentsByUserId(name: string): Observable<Comment[]>{
+    return this.httpClient.get<Comment[]>(this.baseUrl + `user/${name}`);
   }
 }

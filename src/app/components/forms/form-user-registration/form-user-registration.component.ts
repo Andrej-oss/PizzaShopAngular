@@ -1,11 +1,11 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../../logic/services/post.service/user/user.service';
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarRegistrationComponent} from '../../snack-bar/snack-bar-registration/snack-bar-registration.component';
 import {User} from '../../models/User';
 import {ActivatedRoute, Params} from '@angular/router';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {UserService} from '../../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-form-user-registration',

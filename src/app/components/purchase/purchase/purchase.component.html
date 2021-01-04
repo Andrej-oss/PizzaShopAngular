@@ -57,7 +57,7 @@
        delete
     </span>
         </div>
-        <div class="purchases-add-cart">
+        <div class="purchases-add-cart" *ngIf="isUser">
           <span class="material-icons"
                 style="margin-left: 70%"
                 (click)="saveInCart(element.pizzaId, element.description, element.name)">

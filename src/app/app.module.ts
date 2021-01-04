@@ -48,6 +48,7 @@ import { IngredientPipe } from './pipes/ingredient.pipe';
 import { IngredientAdminPageComponent } from './components/admin-tables/ingredient-admin-page/ingredient-admin-page.component';
 import { PizzaSizeAdminTableComponent } from './components/admin-tables/pizza-size-admin-table/pizza-size-admin-table.component';
 import { UserAdminTableComponent } from './components/admin-tables/user-admin-table/user-admin-table.component';
+import { CommentUserAdminTableComponent } from './components/admin-tables/comment-user-admin-table/comment-user-admin-table.component';
 
 
 
@@ -86,6 +87,7 @@ import { UserAdminTableComponent } from './components/admin-tables/user-admin-ta
     IngredientAdminPageComponent,
     PizzaSizeAdminTableComponent,
     UserAdminTableComponent,
+    CommentUserAdminTableComponent,
   ],
   imports: [
     BrowserModule,

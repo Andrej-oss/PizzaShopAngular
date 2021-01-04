@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {UserService} from './logic/services/post.service/user/user.service';
 import {Router} from '@angular/router';
 import {ThemeObjectService} from './logic/theme-object/theme-object.service';
+import {UserService} from "./logic/services/userDao/user.service";
 
 @Component({
   selector: 'app-root',

@@ -1,6 +1,5 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {UserService} from '../../../logic/services/post.service/user/user.service';
 import {forkJoin, Observable, of, pipe, Subscription} from 'rxjs';
 import {ActivatedRoute, Router} from '@angular/router';
 import {MatSnackBar} from '@angular/material/snack-bar';
@@ -9,6 +8,7 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {concatMap, map} from 'rxjs/operators';
 import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
+import {UserService} from '../../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-form-user-authentication',

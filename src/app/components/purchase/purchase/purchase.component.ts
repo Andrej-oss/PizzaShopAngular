@@ -6,6 +6,7 @@ import {selectPurchases} from '../../../logic/store/selectors/UserSelect';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {Cart} from '../../models/Cart';
+import {UserService} from "../../../logic/services/userDao/user.service";
 
 @Component({
   selector: 'app-purchase',
@@ -22,16 +23,19 @@ export class PurchaseComponent implements OnInit {
   blackColor = 'color: white';
   whiteColor = 'color: black';
   cart: Cart;
+  isUser: boolean;
   constructor(private store$: Store,
-              private userService: UserActionsService,
+              private userActionsService: UserActionsService,
+              private userService: UserService,
               public themeObjectService: ThemeObjectService) {
   }
 
   ngOnInit(): void {
+    this.isUser = this.userService.isUser();
   }
 
   onDelete(id: any): void {
-    this.userService.deletePurchaseInStore(id);
+    this.userActionsService.deletePurchaseInStore(id);
   }
 
   saveInCart(id: number, descriptionPurchase: string, name: string): void {
@@ -44,7 +48,7 @@ export class PurchaseComponent implements OnInit {
       size: name,
     };
     this.themeObjectService.data.value.message = 'Pizza added to cart';
-    this.userService.saveElementInCart(this.cart);
+    this.userActionsService.saveElementInCart(this.cart);
   }
 
 

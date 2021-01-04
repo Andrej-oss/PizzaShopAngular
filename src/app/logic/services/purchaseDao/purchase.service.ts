@@ -16,4 +16,7 @@ export class PurchaseService {
   deletePurchase(id: number): Observable<boolean>{
     return this.httpClient.delete<boolean>(this.baseUrl + `${id}`);
   }
+  getAllPurchases(page: number = 0, sort: string = 'amount', type: string = 'desc'): Observable<Purchase[]>{
+    return this.httpClient.get<Purchase[]>(this.baseUrl + `?page=${page}&sort=${sort}&type=${type}`);
+  }
 }

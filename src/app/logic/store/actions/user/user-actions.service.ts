@@ -1,6 +1,4 @@
 import { Injectable } from '@angular/core';
-import {UserService} from '../../../services/post.service/user/user.service';
-import {UserGetService} from '../../../services/get.services/user/user-get.service';
 import { Store } from '@ngrx/store';
 import {
   CartLoad,
@@ -8,7 +6,7 @@ import {
   UsersLoad,
   IncAmountPizzaCart,
   DecAmountPizzaCart,
-  DeletePizzaCart, PurchasesByUserLoad, DeletePurchase
+  DeletePizzaCart, PurchasesByUserLoad, DeletePurchase, CommentUsersLoad
 } from '../../actions-type/userActions';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Cart} from '../../../../components/models/Cart';
@@ -16,6 +14,8 @@ import {MatSnackBar} from '@angular/material/snack-bar';
 import {SnackBarComponent} from '../../../../components/snack-bar/snack-bar-login/snack-bar.component';
 import {PurchaseService} from '../../../services/purchaseDao/purchase.service';
 import {CartService} from '../../../services/cartDao/cart.service';
+import {CommentService} from '../../../services/commentDao/comment.service';
+import {UserService} from '../../../services/userDao/user.service';
 
 
 
@@ -25,20 +25,20 @@ import {CartService} from '../../../services/cartDao/cart.service';
 export class UserActionsService {
 
   constructor(private userService: UserService,
-              private userGetService: UserGetService,
               private purchaseService: PurchaseService,
               private store: Store,
+              private commentService: CommentService,
               private cartService: CartService,
               private snackBar: MatSnackBar,
               public themeObjectService: ThemeObjectService) { }
 
    getUsers(): | {}{
-    return  this.userGetService.getAllUsers().subscribe( data => {
+    return  this.userService.getAllUsers().subscribe( data => {
       return this.store.dispatch(new UsersLoad(data));
     });
    }
    getPrincipal(name: string): | {}{
-    return this.userGetService.getUserByName(name).subscribe( data => {
+    return this.userService.getUserByName(name).subscribe( data => {
       this.themeObjectService.data.value.userName = data.username;
       this.themeObjectService.data.value.userId = data.id;
       debugger;
@@ -46,13 +46,15 @@ export class UserActionsService {
      });
    }
    getAllCart(id): | {}{
-    debugger;
     return this.cartService.getAllCartsElements(this.themeObjectService.data.value.userId)
       .subscribe(data => {
         this.themeObjectService.data.value.sizeCart = data.length;
-        debugger;
         return this.store.dispatch(new CartLoad(data));
       });
+   }
+   getUsersComments(name: string): | {}{
+    return this.commentService.getCommentsByUserId(name)
+      .subscribe(data => this.store.dispatch(new CommentUsersLoad(data)));
    }
   saveElementInCart(cart: Cart): | {}{
     return this.cartService.savePizzaInCart(cart)
@@ -76,6 +78,10 @@ export class UserActionsService {
   }
   getPurchasesByUser(id: number): | {}{
     return this.purchaseService.getPurchasesByUser(id)
+      .subscribe(data => this.store.dispatch(new PurchasesByUserLoad(data)));
+  }
+  getAllPurchases(page: number, sort: string, type: string): | {}{
+    return this.purchaseService.getAllPurchases(page, sort, type)
       .subscribe(data => this.store.dispatch(new PurchasesByUserLoad(data)));
   }
   deletePurchaseInStore(id: number): |{}{

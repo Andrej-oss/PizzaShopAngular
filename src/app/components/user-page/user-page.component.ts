@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import {UserService} from '../../logic/services/post.service/user/user.service';
 import {User} from '../models/User';
 import {UserActionsService} from '../../logic/store/actions/user/user-actions.service';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {selectPrincipal} from '../../logic/store/selectors/UserSelect';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
+import {UserService} from '../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-user-page',
@@ -19,7 +19,6 @@ export class UserPageComponent implements OnInit {
   isPurchasesOpen = false;
   // @ts-ignore
   user: Observable<User> = this.store$.pipe(select(selectPrincipal));
-
   constructor(private userService: UserService,
               private userActionsService: UserActionsService,
               private store$: Store,
