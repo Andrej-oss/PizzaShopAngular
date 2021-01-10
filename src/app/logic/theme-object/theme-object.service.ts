@@ -18,6 +18,8 @@ export class ThemeObjectService {
     sizeCart: 0,
     totalPrice: 0,
     isOpenPayment: false,
+    lastPage: 0,
+    firstPage: 0,
   });
   constructor() { }
 }

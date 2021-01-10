@@ -81,6 +81,12 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
         comments: action.payload,
       };
     }
+    case UserActionsTypes.purchasesAllLoaded: {
+      return {
+        ...state,
+        purchases: action.payload.purchases
+      };
+    }
     default: {
       return state;
     }

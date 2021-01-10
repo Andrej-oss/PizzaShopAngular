@@ -12,7 +12,8 @@
     </ng-container>
     <ng-container matColumnDef="image" class="admin-table-column">
       <th mat-header-cell *matHeaderCellDef
-          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor"> Image
+          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
+        Image
       </th>
       <td mat-cell *matCellDef="let element">
         <img [src]="url+element.path" class="ingredient-admin-image">
@@ -20,15 +21,17 @@
     </ng-container>
     <ng-container matColumnDef="name" style="margin: 10% 10% 10% 10%">
       <th mat-header-cell *matHeaderCellDef
-          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor"> Name
+          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
+        Name
       </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
         {{element.name}}
       </td>
     </ng-container>
     <ng-container matColumnDef="price" style="margin: 10px 10px 10px 10px">
       <th mat-header-cell *matHeaderCellDef
-          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor"> Price
+          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
+        Price
       </th>
       <td mat-cell *matCellDef="let element"
           [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
@@ -37,7 +40,8 @@
     </ng-container>
     <ng-container matColumnDef="option" style="margin: 10px 10px 10px 10px">
       <th mat-header-cell *matHeaderCellDef
-          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor"> Option
+          [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
+        Option
       </th>
       <td mat-cell *matCellDef="let element"
           [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">

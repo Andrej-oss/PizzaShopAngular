@@ -4,7 +4,7 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MaterialModules} from './logic/moduls/MaterialModules';
-import {ReactiveFormsModule} from '@angular/forms';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import { FormUserRegistrationComponent } from './components/forms/form-user-registration/form-user-registration.component';
 import {HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { FormUserAuthenticationComponent } from './components/forms/form-user-authentication/form-user-authentication.component';
@@ -49,6 +49,7 @@ import { IngredientAdminPageComponent } from './components/admin-tables/ingredie
 import { PizzaSizeAdminTableComponent } from './components/admin-tables/pizza-size-admin-table/pizza-size-admin-table.component';
 import { UserAdminTableComponent } from './components/admin-tables/user-admin-table/user-admin-table.component';
 import { CommentUserAdminTableComponent } from './components/admin-tables/comment-user-admin-table/comment-user-admin-table.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 
 
 
@@ -88,27 +89,29 @@ import { CommentUserAdminTableComponent } from './components/admin-tables/commen
     PizzaSizeAdminTableComponent,
     UserAdminTableComponent,
     CommentUserAdminTableComponent,
+    PaginationComponent,
   ],
-  imports: [
-    BrowserModule,
-    NgbModule,
-    BrowserAnimationsModule,
-    MaterialModules,
-    ReactiveFormsModule,
-    HttpClientModule,
-    ToastrModule.forRoot(),
-    NgxStripeModule.forRoot('pk_test_51Hv6uTGmmCaqYLZpH2DedxpEXPGQFNx7eM4i' +
-      'aTxkjowLq94xpVY5ORolZnmokcoiwQ51IAMCWsGC0B6cl6c7EbUg00Aefbn2rC'),
-    RouterModule.forRoot(routes),
-    StoreModule.forRoot(reducers, {
-      metaReducers,
-      runtimeChecks: {
-        strictStateImmutability: true,
-        strictActionImmutability: true
-      }
-    }),
-    StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
-  ],
+    imports: [
+        BrowserModule,
+        NgbModule,
+        BrowserAnimationsModule,
+        MaterialModules,
+        ReactiveFormsModule,
+        HttpClientModule,
+        ToastrModule.forRoot(),
+        NgxStripeModule.forRoot('pk_test_51Hv6uTGmmCaqYLZpH2DedxpEXPGQFNx7eM4i' +
+            'aTxkjowLq94xpVY5ORolZnmokcoiwQ51IAMCWsGC0B6cl6c7EbUg00Aefbn2rC'),
+        RouterModule.forRoot(routes),
+        StoreModule.forRoot(reducers, {
+            metaReducers,
+            runtimeChecks: {
+                strictStateImmutability: true,
+                strictActionImmutability: true
+            }
+        }),
+        StoreDevtoolsModule.instrument({maxAge: 25, logOnly: environment.production}),
+        FormsModule,
+    ],
   providers: [{
     provide: HTTP_INTERCEPTORS,
     multi: true,

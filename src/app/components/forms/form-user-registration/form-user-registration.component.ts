@@ -15,9 +15,8 @@ import {UserService} from '../../../logic/services/userDao/user.service';
 export class FormUserRegistrationComponent implements OnInit {
   @Input()
   user: User;
-  darkTheme = 'registration-card-dark';
-  whiteTheme = 'registration-card';
-
+  darkTheme = 'color: black';
+  whiteTheme = 'color: white';
   isLinear = false;
   hide = true;
   firstFormGroup: FormGroup;
@@ -38,7 +37,7 @@ export class FormUserRegistrationComponent implements OnInit {
   constructor(private formBuilder: FormBuilder,
               private userService: UserService,
               private snackBar: MatSnackBar,
-              public themeSubjectService: ThemeObjectService) {
+              public themeObjectService: ThemeObjectService) {
   }
 
   ngOnInit(): void {

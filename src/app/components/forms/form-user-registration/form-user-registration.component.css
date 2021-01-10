@@ -6,6 +6,7 @@ button:focus{
   left: 25%;
   margin: 2%;
   padding: 5%;
+  box-shadow: 0 0 5px;
 }
 .registration-card-dark {
 background-color: black;

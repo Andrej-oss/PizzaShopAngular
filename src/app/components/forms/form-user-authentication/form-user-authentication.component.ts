@@ -23,7 +23,10 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   username: FormControl = new FormControl('', Validators.required);
   password: FormControl = new FormControl('', Validators.required);
   authority: string;
-
+  blackTheme: 'card-auth-black';
+  whiteTheme: 'card-auth';
+  blackStyle: 'color: white';
+  whiteStyle: 'color: black';
   constructor(private userService: UserService,
               private router: Router,
               private snackBar: MatSnackBar,
@@ -53,7 +56,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     this.formCheck();
   }
 
-  onSave(authForm: FormGroup): void {
+  onAuthenticate(authForm: FormGroup): void {
     this.themeObjectService.data.value.isAuthLoad = true;
     this.authForm.disable();
     this.userService

@@ -21,7 +21,7 @@
       <th mat-header-cell *matHeaderCellDef
           [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor"> Name
       </th>
-      <td mat-cell *matCellDef="let element">
+      <td mat-cell *matCellDef="let element" [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
         {{element.name}}
       </td>
     </ng-container>

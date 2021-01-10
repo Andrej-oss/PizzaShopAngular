@@ -6,7 +6,7 @@ import {
   UsersLoad,
   IncAmountPizzaCart,
   DecAmountPizzaCart,
-  DeletePizzaCart, PurchasesByUserLoad, DeletePurchase, CommentUsersLoad
+  DeletePizzaCart, PurchasesByUserLoad, DeletePurchase, CommentUsersLoad, PurchasesAllLoad
 } from '../../actions-type/userActions';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Cart} from '../../../../components/models/Cart';
@@ -82,7 +82,11 @@ export class UserActionsService {
   }
   getAllPurchases(page: number, sort: string, type: string): | {}{
     return this.purchaseService.getAllPurchases(page, sort, type)
-      .subscribe(data => this.store.dispatch(new PurchasesByUserLoad(data)));
+      .subscribe(data => {
+        this.themeObjectService.data.value.firstPage = data.number + 1;
+        this.themeObjectService.data.value.lastPage = data.totalPages;
+        return this.store.dispatch(new PurchasesAllLoad(data));
+      });
   }
   deletePurchaseInStore(id: number): |{}{
     return this.purchaseService.deletePurchase(id)

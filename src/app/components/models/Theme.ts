@@ -10,4 +10,6 @@ export interface Theme {
   sizeCart: number;
   totalPrice: number;
   isOpenPayment: boolean;
+  lastPage: number;
+  firstPage: number;
 }
