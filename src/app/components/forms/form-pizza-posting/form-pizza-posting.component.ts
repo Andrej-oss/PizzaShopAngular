@@ -49,7 +49,6 @@ export class FormPizzaPostingComponent implements OnInit {
 
   upLoadFile(event): void {
     const file = (event.target as HTMLInputElement).files[0];
-    console.log(file);
     this.pizzaForm.patchValue({
       image: file
     });

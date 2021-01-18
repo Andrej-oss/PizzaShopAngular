@@ -2,9 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {User} from '../../models/User';
-import {selectUsers} from '../../../logic/store/selectors/UserSelect';
+import {selectAllAvatars, selectUserAvatar, selectUsers} from '../../../logic/store/selectors/UserSelect';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
+import {Avatar} from '../../models/Avatar';
 
 @Component({
   selector: 'app-user-admin-table',
@@ -14,6 +15,9 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 export class UserAdminTableComponent implements OnInit {
   users$: Observable<User[]> = this.store$.pipe(select(selectUsers));
   user: User;
+  avatars: Observable<Avatar[]> = this.store$.pipe(select(selectAllAvatars));
+  avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
+  avatarUrl = 'http://localhost:8080/avatar/image/';
   displayedColumns: string[] = ['position', 'image', 'username', 'name', 'lastName', 'email', 'city', 'address',
     'postCode', 'phone', 'role', 'option'];
   black = 'background-color: black';

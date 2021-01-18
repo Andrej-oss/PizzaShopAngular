@@ -4,7 +4,7 @@ import {Ingredient} from '../../models/Ingredient';
 import {select, Store} from '@ngrx/store';
 import {IngredientsSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
-import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 
 @Component({
   selector: 'app-ingredient-admin-page',

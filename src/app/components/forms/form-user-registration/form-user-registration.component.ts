@@ -71,7 +71,7 @@ export class FormUserRegistrationComponent implements OnInit {
 
   phoneValidator(form: FormGroup): null | object {
     const {value: phone} = form.controls.phone;
-    const regexp = /[A-W]/gi;
+    const regexp = /[A-Z]/gi;
     const matches = phone.match(regexp);
     console.log(matches);
     if (matches && matches.length) {

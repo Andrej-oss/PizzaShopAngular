@@ -6,7 +6,13 @@ import {
   UsersLoad,
   IncAmountPizzaCart,
   DecAmountPizzaCart,
-  DeletePizzaCart, PurchasesByUserLoad, DeletePurchase, CommentUsersLoad, PurchasesAllLoad
+  DeletePizzaCart,
+  PurchasesByUserLoad,
+  DeletePurchase,
+  CommentUsersLoad,
+  PurchasesAllLoad,
+  SaveUpdateAvatarUser,
+  AvatarsAllLoad
 } from '../../actions-type/userActions';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Cart} from '../../../../components/models/Cart';
@@ -16,6 +22,7 @@ import {PurchaseService} from '../../../services/purchaseDao/purchase.service';
 import {CartService} from '../../../services/cartDao/cart.service';
 import {CommentService} from '../../../services/commentDao/comment.service';
 import {UserService} from '../../../services/userDao/user.service';
+import {AvatarService} from "../../../services/avatarDao/avatar.service";
 
 
 
@@ -30,6 +37,7 @@ export class UserActionsService {
               private commentService: CommentService,
               private cartService: CartService,
               private snackBar: MatSnackBar,
+              private avatarService: AvatarService,
               public themeObjectService: ThemeObjectService) { }
 
    getUsers(): | {}{
@@ -95,5 +103,17 @@ export class UserActionsService {
           this.store.dispatch(new DeletePurchase({id}));
         }
       });
+  }
+  saveAvatarUser(userId: number, formData: FormData, append: void): | {}{
+    return this.avatarService.saveAvatar(userId, formData, append)
+      .subscribe(data => this.store.dispatch(new SaveUpdateAvatarUser(data)));
+  }
+  getUserAvatar(userId: number): | {}{
+    return this.avatarService.getAvatar(userId)
+      .subscribe(data => this.store.dispatch(new SaveUpdateAvatarUser(data)));
+  }
+  getAllAvatars(): |{}{
+    return this.avatarService.getAllAvatars()
+      .subscribe(data => this.store.dispatch(new AvatarsAllLoad(data)))
   }
 }

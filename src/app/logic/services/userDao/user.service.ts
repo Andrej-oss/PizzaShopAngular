@@ -63,6 +63,7 @@ export class UserService {
     localStorage.removeItem('token');
     this.authority = null;
     this.themeObjectService.data.value.userId = 0;
+    this.themeObjectService.data.value.sizeCart = 0;
     this.themeObjectService.data.value.userName = '';
     this.router.navigate(['/']).then(data => console.log(data));
   }

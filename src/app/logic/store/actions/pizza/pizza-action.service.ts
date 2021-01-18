@@ -3,7 +3,7 @@ import {Store} from '@ngrx/store';
 import {
   CommentDeleteInState, CommentUpdateInState,
   IngredientsLoad, PizzaCommentSaveLoad, PizzaCommentsLoad, PizzaDeleteLoaded, PizzaSaveLoaded, PizzaSizesLoaded,
-  PizzasLoad, RatingLoad,
+  PizzasLoad, PromotionsLoaded, RatingLoad,
   SizePizzaLoad
 } from '../../actions-type/pizzaAction';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
@@ -14,6 +14,7 @@ import {CommentService} from '../../../services/commentDao/comment.service';
 import {PizzaService} from '../../../services/pizzaDao/pizza.service';
 import {IngredientService} from '../../../services/ingredientDao/ingredient.service';
 import {SizeService} from '../../../services/sizeDao/size.service';
+import {PromotionService} from "../../../services/PromotionDao/promotion.service";
 
 @Injectable({
   providedIn: 'root'
@@ -25,6 +26,7 @@ export class PizzaActionService {
               private sizeService: SizeService,
               private themeService: ThemeObjectService,
               private ratingService: RatingService,
+              private promotionService: PromotionService,
               private commentService: CommentService,
               private store: Store) { }
   getAllPizzas(): | {}{
@@ -93,5 +95,9 @@ export class PizzaActionService {
   updateComment(id: number, comment: Comment): void{
     comment.id = id;
     this.store.dispatch(new CommentUpdateInState({id, comment}));
+  }
+  savePromotion(promotion: FormData, append: void): | {}{
+    return this.promotionService.savePromotion(promotion, append)
+      .subscribe(data => this.store.dispatch(new PromotionsLoaded(data)));
   }
 }

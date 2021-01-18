@@ -1,10 +1,20 @@
-<div class="admin-card-menu" style="margin: 2% 2% 2% 2%">
+<div class="admin-card-menu">
   <div class="example-sidenav">
-    <p>
+    <p *ngIf="(avatar | async) === null">
       <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 20%; border-radius: 50%">
     </p>
+    <p *ngIf="(avatar | async) !== null">
+      <img src="{{avatarUrl  + (avatar | async)?.path}}" style="width: 20%; border-radius: 50%">
+    </p>
     <p *ngIf="admin">
-      {{admin.username | async}}
+      {{admin.username}}
+    </p>
+    <p *ngIf="isUpdateInfoOpen">
+      <a *ngIf="isAvatarOpen">
+        <input type="file" (change)="uploadFile($event)" accept=".jpg">
+        <button mat-button (click)="onSaveAvatar(admin.id)">save avatar</button>
+      </a>
+      <button mat-button (click)="onOpenAvatarChange()">change avatar</button>
     </p>
     <!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
     <!--      Toggle extra text-->
@@ -76,8 +86,11 @@
   <div *ngIf="isOpenUsersAdministrating" class="admin-users-content">
     <app-user-admin-table></app-user-admin-table>
   </div>
+  <div *ngIf="isOpenAllPurchases">
+    <app-purchase type="admin"></app-purchase>
+  </div>
   <div *ngIf="isOpenUserUpdate">
-    <app-form-user-registration [user]="admin | async" style="width: 2vw"></app-form-user-registration>
+    <app-form-user-registration [user]="admin" style="width: 2vw"></app-form-user-registration>
   </div>
   <div *ngIf="isOpenIngredientUpdate">
     <button mat-button (click)="onOpenIngredientCreator()">

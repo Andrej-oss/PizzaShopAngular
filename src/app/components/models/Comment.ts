@@ -8,4 +8,5 @@ export interface Comment {
   tittle: string;
   body: string;
   voice?: Voice[];
+  date?: number;
 }

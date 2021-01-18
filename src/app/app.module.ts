@@ -44,12 +44,14 @@ import { CommentCardComponent } from './components/comment-card/comment-card.com
 import { PurchaseComponent } from './components/purchase/purchase/purchase.component';
 import { PurchasesItemComponent } from './components/purchase/purchases-item/purchases-item.component';
 import { PizzaAdminTableComponent } from './components/admin-tables/pizza-admin-table/pizza-admin-table.component';
-import { IngredientPipe } from './pipes/ingredient.pipe';
+import { IngredientPipe } from './pipes/ingredient/ingredient.pipe';
 import { IngredientAdminPageComponent } from './components/admin-tables/ingredient-admin-page/ingredient-admin-page.component';
 import { PizzaSizeAdminTableComponent } from './components/admin-tables/pizza-size-admin-table/pizza-size-admin-table.component';
 import { UserAdminTableComponent } from './components/admin-tables/user-admin-table/user-admin-table.component';
 import { CommentUserAdminTableComponent } from './components/admin-tables/comment-user-admin-table/comment-user-admin-table.component';
 import { PaginationComponent } from './components/pagination/pagination.component';
+import { UserAvatarPipe } from './pipes/user/user-avatar.pipe';
+import { FormPromotionComponent } from './components/forms/form-promotion/form-promotion.component';
 
 
 
@@ -90,6 +92,8 @@ import { PaginationComponent } from './components/pagination/pagination.componen
     UserAdminTableComponent,
     CommentUserAdminTableComponent,
     PaginationComponent,
+    UserAvatarPipe,
+    FormPromotionComponent,
   ],
     imports: [
         BrowserModule,

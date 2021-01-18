@@ -87,6 +87,18 @@ export const userReducer = (state = InitialUserState, action: UserActions) => {
         purchases: action.payload.purchases
       };
     }
+    case UserActionsTypes.avatarSaveLoaded: {
+      return {
+        ...state,
+        avatar: action.payload,
+      };
+    }
+    case UserActionsTypes.avatarsLoaded: {
+      return {
+        ...state,
+        avatars: action.payload,
+      };
+    }
     default: {
       return state;
     }

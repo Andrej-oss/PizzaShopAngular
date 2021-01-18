@@ -1,7 +1,17 @@
-<mat-card class="example-card" *ngIf="!isEditComment">
+<mat-card class="example-card"
+          [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'"
+          *ngIf="!isEditComment">
   <div style="display: flex; justify-content: space-between">
     <mat-card-header>
-      <div mat-card-avatar class="example-header-image"></div>
+      <div mat-card-avatar class="example-header-image">
+        <p *ngIf="(comment.author.toLowerCase() | userAvatar: (avatars | async)) !== null">
+          <img src="{{avatarUrl}}{{comment.author.toLowerCase() | userAvatar: (avatars | async)}}"
+               style="width: 100%; border-radius: 50%">
+        </p>
+        <p *ngIf="(comment.author.toLowerCase() | userAvatar: (avatars | async)) === null">
+          <img src="../../../assets/img/awaiting-image-profile-1000-1000.jpg" style="width: 100%; border-radius: 50%">
+        </p>
+      </div>
       <mat-card-title>{{comment.tittle}}</mat-card-title>
       <mat-card-subtitle>{{comment.author}}</mat-card-subtitle>
     </mat-card-header>
@@ -21,21 +31,23 @@
       {{comment.body}}
     </p>
   </mat-card-content>
+  <h6>-{{comment.date | date:'medium'}}</h6>
   <div style="display: flex; justify-content: space-between">
     <div>
       <mat-card-actions>
         <button mat-button (click)="onLikeComment(comment.id)"
-                [disabled]="isLiked || themeObjectService.data.value.userId === 0">LIKE</button>
+                [disabled]="isLiked || themeObjectService.data.value.userId === 0">LIKE
+        </button>
         <button mat-button>SHARE</button>
       </mat-card-actions>
     </div>
     <div>
-    <mat-button (click)="onDeleteVoice(comment.id)"
-            class="material-icons"
-            [style]="isLiked ? 'color: red' : 'color: grey'"
-            [disabled]="themeObjectService.data.value.userId === 0">
+      <mat-button (click)="onDeleteVoice(comment.id)"
+                  class="material-icons"
+                  [style]="isLiked ? 'color: red' : 'color: grey'"
+                  [disabled]="themeObjectService.data.value.userId === 0">
         favorite
-    </mat-button>
+      </mat-button>
       <p style="margin: 50% 0% 0% 40%">{{this.voiceSum}}</p>
     </div>
   </div>

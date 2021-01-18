@@ -1,4 +1,5 @@
-<div class="pizza-sheet">
+<div class="pizza-sheet"
+     [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
   <div *ngFor="let pizza of pizzas">
     <div *ngIf="themeObjectService.data.value.idChoose === pizza.id" class="pizza-sheet-content">
       <div class="pizza-sheet-content-image" *ngIf="(size | async) === null">
@@ -8,7 +9,8 @@
         <img [src]="sizeUrl+(size | async)?.path + '/' + (size | async)?.name" [className]="classSize">
         <app-star-rating-vote [pizzaId]="pizza.id" [pizzaRating]="pizza.rating"></app-star-rating-vote>
       </div>
-      <div class="pizza-sheet-content-text">
+      <div class="pizza-sheet-content-text"
+           [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black' : 'background-color: white;'">
         <h1>
           {{pizza.name}}
         </h1>
@@ -35,7 +37,7 @@
               <div *ngIf="ingred == ingredient.id" style="margin-right: 10px">
                 <app-ingredient-card [ingredient]="ingredient"
                                      [matBadge]="isAddPrice3 && i === 2
-                                     || isAddPrice2 && i ===1
+                                     || isAddPrice2 && i === 1
                                      || isAddPrice1 && i === 0 ? '-' : '+'" matBadgePosition="before"
                                      matBadgeColor="accent"
                                      (click)="onAdd(ingredient.price, ingredient.name, i)">
@@ -45,10 +47,21 @@
           </div>
         </div>
         <div>
-          <button mat-button (click)="savePizzaInCart(pizza.id)">
-            Add to cart for {{themeObjectService.data.value.price}}</button>
-          <button mat-button style="margin-left: 2%" (click)="openPayment()">
-            {{isPaymentOpen ?  'hide payment form': "Buy pizza for " + themeObjectService.data.value.price}}
+          <button mat-button
+                  (click)="savePizzaInCart(pizza.id)"
+                  [disabled]="themeObjectService.data.value.userName.length">
+             <span class="material-icons">
+              shopping_cart
+            </span>
+            Add to cart for {{themeObjectService.data.value.price}}
+          </button>
+          <button mat-button style="margin-left: 2%"
+                  (click)="openPayment()"
+                  [disabled]="themeObjectService.data.value.userName.length">
+            <span class="material-icons">
+              payment
+            </span>
+            {{isPaymentOpen ? 'hide payment form' : "Buy pizza for " + themeObjectService.data.value.price}}
           </button>
         </div>
       </div>
@@ -70,7 +83,9 @@
       <app-form-comment [pizzaId]="pizza.id"></app-form-comment>
     </div>
     <button mat-button
-            (click)="openCommentFrom()">{{isOpenCommentForm ? 'back' : 'Write something about this pizza'}}</button>
+            [disabled]="themeObjectService.data.value.userName.length"
+            (click)="openCommentFrom()">
+      {{isOpenCommentForm ? 'back' : 'Write something about this pizza'}}</button>
   </div>
   <button mat-button (click)="openComments()">{{!isOpenComments ? 'show comments' : 'hide comments'}}</button>
 </div>

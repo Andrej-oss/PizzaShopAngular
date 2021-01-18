@@ -1,5 +1,6 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Ingredient} from '../../models/Ingredient';
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 
 @Component({
   selector: 'app-ingredient-card',
@@ -13,7 +14,7 @@ ingredient: Ingredient;
 isActive: boolean;
   url = 'http://localhost:8080/ingredient/image/';
 
-  constructor() { }
+  constructor(public themeObjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
   }

@@ -3,7 +3,8 @@ import {User} from '../../../components/models/User';
 import {Cart} from '../../../components/models/Cart';
 import {Purchase} from '../../../components/models/Purchase';
 import {Comment} from '../../../components/models/Comment';
-import {PurchasePage} from "../../../components/models/PurchasePage";
+import {PurchasePage} from '../../../components/models/PurchasePage';
+import {Avatar} from '../../../components/models/Avatar';
 
 export enum UserActionsTypes {
   loadedUsers = '[USERS] loaded',
@@ -15,7 +16,9 @@ export enum UserActionsTypes {
   purchasesUserLoaded = '[PURCHASE] user loaded',
   deletePurchase = '[Purchase] delete',
   commentsUserLoaded = '[COMMENTS] user loaded',
-  purchasesAllLoaded = '[PURCHASES] all loaded'
+  purchasesAllLoaded = '[PURCHASES] all loaded',
+  avatarSaveLoaded = '[AVATAR] user save load',
+  avatarsLoaded = '[AVATARS] all loaded',
 }
 export class UsersLoad implements  Action {
   readonly type = UserActionsTypes.loadedUsers;
@@ -77,6 +80,16 @@ export class PurchasesAllLoad implements Action{
   constructor(public payload: PurchasePage) {
   }
 }
+export class SaveUpdateAvatarUser implements Action{
+  readonly type = UserActionsTypes.avatarSaveLoaded;
+  constructor(public payload: Avatar) {
+  }
+}
+export class AvatarsAllLoad implements Action{
+  readonly type = UserActionsTypes.avatarsLoaded;
+  constructor(public payload: Avatar[]) {
+  }
+}
 export type UserActions = UsersLoad
   | PrincipalLoad
   | CartLoad
@@ -86,5 +99,7 @@ export type UserActions = UsersLoad
   | PurchasesByUserLoad
   | DeletePurchase
   | CommentUsersLoad
-  | PurchasesAllLoad;
+  | PurchasesAllLoad
+  | SaveUpdateAvatarUser
+  | AvatarsAllLoad;
 

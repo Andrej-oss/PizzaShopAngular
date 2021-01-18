@@ -1,7 +1,8 @@
 import {User} from './User';
 import {Cart} from './Cart';
 import {Purchase} from './Purchase';
-import {Comment} from "./Comment";
+import {Comment} from './Comment';
+import {Avatar} from './Avatar';
 
 export interface DefaultUserStore {
   users: User[];
@@ -9,6 +10,8 @@ export interface DefaultUserStore {
   cart: Cart[];
   purchases: Purchase[];
   comments: Comment[];
+  avatar: Avatar;
+  avatars: Avatar[];
 }
 
 export const InitialUserState: DefaultUserStore =  {
@@ -17,4 +20,6 @@ export const InitialUserState: DefaultUserStore =  {
   cart: [],
   purchases: [],
   comments: [],
+  avatar: null,
+  avatars: [],
 };

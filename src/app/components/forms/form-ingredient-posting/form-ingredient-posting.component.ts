@@ -40,9 +40,7 @@ export class FormIngredientPostingComponent implements OnInit {
   }
 
   upLoadFile(event): void {
-    console.log(event);
     const file = (event.target as HTMLInputElement).files[0];
-    console.log(file);
     this.ingredientFormGroup.patchValue({
       image: file
     });

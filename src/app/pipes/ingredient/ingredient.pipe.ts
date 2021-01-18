@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import {Ingredient} from '../components/models/Ingredient';
+import {Ingredient} from '../../components/models/Ingredient';
 
 @Pipe({
   name: 'ingredient'

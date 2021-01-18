@@ -9,3 +9,5 @@ export const selectPrincipal = createSelector(selectUserFeatures, state => state
 export const selectCart = createSelector(selectUserFeatures, state => state.cart);
 export const selectPurchases = createSelector(selectUserFeatures, state => state.purchases);
 export const selectCommentsUser = createSelector(selectUserFeatures, state => state.comments);
+export const selectUserAvatar = createSelector(selectUserFeatures, state => state.avatar);
+export const selectAllAvatars = createSelector(selectUserFeatures, data => data.avatars);

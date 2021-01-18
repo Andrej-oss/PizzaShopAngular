@@ -6,7 +6,11 @@ import {SnackBarComponent} from '../snack-bar/snack-bar-login/snack-bar.componen
 import {MatSnackBar} from '@angular/material/snack-bar';
 import {CommentService} from '../../logic/services/commentDao/comment.service';
 import {VoiceService} from '../../logic/services/voiceDao/voice.service';
-import {PizzaActionService} from "../../logic/store/actions/pizza/pizza-action.service";
+import {PizzaActionService} from '../../logic/store/actions/pizza/pizza-action.service';
+import {Observable} from 'rxjs';
+import {Avatar} from '../models/Avatar';
+import {select, Store} from '@ngrx/store';
+import {selectAllAvatars} from '../../logic/store/selectors/UserSelect';
 
 @Component({
   selector: 'app-comment-card',
@@ -18,15 +22,18 @@ export class CommentCardComponent implements OnInit {
   comment: Comment;
   @Input()
   pizzaId;
+  avatars: Observable<Avatar[]> = this.store$.pipe(select(selectAllAvatars));
   isEditComment: boolean;
   voice: Voice;
   isLiked: boolean;
   voiceSum: number;
   voiceId: number;
+  avatarUrl = 'http://localhost:8080/avatar/image/';
   constructor(private pizzaService: PizzaActionService,
               private commentService: CommentService,
               private voiceService: VoiceService,
               private snackBar: MatSnackBar,
+              private store$: Store,
               public themeObjectService: ThemeObjectService) {
   }
 
