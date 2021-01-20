@@ -42,7 +42,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatTooltipModule} from '@angular/material/tooltip';
 import {MatTreeModule} from '@angular/material/tree';
 import {OverlayModule} from '@angular/cdk/overlay';
-
+import {MatCarouselModule} from '@ngmodule/material-carousel';
 // @ts-ignore
 @NgModule({
   exports: [
@@ -61,6 +61,7 @@ import {OverlayModule} from '@angular/cdk/overlay';
     MatCheckboxModule,
     MatChipsModule,
     MatStepperModule,
+    MatCarouselModule,
     MatDatepickerModule,
     MatDialogModule,
     MatDividerModule,

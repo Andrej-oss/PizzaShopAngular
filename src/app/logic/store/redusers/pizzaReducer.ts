@@ -82,6 +82,12 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
         sizes: action.payload,
       };
     }
+    case PizzaActionType.promotionsLoaded: {
+      return {
+        ...state,
+        promotions: action.payload,
+      };
+    }
     default: {
       return state;
     }

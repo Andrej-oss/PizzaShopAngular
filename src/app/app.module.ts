@@ -52,6 +52,7 @@ import { CommentUserAdminTableComponent } from './components/admin-tables/commen
 import { PaginationComponent } from './components/pagination/pagination.component';
 import { UserAvatarPipe } from './pipes/user/user-avatar.pipe';
 import { FormPromotionComponent } from './components/forms/form-promotion/form-promotion.component';
+import { PromotionsTableComponent } from './components/admin-tables/promotions-table/promotions-table.component';
 
 
 
@@ -94,6 +95,7 @@ import { FormPromotionComponent } from './components/forms/form-promotion/form-p
     PaginationComponent,
     UserAvatarPipe,
     FormPromotionComponent,
+    PromotionsTableComponent,
   ],
     imports: [
         BrowserModule,

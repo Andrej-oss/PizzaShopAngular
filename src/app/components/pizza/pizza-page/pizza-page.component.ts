@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import {Pizza} from '../../models/Pizza';
 import {select, Store} from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
-import {AllPizzasSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {AllPizzasSelector, PromotionsSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 import {Avatar} from '../../models/Avatar';
 import {selectAllAvatars} from '../../../logic/store/selectors/UserSelect';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
+import {Promotion} from '../../models/Promotion';
 
 @Component({
   selector: 'app-pizza-page',
@@ -17,6 +18,8 @@ export class PizzaPageComponent implements OnInit {
   pizzas: Pizza[];
   sub: Subscription;
   avatars: Avatar[];
+  url = 'http://localhost:8080/promotion/';
+  promotions: Observable<Promotion[]> = this.store$.pipe(select(PromotionsSelector));
   constructor(private pizzaActionService: PizzaActionService,
               private userService: UserActionsService,
               private store$: Store) { }

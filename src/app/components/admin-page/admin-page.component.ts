@@ -22,6 +22,7 @@ export class AdminPageComponent implements OnInit {
   isOpenPizzaCreator = false;
   isOpenUsersAdministrating = false;
   isOpenUserUpdate = false;
+  isPromotionCreator: boolean;
   step = 0;
   isOpenPizzaOptions: boolean;
   isOpenIngredientUpdate: boolean;
@@ -31,6 +32,7 @@ export class AdminPageComponent implements OnInit {
   avatarUrl = 'http://localhost:8080/avatar/image/';
   isAvatarOpen: boolean;
   isUpdateInfoOpen: boolean;
+  isPromotionsOpen: boolean;
   constructor(private userService: UserService,
               private userActionsService: UserActionsService,
               private themeObjectService: ThemeObjectService,
@@ -61,35 +63,39 @@ export class AdminPageComponent implements OnInit {
 
   onUsersAdmin(): void{
     debugger;
-    this.isOpenUsersAdministrating = !this.isOpenUsersAdministrating;
+    this.isOpenUsersAdministrating = true
     this.isOpenPizzaOptions = false;
     this.isOpenUserUpdate = false;
     this.isOpenIngredientUpdate = false;
     this.isOpenAllPurchases = false;
+    this.isPromotionsOpen = false;
   }
 
   onUserUpdate(): void{
-    this.isOpenUserUpdate = !this.isOpenUserUpdate;
+    this.isOpenUserUpdate = true;
     this.isOpenUsersAdministrating = false;
     this.isOpenPizzaOptions = false;
     this.isOpenIngredientUpdate = false;
     this.isOpenAllPurchases = false;
+    this.isPromotionsOpen = false;
   }
 
   onPizzaUpdate(): void{
-    this.isOpenPizzaOptions = !this.isOpenPizzaOptions;
+    this.isOpenPizzaOptions = true;
     this.isOpenUserUpdate = false;
     this.isOpenUsersAdministrating = false;
     this.isOpenIngredientUpdate = false;
     this.isOpenAllPurchases = false;
+    this.isPromotionsOpen = false;
   }
 
   onIngredientPage(): void{
-    this.isOpenIngredientUpdate = !this.isOpenIngredientUpdate;
+    this.isOpenIngredientUpdate = true;
     this.isOpenUserUpdate = false;
     this.isOpenPizzaOptions = false;
     this.isOpenUsersAdministrating = false;
     this.isOpenAllPurchases = false;
+    this.isPromotionsOpen = false;
   }
 
   onOpenIngredientCreator(): void{
@@ -98,10 +104,12 @@ export class AdminPageComponent implements OnInit {
 
   onAllPurchases(): void{
     this.userActionsService.getAllPurchases(0, 'amount', 'desc');
-    this.isOpenAllPurchases = !this.isOpenAllPurchases;
+    this.isOpenAllPurchases = true;
     this.isOpenUserUpdate = false;
     this.isOpenPizzaOptions = false;
     this.isOpenUsersAdministrating = false;
+    this.isPromotionsOpen = false;
+    this.isOpenIngredientUpdate = false;
   }
 
   uploadFile($event: Event): void{
@@ -118,5 +126,18 @@ export class AdminPageComponent implements OnInit {
   }
   onOpenAvatarChange(): void {
     this.isAvatarOpen = !this.isAvatarOpen;
+  }
+
+  onPromotions(): void{
+    this.isPromotionsOpen = true;
+    this.isOpenAllPurchases = false;
+    this.isOpenUserUpdate = false;
+    this.isOpenPizzaOptions = false;
+    this.isOpenUsersAdministrating = false;
+    this.isOpenIngredientUpdate = false;
+  }
+
+  onOpenPromoCreator(): void{
+    this.isOpenIngredientCreator = !this.isOpenIngredientCreator;
   }
 }

@@ -23,22 +23,22 @@
       Administrating Profile
     </button>
     <button mat-raised-button (click)="onPizzaUpdate()" *ngIf="isAdmin">
-      Administrating Pizza
+      Pizza
     </button>
     <button mat-raised-button (click)="onIngredientPage()">
-      Administrating Ingredients
+      Ingredients
+    </button>
+    <button mat-raised-button (click)="onPromotions()">
+      Promotions
     </button>
     <button mat-raised-button>
-      Administrating Sushi
-    </button>
-    <button mat-raised-button>
-      Administrating Drinks
+      Drinks
     </button>
     <button mat-raised-button (click)="onAllPurchases()">
-      Administrating Purchases
+      Purchases
     </button>
     <button mat-raised-button (click)="onUsersAdmin()">
-      Administrating Users
+      Users
     </button>
   </div>
   <div *ngIf="isOpenPizzaOptions">
@@ -100,4 +100,14 @@
       <app-form-ingredient-posting></app-form-ingredient-posting>
     </div>
   </div>
+  <div *ngIf="isPromotionsOpen">
+    <button mat-button (click)="onOpenPromoCreator()">
+      {{!isOpenIngredientCreator ? 'create new promotion' : 'hide promotion form'}}
+    </button>
+    <app-promotions-table></app-promotions-table>
+    <div *ngIf="isOpenIngredientCreator">
+      <app-form-promotion></app-form-promotion>
+    </div>
+  </div>
 </div>
+

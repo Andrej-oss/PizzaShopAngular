@@ -14,7 +14,7 @@ import {CommentService} from '../../../services/commentDao/comment.service';
 import {PizzaService} from '../../../services/pizzaDao/pizza.service';
 import {IngredientService} from '../../../services/ingredientDao/ingredient.service';
 import {SizeService} from '../../../services/sizeDao/size.service';
-import {PromotionService} from "../../../services/PromotionDao/promotion.service";
+import {PromotionService} from '../../../services/PromotionDao/promotion.service';
 
 @Injectable({
   providedIn: 'root'
@@ -98,6 +98,18 @@ export class PizzaActionService {
   }
   savePromotion(promotion: FormData, append: void): | {}{
     return this.promotionService.savePromotion(promotion, append)
+      .subscribe(data => this.store.dispatch(new PromotionsLoaded(data)));
+  }
+  getPromotions(): | {}{
+    return this.promotionService.getAllPromotions()
+      .subscribe(data => this.store.dispatch(new PromotionsLoaded(data)));
+  }
+  deletePromotion(id: number): | {}{
+    return this.promotionService.deletePromotion(id)
+      .subscribe(data => this.store.dispatch(new PromotionsLoaded(data)));
+  }
+  updatePromotion(id: number, formData: FormData): | {}{
+    return this.promotionService.updatePromotion(id, formData)
       .subscribe(data => this.store.dispatch(new PromotionsLoaded(data)));
   }
 }
