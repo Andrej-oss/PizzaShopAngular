@@ -1,7 +1,8 @@
 export interface Theme {
   isDarkTheme: boolean;
   isAuthLoad: boolean;
-  idChoose: number;
+  idChoosePizza: number;
+  idChooseDrink: number;
   ingredients: number[];
   price: number;
   userName: string;

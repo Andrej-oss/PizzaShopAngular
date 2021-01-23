@@ -1,7 +1,7 @@
 <div class="pizza-sheet"
      [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
   <div *ngFor="let pizza of pizzas">
-    <div *ngIf="themeObjectService.data.value.idChoose === pizza.id" class="pizza-sheet-content">
+    <div *ngIf="themeObjectService.data.value.idChoosePizza === pizza.id" class="pizza-sheet-content">
       <div class="pizza-sheet-content-image" *ngIf="(size | async) === null">
         <img [src]="url+pizza.path" class="pizza-card-image-content">
       </div>
@@ -49,7 +49,7 @@
         <div>
           <button mat-button
                   (click)="savePizzaInCart(pizza.id)"
-                  [disabled]="themeObjectService.data.value.userName.length">
+                  [disabled]="!themeObjectService.data.value.userName.length">
              <span class="material-icons">
               shopping_cart
             </span>
@@ -57,7 +57,7 @@
           </button>
           <button mat-button style="margin-left: 2%"
                   (click)="openPayment()"
-                  [disabled]="themeObjectService.data.value.userName.length">
+                  [disabled]="!themeObjectService.data.value.userName.length">
             <span class="material-icons">
               payment
             </span>
@@ -72,7 +72,7 @@
       <app-payment [description]="pizzaName.join(', ')"
                    [tittle]="pizza.name"
                    [price]="themeObjectService.data.value.price"
-                   [pizzaId]="themeObjectService.data.value.idChoose"></app-payment>
+                   [pizzaId]="themeObjectService.data.value.idChoosePizza"></app-payment>
     </mat-card>
   </div>
   <div *ngIf="isOpenComments">

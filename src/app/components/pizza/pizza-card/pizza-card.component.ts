@@ -30,8 +30,7 @@ pizza: Pizza;
   }
 
   onChoosePizza(id: number): void{
-    this.themeObjectService.data.value.idChoose = id;
-    console.log(this.themeObjectService.data.value.idChoose);
+    this.themeObjectService.data.value.idChoosePizza = id;
     this.bottomSheet.open(PizzaChooseSheetComponent);
     this.pizzaService.getSizePizza(id, 'small');
     this.pizzaService.getPizzaComments(id);

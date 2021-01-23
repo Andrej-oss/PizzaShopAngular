@@ -53,6 +53,12 @@ import { PaginationComponent } from './components/pagination/pagination.componen
 import { UserAvatarPipe } from './pipes/user/user-avatar.pipe';
 import { FormPromotionComponent } from './components/forms/form-promotion/form-promotion.component';
 import { PromotionsTableComponent } from './components/admin-tables/promotions-table/promotions-table.component';
+import { FormDrinkComponent } from './components/forms/form-drink/form-drink.component';
+import { DrinksTableComponent } from './components/admin-tables/drinks-table/drinks-table.component';
+import { DrinkPageComponent } from './components/drink/drink-page/drink-page.component';
+import { DrinkCardComponent } from './components/drink/drink-card/drink-card.component';
+import { DrinkChooseSheetComponent } from './components/drink/drink-choose-sheet/drink-choose-sheet.component';
+import { VolumeDrinkPipe } from './pipes/drink/volume-drink.pipe';
 
 
 
@@ -96,6 +102,12 @@ import { PromotionsTableComponent } from './components/admin-tables/promotions-t
     UserAvatarPipe,
     FormPromotionComponent,
     PromotionsTableComponent,
+    FormDrinkComponent,
+    DrinksTableComponent,
+    DrinkPageComponent,
+    DrinkCardComponent,
+    DrinkChooseSheetComponent,
+    VolumeDrinkPipe,
   ],
     imports: [
         BrowserModule,

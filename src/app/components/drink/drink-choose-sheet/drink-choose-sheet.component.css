@@ -1,0 +1,21 @@
+.drink-sheet{
+  width: 800px;
+
+}
+.drink-card-image-content{
+height: 20%;
+  border-radius: 50%;
+  margin-top: 50%;
+}
+
+.pizza-sheet-content{
+  display: flex;
+  justify-content: space-around;
+}
+.pizza-sheet-content-text{
+  background-color: gainsboro;
+  width: 50%;
+}
+button:focus{
+  outline: 0;
+}

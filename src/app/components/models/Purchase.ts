@@ -4,7 +4,8 @@ export interface Purchase {
   description: string;
   price: number;
   userId: number;
-  pizzaId: number;
+  pizzaId?: number;
+  drinkId?: number;
   date?: any;
   amount?: number;
 }

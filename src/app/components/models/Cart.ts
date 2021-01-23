@@ -1,9 +1,11 @@
 export interface Cart {
   id?: number;
   description: string;
-  pizzaId: number;
+  pizzaId?: number;
+  drinkId?: number;
   price: number;
   amount: number;
   userId?: number;
-  size: string;
+  size?: string;
+  volume?: number;
 }

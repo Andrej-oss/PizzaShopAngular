@@ -7,6 +7,9 @@ import {selectPrincipal, selectUserAvatar, selectUsers} from '../../logic/store/
 import {UserService} from '../../logic/services/userDao/user.service';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {Avatar} from '../models/Avatar';
+import {Drink} from '../models/Drink';
+import {PizzaActionService} from '../../logic/store/actions/pizza/pizza-action.service';
+import {DrinksSelector} from '../../logic/store/selectors/PizzaSelector';
 
 @Component({
   selector: 'app-admin-page',
@@ -29,11 +32,15 @@ export class AdminPageComponent implements OnInit {
   isOpenIngredientCreator: boolean;
   isOpenAllPurchases: boolean;
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
+  drinks: Drink[];
   avatarUrl = 'http://localhost:8080/avatar/image/';
   isAvatarOpen: boolean;
   isUpdateInfoOpen: boolean;
   isPromotionsOpen: boolean;
+  isDrinksOpen: boolean;
+  isOpenDrinkCreator: boolean;
   constructor(private userService: UserService,
+              private pizzaActionService: PizzaActionService,
               private userActionsService: UserActionsService,
               private themeObjectService: ThemeObjectService,
               private store$: Store) { }
@@ -42,8 +49,8 @@ export class AdminPageComponent implements OnInit {
     this.userActionsService.getUsers();
     this.userActionsService.getPrincipal(this.userService.getUserName());
     this.store$.pipe(select(selectPrincipal)).subscribe(data => this.admin = data);
+    this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
     this.userActionsService.getUserAvatar(this.themeObjectService.data.value.userId);
-
   }
 
   onPizzaCreate(): void{
@@ -63,12 +70,13 @@ export class AdminPageComponent implements OnInit {
 
   onUsersAdmin(): void{
     debugger;
-    this.isOpenUsersAdministrating = true
+    this.isOpenUsersAdministrating = true;
     this.isOpenPizzaOptions = false;
     this.isOpenUserUpdate = false;
     this.isOpenIngredientUpdate = false;
     this.isOpenAllPurchases = false;
     this.isPromotionsOpen = false;
+    this.isDrinksOpen = false;
   }
 
   onUserUpdate(): void{
@@ -78,6 +86,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenIngredientUpdate = false;
     this.isOpenAllPurchases = false;
     this.isPromotionsOpen = false;
+    this.isDrinksOpen = false;
   }
 
   onPizzaUpdate(): void{
@@ -87,6 +96,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenIngredientUpdate = false;
     this.isOpenAllPurchases = false;
     this.isPromotionsOpen = false;
+    this.isDrinksOpen = false;
   }
 
   onIngredientPage(): void{
@@ -96,6 +106,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenUsersAdministrating = false;
     this.isOpenAllPurchases = false;
     this.isPromotionsOpen = false;
+    this.isDrinksOpen = false;
   }
 
   onOpenIngredientCreator(): void{
@@ -110,6 +121,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenUsersAdministrating = false;
     this.isPromotionsOpen = false;
     this.isOpenIngredientUpdate = false;
+    this.isDrinksOpen = false;
   }
 
   uploadFile($event: Event): void{
@@ -135,9 +147,24 @@ export class AdminPageComponent implements OnInit {
     this.isOpenPizzaOptions = false;
     this.isOpenUsersAdministrating = false;
     this.isOpenIngredientUpdate = false;
+    this.isDrinksOpen = false;
   }
 
   onOpenPromoCreator(): void{
     this.isOpenIngredientCreator = !this.isOpenIngredientCreator;
+  }
+
+  onDrinks(): void{
+    this.isDrinksOpen = true;
+    this.isPromotionsOpen = false;
+    this.isOpenAllPurchases = false;
+    this.isOpenUserUpdate = false;
+    this.isOpenPizzaOptions = false;
+    this.isOpenUsersAdministrating = false;
+    this.isOpenIngredientUpdate = false;
+  }
+
+  onOpenDrinkCreator(): void{
+    this.isOpenDrinkCreator = !this.isOpenDrinkCreator;
   }
 }

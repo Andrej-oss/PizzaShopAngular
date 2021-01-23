@@ -9,7 +9,8 @@ export class ThemeObjectService {
   data: BehaviorSubject<Theme> = new BehaviorSubject<Theme>({
     isDarkTheme: false,
     isAuthLoad: false,
-    idChoose: 0,
+    idChoosePizza: 0,
+    idChooseDrink: 0,
     ingredients: [],
     price: 0,
     userName: '',

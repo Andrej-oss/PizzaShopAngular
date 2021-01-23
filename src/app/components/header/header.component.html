@@ -32,7 +32,9 @@
 <app-nav-bar></app-nav-bar>
 <div *ngIf="!isCartOpen && (cartElements | async).length !== 0">
   <div class="header-content-buttons-cart" (mouseleave)="showCart()">
-        <app-pizza-cart-card [cartElements]="cartElements | async" [pizzas]="pizzas | async"></app-pizza-cart-card>
+        <app-pizza-cart-card [cartElements]="cartElements | async"
+                             [drinks]="drinks | async"
+                             [pizzas]="pizzas | async"></app-pizza-cart-card>
   </div>
 </div>
 <router-outlet></router-outlet>

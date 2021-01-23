@@ -9,6 +9,10 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {concatMap, map} from 'rxjs/operators';
 import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
 import {UserService} from '../../../logic/services/userDao/user.service';
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
+import {select, Store} from '@ngrx/store';
+import {DrinksSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {Drink} from '../../models/Drink';
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -27,9 +31,12 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   whiteTheme: 'card-auth';
   blackStyle: 'color: white';
   whiteStyle: 'color: black';
+  drinks: Drink[];
   constructor(private userService: UserService,
               private router: Router,
+              private store$: Store,
               private snackBar: MatSnackBar,
+              private pizzaActionService: PizzaActionService,
               private activatedRoute: ActivatedRoute,
               private userActionsService: UserActionsService,
               public themeObjectService: ThemeObjectService, private pizzaService: PizzaService) {
@@ -54,6 +61,10 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
       console.log(params);
     });
     this.formCheck();
+    this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
+    if (!this.drinks.length){
+      this.pizzaActionService.getDrinks();
+    }
   }
 
   onAuthenticate(authForm: FormGroup): void {

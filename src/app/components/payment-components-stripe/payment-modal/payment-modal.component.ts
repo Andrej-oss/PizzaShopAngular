@@ -7,7 +7,7 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import { Router } from '@angular/router';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import DateTimeFormat = Intl.DateTimeFormat;
+import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 
 
 @Component({
@@ -22,8 +22,10 @@ export class PaymentModalComponent implements OnInit {
   @Input() price;
   @Input() pizzaId;
   @Input() allCart;
+  @Input() drinkId;
   purchase: Purchase;
   constructor(private paymentService: PaymentService,
+              private userActionsService: UserActionsService,
               private toastrService: ToastrService,
               public activeModal: NgbActiveModal,
               private themeObjectService: ThemeObjectService,
@@ -42,12 +44,10 @@ export class PaymentModalComponent implements OnInit {
         description: this.description,
         name: this.tittle,
         pizzaId: this.pizzaId,
+        drinkId: this.drinkId,
         price: this.price,
         userId: this.themeObjectService.data.value.userId,
-        // tslint:disable-next-line:max-line-length
-        // date: this.date = date.getHours() + ':' + date.getMinutes() + ':' + date.getSeconds() + ' ' + date.getDay() + '/' + date.getMonth() + '/' + date.getFullYear(),
       };
-      console.log(this.purchase);
       this.paymentService.confirm(id, this.purchase).subscribe(data => {
           this.activeModal.close();
           // tslint:disable-next-line:no-shadowed-variable
@@ -70,6 +70,9 @@ export class PaymentModalComponent implements OnInit {
           this.activeModal.close();
           // tslint:disable-next-line:no-shadowed-variable
           this.router.navigate(['/']).then(data => console.log(data));
+          this.allCart.forEach(value => {
+            this.userActionsService.deletePizzaCartInStore(value.id);
+          });
           this.toastrService.success
           ('Your payment is success, thank you', 'Payment success' + data[`id`],
             {positionClass: 'toast-center-center', timeOut: 3000});

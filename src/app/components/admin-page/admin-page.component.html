@@ -31,7 +31,7 @@
     <button mat-raised-button (click)="onPromotions()">
       Promotions
     </button>
-    <button mat-raised-button>
+    <button mat-raised-button (click)="onDrinks()">
       Drinks
     </button>
     <button mat-raised-button (click)="onAllPurchases()">
@@ -108,6 +108,17 @@
     <div *ngIf="isOpenIngredientCreator">
       <app-form-promotion></app-form-promotion>
     </div>
+  </div>
+  <div *ngIf="isDrinksOpen">
+    <button mat-button (click)="onOpenDrinkCreator()">
+      {{!isOpenIngredientCreator ? 'create new drink' : 'hide drink form'}}
+    </button>
+    <p *ngIf="drinks && drinks.length">
+      <app-drinks-table [drinks]="drinks"></app-drinks-table>
+    </p>
+    <p *ngIf="isOpenDrinkCreator">
+      <app-form-drink></app-form-drink>
+    </p>
   </div>
 </div>
 

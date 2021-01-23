@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {Router} from '@angular/router';
 
-
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
@@ -16,5 +15,9 @@ export class NavBarComponent implements OnInit {
 
   toPizza(): void{
     this.router.navigateByUrl('/').then(data => console.log(data));
+  }
+
+  toDrinkPage(): void{
+    this.router.navigate(['/drinks']).then(data => console.log(data));
   }
 }

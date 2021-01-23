@@ -1,6 +1,9 @@
 <div class="item-card">
-  <div>
+  <div *ngIf="pizzaId !== 0">
     <img [src]="url+item.path" class="item-card-image">
+  </div>
+  <div *ngIf="drinkId !== 0">
+    <img [src]="urlDrink+item.path" class="item-card-image">
   </div>
   <div>
     {{item.name}}

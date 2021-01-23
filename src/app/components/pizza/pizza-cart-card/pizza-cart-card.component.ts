@@ -2,6 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {Cart} from '../../models/Cart';
 import {Pizza} from '../../models/Pizza';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {Drink} from '../../models/Drink';
 
 
 @Component({
@@ -14,6 +15,8 @@ export class PizzaCartCardComponent implements OnInit {
   cartElements: Cart[];
   @Input()
   pizzas: Pizza[];
+  @Input()
+  drinks: Drink[];
   totalPrice: number;
 
   constructor(public themeObjectService: ThemeObjectService) {

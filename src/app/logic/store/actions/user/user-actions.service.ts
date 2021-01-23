@@ -83,6 +83,7 @@ export class UserActionsService {
   }
   deletePizzaCartInStore(id: number): void{
     this.store.dispatch(new DeletePizzaCart({id}));
+    this.themeObjectService.data.value.sizeCart = this.themeObjectService.data.value.sizeCart - 1;
   }
   getPurchasesByUser(id: number): | {}{
     return this.purchaseService.getPurchasesByUser(id)

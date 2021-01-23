@@ -3,7 +3,8 @@ import {Ingredient} from './Ingredient';
 import {Size} from './Size';
 import {Rating} from './Rating';
 import {Comment} from './Comment';
-import {Promotion} from "./Promotion";
+import {Promotion} from './Promotion';
+import {Drink} from './Drink';
 
 export interface DefaultPizzaState {
   pizzas: Pizza[];
@@ -12,7 +13,8 @@ export interface DefaultPizzaState {
   rating: Rating;
   comments: Comment[];
   sizes: Size[];
-  promotions: Promotion[],
+  promotions: Promotion[];
+  drinks: Drink[];
 }
 
 export const InitialPizzaState: DefaultPizzaState = {
@@ -23,5 +25,6 @@ export const InitialPizzaState: DefaultPizzaState = {
   comments: [],
   sizes: [],
   promotions: [],
+  drinks: [],
 };
 

@@ -8,6 +8,8 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {Cart} from '../../models/Cart';
 import {UserService} from '../../../logic/services/userDao/user.service';
 import {options} from '../../../constants/Constants';
+import {Drink} from "../../models/Drink";
+import {DrinksSelector} from "../../../logic/store/selectors/PizzaSelector";
 
 @Component({
   selector: 'app-purchase',
@@ -17,7 +19,8 @@ import {options} from '../../../constants/Constants';
 export class PurchaseComponent implements OnInit {
   @Input()
   type: string;
-  options: {name: string, value: string}[];
+  options: { name: string, value: string }[];
+  drinks: Drink[];
   purchases$: Observable<Purchase[]> = this.store$.pipe(select(selectPurchases));
   displayedColumns: string[] = ['position', 'name', 'description', 'size', 'count', 'price', 'date', 'option'];
   blackTheme = 'purchase-item-black';
@@ -38,26 +41,46 @@ export class PurchaseComponent implements OnInit {
   ngOnInit(): void {
     this.isUser = this.userService.isUser();
     this.options = options;
+    this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
   }
 
   onDelete(id: any): void {
     this.userActionsService.deletePurchaseInStore(id);
   }
 
-  saveInCart(id: number, descriptionPurchase: string, name: string): void {
-    this.cart = {
-      description: descriptionPurchase,
-      pizzaId: id,
-      amount: 1,
-      price: this.themeObjectService.data.value.price,
-      userId: this.themeObjectService.data.value.userId,
-      size: name,
-    };
-    this.themeObjectService.data.value.message = 'Pizza added to cart';
+  saveInCart(id: number, drinkIdItem: number, descriptionPurchase: string, name: string, amountItem: number, priceItem: number): void {
+    if (id !== 0) {
+      this.cart = {
+        description: descriptionPurchase,
+        pizzaId: id,
+        amount: amountItem,
+        price: priceItem,
+        userId: this.themeObjectService.data.value.userId,
+        size: name,
+      };
+    }
+    if (drinkIdItem !== 0) {
+      this.cart = {
+        description: descriptionPurchase,
+        drinkId: drinkIdItem,
+        amount: amountItem,
+        price: priceItem,
+        userId: this.themeObjectService.data.value.userId,
+        size: name,
+      };
+    }
+    console.log(this.cart);
+    this.themeObjectService.data.value.message = 'Item added to cart';
     this.userActionsService.saveElementInCart(this.cart);
   }
-  onSortPurchase(value: string): void{
+
+  onSortPurchase(value: string): void {
     const optionsArray = value.split(', ');
     this.userActionsService.getAllPurchases(0, optionsArray[0], optionsArray[1]);
+  }
+
+  getVolume(path: string): string{
+    debugger;
+    return path.match(/[0-9]/g).join('');
   }
 }

@@ -6,8 +6,9 @@ import {Cart} from '../models/Cart';
 import {select, Store} from '@ngrx/store';
 import {selectCart} from '../../logic/store/selectors/UserSelect';
 import {Pizza} from '../models/Pizza';
-import {AllPizzasSelector} from '../../logic/store/selectors/PizzaSelector';
+import {AllPizzasSelector, DrinksSelector} from '../../logic/store/selectors/PizzaSelector';
 import {UserService} from '../../logic/services/userDao/user.service';
+import {Drink} from '../models/Drink';
 
 @Component({
   selector: 'app-header',
@@ -18,7 +19,7 @@ export class HeaderComponent implements OnInit {
   isCartOpen: boolean;
   cartElements: Observable<Cart[]> = this.store$.pipe(select(selectCart));
   pizzas: Observable<Pizza[]> = this.store$.pipe(select(AllPizzasSelector));
-
+  drinks: Observable<Drink[]> =  this.store$.pipe(select(DrinksSelector));
   constructor(private router: Router,
               public userService: UserService,
               private store$: Store,

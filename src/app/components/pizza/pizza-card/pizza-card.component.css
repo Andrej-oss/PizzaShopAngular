@@ -1,6 +1,7 @@
 .pizza-card{
   border: 1px solid black;
   max-width: 300px;
+  min-height: 300px;
   max-height: 500px;
   border-radius: 5px;
   font-family: "Comic Sans MS";

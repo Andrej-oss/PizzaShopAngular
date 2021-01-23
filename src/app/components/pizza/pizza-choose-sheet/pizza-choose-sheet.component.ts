@@ -57,7 +57,7 @@ export class PizzaChooseSheetComponent implements OnInit {
 
   ngOnInit(): void {
     this.subscription = this.store$.pipe(select(AllPizzasSelector)).subscribe(data => this.pizzas = data);
-    const index = this.pizzas.findIndex(value => value.id === this.themeObjectService.data.value.idChoose);
+    const index = this.pizzas.findIndex(value => value.id === this.themeObjectService.data.value.idChoosePizza);
     this.pizza = this.pizzas[index];
     this.pizzaName = this.pizza.description.split(',');
     this.isAddName = false;
@@ -139,12 +139,6 @@ export class PizzaChooseSheetComponent implements OnInit {
       size: this.pizzaSize,
     };
     this.themeObjectService.data.value.message = 'Pizza added to cart';
-    // this.cartService.savePizzaInCart(this.basket).subscribe(data => {
-    //   this.snackBar.openFromComponent(SnackBarComponent, {
-    //     duration: 2000,
-    //   });
-    //   console.log(data);
-    // });
     this.userActionsService.saveElementInCart(this.cart);
   }
 

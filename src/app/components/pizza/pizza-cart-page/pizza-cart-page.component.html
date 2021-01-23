@@ -7,7 +7,11 @@
         <h2>
           Cart
         </h2>
-        <app-pizza-cart-card [pizzas]="pizzas | async" [cartElements]="cartElements | async"></app-pizza-cart-card>
+        <app-pizza-cart-card [pizzas]="pizzas | async"
+                             [drinks]="drinks | async"
+                             [cartElements]="cartElements | async">
+
+        </app-pizza-cart-card>
         <div>
           <button mat-button matStepperNext (click)="onPayment()">Next</button>
         </div>

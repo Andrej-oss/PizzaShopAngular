@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {
-  CommentDeleteInState, CommentUpdateInState,
+  CommentDeleteInState, CommentUpdateInState, DrinksLoaded,
   IngredientsLoad, PizzaCommentSaveLoad, PizzaCommentsLoad, PizzaDeleteLoaded, PizzaSaveLoaded, PizzaSizesLoaded,
   PizzasLoad, PromotionsLoaded, RatingLoad,
   SizePizzaLoad
@@ -15,6 +15,7 @@ import {PizzaService} from '../../../services/pizzaDao/pizza.service';
 import {IngredientService} from '../../../services/ingredientDao/ingredient.service';
 import {SizeService} from '../../../services/sizeDao/size.service';
 import {PromotionService} from '../../../services/PromotionDao/promotion.service';
+import {DrinkService} from '../../../services/drinkDao/drink.service';
 
 @Injectable({
   providedIn: 'root'
@@ -28,6 +29,7 @@ export class PizzaActionService {
               private ratingService: RatingService,
               private promotionService: PromotionService,
               private commentService: CommentService,
+              private drinkService: DrinkService,
               private store: Store) { }
   getAllPizzas(): | {}{
     return this.pizzaService.getAllPizza()
@@ -112,4 +114,21 @@ export class PizzaActionService {
     return this.promotionService.updatePromotion(id, formData)
       .subscribe(data => this.store.dispatch(new PromotionsLoaded(data)));
   }
+  saveDrink(formData: FormData, append: void): | {}{
+    return this.drinkService.saveDrink(formData, append)
+      .subscribe(data => this.store.dispatch(new DrinksLoaded(data)));
+  }
+  getDrinks(): | {}{
+    return this.drinkService.getAllDrinks()
+      .subscribe(data => this.store.dispatch(new DrinksLoaded(data)));
+  }
+  deleteDrink(id: number): | {}{
+    return this.drinkService.deleteDrink(id)
+      .subscribe(data => this.store.dispatch(new DrinksLoaded(data)));
+  }
+  updateDrink(id: number, formData: FormData, append: void): | {}{
+    return this.drinkService.updateDrink(id, formData)
+      .subscribe(data => this.store.dispatch(new DrinksLoaded(data)));
+  }
 }
+
