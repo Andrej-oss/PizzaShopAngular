@@ -4,7 +4,7 @@ import {
   CommentDeleteInState, CommentUpdateInState, DrinksLoaded,
   IngredientsLoad, PizzaCommentSaveLoad, PizzaCommentsLoad, PizzaDeleteLoaded, PizzaSaveLoaded, PizzaSizesLoaded,
   PizzasLoad, PromotionsLoaded, RatingLoad,
-  SizePizzaLoad
+  SizePizzaLoad, SnacksLoaded
 } from '../../actions-type/pizzaAction';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Rating} from '../../../../components/models/Rating';
@@ -16,6 +16,8 @@ import {IngredientService} from '../../../services/ingredientDao/ingredient.serv
 import {SizeService} from '../../../services/sizeDao/size.service';
 import {PromotionService} from '../../../services/PromotionDao/promotion.service';
 import {DrinkService} from '../../../services/drinkDao/drink.service';
+import {SnackService} from '../../../services/snackDao/snack.service';
+import {Observable} from "rxjs";
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +32,7 @@ export class PizzaActionService {
               private promotionService: PromotionService,
               private commentService: CommentService,
               private drinkService: DrinkService,
+              private snackService: SnackService,
               private store: Store) { }
   getAllPizzas(): | {}{
     return this.pizzaService.getAllPizza()
@@ -129,6 +132,22 @@ export class PizzaActionService {
   updateDrink(id: number, formData: FormData, append: void): | {}{
     return this.drinkService.updateDrink(id, formData)
       .subscribe(data => this.store.dispatch(new DrinksLoaded(data)));
+  }
+  saveSnack(formData: FormData, append: void): | {}{
+    return this.snackService.saveSnack(formData, append)
+      .subscribe(data => this.store.dispatch(new SnacksLoaded(data)));
+  }
+  getAllSnacks(): | {}{
+    return this.snackService.getAllSnacks()
+      .subscribe(data => this.store.dispatch(new SnacksLoaded(data)));
+  }
+  updateSnack(id: number, formData: FormData, append: void): | {}{
+    return this.snackService.updateSnack(id, formData, append)
+      .subscribe(data => this.store.dispatch(new SnacksLoaded(data)));
+  }
+  deleteSnack(id: number): | {}{
+    return this.snackService.deleteSnack(id)
+      .subscribe(data => this.store.dispatch(new SnacksLoaded(data)));
   }
 }
 

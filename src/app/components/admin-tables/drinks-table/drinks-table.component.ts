@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Drink} from '../../models/Drink';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
-import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 
 @Component({
   selector: 'app-drinks-table',

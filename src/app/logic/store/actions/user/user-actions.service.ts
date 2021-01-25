@@ -67,7 +67,6 @@ export class UserActionsService {
   saveElementInCart(cart: Cart): | {}{
     return this.cartService.savePizzaInCart(cart)
       .subscribe(data => {
-        this.themeObjectService.data.value.message = 'Pizza added to basket';
         this.themeObjectService.data.value.sizeCart = data.length;
         this.snackBar.openFromComponent(SnackBarComponent, {
           duration: 2000,

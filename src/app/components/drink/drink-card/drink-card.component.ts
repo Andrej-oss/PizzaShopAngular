@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {Drink} from '../../models/Drink';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {DrinkChooseSheetComponent} from '../drink-choose-sheet/drink-choose-sheet.component';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {Router} from '@angular/router';
+import {DrinkChooseSheetComponent} from '../drink-choose-sheet/drink-choose-sheet.component';
 
 @Component({
   selector: 'app-drink-card',
@@ -23,8 +23,6 @@ export class DrinkCardComponent implements OnInit {
 
   onChooseDrink(id: number): void{
     this.themeObjectService.data.value.idChooseDrink = id;
-    console.log(this.themeObjectService.data.value.userName);
     this.bottomSheet.open(DrinkChooseSheetComponent);
-    this.router.navigateByUrl('/drinks/' + `${id}`);
   }
 }

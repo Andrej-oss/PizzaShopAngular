@@ -94,6 +94,12 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
         drinks: action.payload,
       };
     }
+    case PizzaActionType.snacksLoaded: {
+      return {
+        ...state,
+        snacks: action.payload,
+      };
+    }
     default: {
       return state;
     }

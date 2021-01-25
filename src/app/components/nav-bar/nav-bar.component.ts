@@ -20,4 +20,8 @@ export class NavBarComponent implements OnInit {
   toDrinkPage(): void{
     this.router.navigate(['/drinks']).then(data => console.log(data));
   }
+
+  toSnacks(): void{
+    this.router.navigate(['/snacks']).then(data => console.log(data));
+  }
 }

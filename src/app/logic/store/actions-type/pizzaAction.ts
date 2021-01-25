@@ -6,6 +6,7 @@ import {Rating} from '../../../components/models/Rating';
 import {Comment} from '../../../components/models/Comment';
 import {Promotion} from '../../../components/models/Promotion';
 import {Drink} from '../../../components/models/Drink';
+import {Snack} from '../../../components/models/Snack';
 
 export enum PizzaActionType {
   pizzaAllLoaded = '[PIZZA] all loaded',
@@ -21,6 +22,7 @@ export enum PizzaActionType {
   pizzaSizesLoaded = '[PIZZA] sizes loaded',
   promotionsLoaded = '[PROMOTIONS] loaded',
   drinksLoaded = '[DRINKS] loaded',
+  snacksLoaded = '[SNACKS] loaded',
 }
 
 export class PizzasLoad implements Action {
@@ -101,6 +103,11 @@ export class DrinksLoaded implements Action{
   constructor(public payload: Drink[]) {
   }
 }
+export class SnacksLoaded implements Action{
+  readonly type = PizzaActionType.snacksLoaded;
+  constructor(public payload: Snack[]) {
+  }
+}
 export type PizzaAction = PizzasLoad
   | IngredientsLoad
   | SizePizzaLoad
@@ -113,4 +120,5 @@ export type PizzaAction = PizzasLoad
   | PizzaDeleteLoaded
   | PizzaSizesLoaded
   | PromotionsLoaded
-  | DrinksLoaded;
+  | DrinksLoaded
+  | SnacksLoaded;

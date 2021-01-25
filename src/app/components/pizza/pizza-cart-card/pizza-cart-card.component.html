@@ -15,6 +15,13 @@
         </div>
       </div>
     </div>
+    <div *ngIf="element.snackId !== 0">
+      <div *ngFor="let snack of snacks ">
+        <div *ngIf="snack.id == element.snackId" class="pizza-cart-cart-element">
+          <app-pizza-card-cart-item [snack]="snack" [cartElement]="element"></app-pizza-card-cart-item>
+        </div>
+      </div>
+    </div>
   </div>
   <h2 style="margin-left: 40%">
     Total price: <a style="margin-left: 30%">{{themeObjectService.data.value.totalPrice}}</a>

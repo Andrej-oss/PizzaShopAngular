@@ -23,6 +23,7 @@ export class PaymentModalComponent implements OnInit {
   @Input() pizzaId;
   @Input() allCart;
   @Input() drinkId;
+  @Input() snackId;
   purchase: Purchase;
   constructor(private paymentService: PaymentService,
               private userActionsService: UserActionsService,
@@ -45,9 +46,11 @@ export class PaymentModalComponent implements OnInit {
         name: this.tittle,
         pizzaId: this.pizzaId,
         drinkId: this.drinkId,
+        snackId: this.snackId,
         price: this.price,
         userId: this.themeObjectService.data.value.userId,
       };
+      console.log(this.purchase);
       this.paymentService.confirm(id, this.purchase).subscribe(data => {
           this.activeModal.close();
           // tslint:disable-next-line:no-shadowed-variable

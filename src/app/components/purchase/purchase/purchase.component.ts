@@ -8,8 +8,9 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {Cart} from '../../models/Cart';
 import {UserService} from '../../../logic/services/userDao/user.service';
 import {options} from '../../../constants/Constants';
-import {Drink} from "../../models/Drink";
-import {DrinksSelector} from "../../../logic/store/selectors/PizzaSelector";
+import {Drink} from '../../models/Drink';
+import {DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {Snack} from '../../models/Snack';
 
 @Component({
   selector: 'app-purchase',
@@ -21,6 +22,7 @@ export class PurchaseComponent implements OnInit {
   type: string;
   options: { name: string, value: string }[];
   drinks: Drink[];
+  snacks: Snack[];
   purchases$: Observable<Purchase[]> = this.store$.pipe(select(selectPurchases));
   displayedColumns: string[] = ['position', 'name', 'description', 'size', 'count', 'price', 'date', 'option'];
   blackTheme = 'purchase-item-black';
@@ -42,13 +44,19 @@ export class PurchaseComponent implements OnInit {
     this.isUser = this.userService.isUser();
     this.options = options;
     this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
+    this.store$.pipe(select(SnacksSelector)).subscribe(data => this.snacks = data);
   }
 
   onDelete(id: any): void {
     this.userActionsService.deletePurchaseInStore(id);
   }
 
-  saveInCart(id: number, drinkIdItem: number, descriptionPurchase: string, name: string, amountItem: number, priceItem: number): void {
+  saveInCart(id: number,
+             drinkIdItem: number,
+             descriptionPurchase: string,
+             name: string,
+             amountItem: number,
+             priceItem: number): void {
     if (id !== 0) {
       this.cart = {
         description: descriptionPurchase,

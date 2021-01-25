@@ -3,6 +3,7 @@ export interface Cart {
   description: string;
   pizzaId?: number;
   drinkId?: number;
+  snackId?: number;
   price: number;
   amount: number;
   userId?: number;

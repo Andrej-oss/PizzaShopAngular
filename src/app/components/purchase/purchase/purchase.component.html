@@ -26,9 +26,8 @@
         Name
       </th>
       <td mat-cell *matCellDef="let element">
-
-          <app-purchases-item [pizzaId]="element.pizzaId" [drinkId]="element.drinkId"></app-purchases-item>
-
+        <app-purchases-item [pizzaId]="element.pizzaId" [drinkId]="element.drinkId" [snackId]="element.snackId">
+        </app-purchases-item>
       </td>
     </ng-container>
     <ng-container matColumnDef="description" style="margin: 10px 10px 10px 10px">
@@ -47,7 +46,7 @@
       </th>
       <td mat-cell *matCellDef="let element"
           [style]="this.themeObjectService.data.value.isDarkTheme  ? blackColor : whiteColor">
-        {{element.pizzaId !== 0 ?  element.name : (element.drinkId | volumeDrink: drinks ) + ' l'}}</td>
+        {{element.pizzaId !== 0 ? element.name : (element.drinkId | volumeDrink: drinks) + ' l'}}</td>
     </ng-container>
     <ng-container matColumnDef="count" style="margin: 10px 10px 10px 10px">
       <th mat-header-cell *matHeaderCellDef
@@ -94,7 +93,12 @@
           <div class="purchases-add-cart" *ngIf="isUser">
           <span class="material-icons"
                 style="margin-left: 70%"
-                (click)="saveInCart(element.pizzaId, element.drinkId, element.description, element.name, element.amount, element.price)">
+                (click)="saveInCart(element.pizzaId,
+                 element.drinkId,
+                 element.description,
+                  element.name,
+                   element.amount,
+                   element.price)">
               add_shopping_cart
           </span>
           </div>
@@ -105,7 +109,7 @@
     <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
   </table>
   <div style="margin: 5% 5% 5% 30%"
-    *ngIf="type === 'admin' && (purchases$ | async)?.length && themeObjectService.data.value.lastPage !== 0">
+       *ngIf="type === 'admin' && (purchases$ | async)?.length && themeObjectService.data.value.lastPage !== 0">
     <app-pagination></app-pagination>
   </div>
 </div>

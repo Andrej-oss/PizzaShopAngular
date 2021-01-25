@@ -5,7 +5,10 @@
   <div *ngIf="drinkId !== 0">
     <img [src]="urlDrink+item.path" class="item-card-image">
   </div>
-  <div>
+  <div *ngIf="snackId !== 0">
+    <img [src]="urlSnack+item.path" class="item-card-image">
+  </div>
+  <div *ngIf="item">
     {{item.name}}
   </div>
 </div>

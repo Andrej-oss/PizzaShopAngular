@@ -20,6 +20,7 @@ export class PaymentComponent implements OnInit {
   @Input() pizzaId;
   @Input() allCart;
   @Input() drinkId;
+  @Input() snackId;
   error: any;
   elements: StripeElements;
   card: StripeCardElement;
@@ -34,7 +35,6 @@ public StripeControl = new FormGroup({
   name: new FormControl('', Validators.required)
 });
   ngOnInit(): void {
-    debugger;
     this.stripeService.elements(this.elementsOptions)
       .subscribe(elements => {
         this.elements = elements;
@@ -92,6 +92,7 @@ public StripeControl = new FormGroup({
     modalRef.componentInstance.price = price;
     modalRef.componentInstance.pizzaId = this.pizzaId;
     modalRef.componentInstance.drinkId = this.drinkId;
+    modalRef.componentInstance.snackId = this.snackId;
     modalRef.componentInstance.allCart = this.allCart;
   }
 }

@@ -3,6 +3,7 @@ import {Cart} from '../../models/Cart';
 import {Pizza} from '../../models/Pizza';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {Drink} from '../../models/Drink';
+import {Snack} from '../../models/Snack';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class PizzaCartCardComponent implements OnInit {
   pizzas: Pizza[];
   @Input()
   drinks: Drink[];
+  @Input()
+  snacks: Snack[];
   totalPrice: number;
 
   constructor(public themeObjectService: ThemeObjectService) {

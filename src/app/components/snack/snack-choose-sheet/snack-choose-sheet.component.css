@@ -1,0 +1,21 @@
+.snack-sheet{
+  width: 800px;
+
+}
+.snack-card-image-content{
+  height: 20%;
+  margin: 10% 10% 10% 10%;
+  border-radius: 50%;
+}
+
+.snack-sheet-content{
+  display: flex;
+  justify-content: space-around;
+}
+.snack-sheet-content-text{
+  background-color: gainsboro;
+  width: 50%;
+}
+button:focus{
+  outline: 0;
+}

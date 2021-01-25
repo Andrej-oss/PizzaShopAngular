@@ -11,8 +11,9 @@ import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
 import {UserService} from '../../../logic/services/userDao/user.service';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 import {select, Store} from '@ngrx/store';
-import {DrinksSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {Drink} from '../../models/Drink';
+import {Snack} from '../../models/Snack';
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -32,6 +33,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   blackStyle: 'color: white';
   whiteStyle: 'color: black';
   drinks: Drink[];
+  snacks: Snack[];
   constructor(private userService: UserService,
               private router: Router,
               private store$: Store,
@@ -62,8 +64,12 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     });
     this.formCheck();
     this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
+    this.store$.pipe(select(SnacksSelector)).subscribe(data => this.snacks = data);
     if (!this.drinks.length){
       this.pizzaActionService.getDrinks();
+    }
+    if (!this.snacks.length){
+      this.pizzaActionService.getAllSnacks();
     }
   }
 

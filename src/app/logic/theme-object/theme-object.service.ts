@@ -11,6 +11,7 @@ export class ThemeObjectService {
     isAuthLoad: false,
     idChoosePizza: 0,
     idChooseDrink: 0,
+    idChooseSnack: 0,
     ingredients: [],
     price: 0,
     userName: '',

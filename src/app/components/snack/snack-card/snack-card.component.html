@@ -1,0 +1,21 @@
+<div class="snack-card">
+  <img [src]="url+snack.path" class="snack-card-image">
+  <div class="snack-card-text">
+    <h2 style="text-align: center">
+      {{snack.name}}
+    </h2>
+  </div>
+  <h4>
+    {{snack.description}}
+  </h4>
+  <div class="snack-card-price">
+    <h2>
+      {{snack.price}}
+    </h2>
+    <div style="left: -70%">
+      <button mat-button (click)="onChooseSnack(snack.id)">choose</button>
+    </div>
+  </div>
+</div>
+<router-outlet></router-outlet>
+

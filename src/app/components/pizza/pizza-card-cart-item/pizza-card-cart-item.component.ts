@@ -5,6 +5,7 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {CartService} from '../../../logic/services/cartDao/cart.service';
 import {Drink} from '../../models/Drink';
+import {Snack} from '../../models/Snack';
 
 
 @Component({
@@ -21,11 +22,14 @@ export class PizzaCardCartItemComponent implements OnInit {
   totalPrice: number;
   @Input()
   drink: Drink;
+  @Input()
+  snack: Snack;
   url = 'http://localhost:8080/pizza/image/';
   count: number;
   price: number;
   cart: Cart;
   urlDrink = 'http://localhost:8080/drink/';
+  urlSnack = 'http://localhost:8080/snack/';
 
   constructor(private themeObjectService: ThemeObjectService,
               private userService: UserActionsService,
@@ -65,7 +69,18 @@ export class PizzaCardCartItemComponent implements OnInit {
         this.cartService.addAmountPizzaCart(this.cartElement.id, this.drink.price).subscribe(data => console.log(data));
         this.price = this.price + this.drink.price;
         this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.drink.price;
-
+      }
+      else if (this.snack) {
+        this.cart = {
+          id: this.cartElement.id,
+          description: this.cartElement.description,
+          snackId: this.cartElement.snackId,
+          price: this.cartElement.price + this.snack.price,
+          amount: this.cartElement.amount + 1,
+        };
+        this.cartService.addAmountPizzaCart(this.cartElement.id, this.snack.price).subscribe(data => console.log(data));
+        this.price = this.price + this.snack.price;
+        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.snack.price;
       }
       this.userService.incAmountPizzaCartInStore(this.cartElement.id, this.cart);
       this.count = this.count + 1;
@@ -102,10 +117,28 @@ export class PizzaCardCartItemComponent implements OnInit {
         this.price = this.price - this.drink.price;
         this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.drink.price;
       }
+      else if (this.snack) {
+        this.cart = {
+          id: this.cartElement.id,
+          description: this.cartElement.description,
+          snackId: this.cartElement.snackId,
+          price: this.cartElement.price - this.snack.price,
+          amount: this.cartElement.amount - 1,
+        };
+        this.cartService.removeAmountPizzaCart(this.cartElement.id, this.snack.price).subscribe(data => console.log(data));
+        this.price = this.price - this.snack.price;
+        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.snack.price;
+      }
       this.userService.decAmountPizzaCartInStore(this.cartElement.id, this.cart);
       this.count = this.count - 1;
     } catch (e) {
       console.log(e);
     }
+  }
+
+  onDelete(id: number): void {
+    this.cartService.deleteCart(id).subscribe(data => console.log(data));
+    this.userService.deletePizzaCartInStore(id);
+    this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.cartElement.price;
   }
 }

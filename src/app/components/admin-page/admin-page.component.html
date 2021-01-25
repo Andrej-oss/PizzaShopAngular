@@ -20,7 +20,7 @@
     <!--      Toggle extra text-->
     <!--    </button>-->
     <button mat-raised-button (click)="onUserUpdate()">
-      Administrating Profile
+      Profile
     </button>
     <button mat-raised-button (click)="onPizzaUpdate()" *ngIf="isAdmin">
       Pizza
@@ -33,6 +33,9 @@
     </button>
     <button mat-raised-button (click)="onDrinks()">
       Drinks
+    </button>
+    <button mat-raised-button (click)="onSnacks()">
+      Snacks
     </button>
     <button mat-raised-button (click)="onAllPurchases()">
       Purchases
@@ -118,6 +121,15 @@
     </p>
     <p *ngIf="isOpenDrinkCreator">
       <app-form-drink></app-form-drink>
+    </p>
+  </div>
+  <div *ngIf="isOpenSnacks">
+    <button mat-button (click)="onOpenSnackCreator()">
+      {{!isOpenIngredientCreator ? 'create new snack' : 'hide drink form'}}
+    </button>
+    <app-snacks-admin-table></app-snacks-admin-table>
+    <p *ngIf="isOpenSnackCreator">
+      <app-form-snack></app-form-snack>
     </p>
   </div>
 </div>

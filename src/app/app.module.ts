@@ -59,6 +59,11 @@ import { DrinkPageComponent } from './components/drink/drink-page/drink-page.com
 import { DrinkCardComponent } from './components/drink/drink-card/drink-card.component';
 import { DrinkChooseSheetComponent } from './components/drink/drink-choose-sheet/drink-choose-sheet.component';
 import { VolumeDrinkPipe } from './pipes/drink/volume-drink.pipe';
+import { FormSnackComponent } from './components/forms/form-snack/form-snack.component';
+import { SnacksAdminTableComponent } from './components/admin-tables/snacks-admin-table/snacks-admin-table.component';
+import { SnackPageComponent } from './components/snack/snack-page/snack-page.component';
+import { SnackCardComponent } from './components/snack/snack-card/snack-card.component';
+import { SnackChooseSheetComponent } from './components/snack/snack-choose-sheet/snack-choose-sheet.component';
 
 
 
@@ -108,6 +113,11 @@ import { VolumeDrinkPipe } from './pipes/drink/volume-drink.pipe';
     DrinkCardComponent,
     DrinkChooseSheetComponent,
     VolumeDrinkPipe,
+    FormSnackComponent,
+    SnacksAdminTableComponent,
+    SnackPageComponent,
+    SnackCardComponent,
+    SnackChooseSheetComponent,
   ],
     imports: [
         BrowserModule,
