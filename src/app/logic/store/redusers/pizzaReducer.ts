@@ -100,6 +100,12 @@ export const pizzaReducer = (state = InitialPizzaState, action: PizzaAction) => 
         snacks: action.payload,
       };
     }
+    case PizzaActionType.dessertLoaded: {
+      return {
+        ...state,
+        desserts: action.payload,
+      };
+    }
     default: {
       return state;
     }

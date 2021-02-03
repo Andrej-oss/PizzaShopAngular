@@ -3,14 +3,16 @@
   <form [formGroup]="authForm">
     <ng-template matStepLabel>Fill out your name</ng-template>
     <mat-form-field [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'">
-      <mat-label >Login</mat-label>
+      <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+        Login
+      </mat-label>
       <input matInput
              placeholder="Login"
              [formControl]="username" required>
     </mat-form-field>
     <mat-form-field appearance="fill"
                     [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'">
-      <mat-label [style]="themeObjectService.data.value.isDarkTheme ? blackStyle : whiteStyle">
+      <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
         Enter your password
       </mat-label>
       <input matInput

@@ -5,6 +5,7 @@ import {Ingredient} from '../../models/Ingredient';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
 import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
+import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
 
 @Component({
   selector: 'app-form-pizza-posting',
@@ -29,6 +30,7 @@ export class FormPizzaPostingComponent implements OnInit {
 
   constructor(private pizzaActionService: PizzaActionService,
               private pizzaService: PizzaService,
+              public themeObjectService: ThemeObjectService,
               private ingredientService: IngredientService) {
   }
 

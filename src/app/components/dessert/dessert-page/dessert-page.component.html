@@ -1,0 +1,5 @@
+<div class="dessert-page" *ngIf="desserts.length">
+  <div *ngFor="let dessert of desserts">
+    <app-dessert-card [dessert]="dessert"></app-dessert-card>
+  </div>
+</div>

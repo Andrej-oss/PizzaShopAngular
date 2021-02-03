@@ -8,6 +8,9 @@
   <div *ngIf="snackId !== 0">
     <img [src]="urlSnack+item.path" class="item-card-image">
   </div>
+  <div *ngIf="dessertId !== 0">
+    <img [src]="urlDessert+item.path" class="item-card-image">
+  </div>
   <div *ngIf="item">
     {{item.name}}
   </div>

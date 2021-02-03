@@ -1,9 +1,10 @@
-<div class="snack-sheet"
+<div class="drink-sheet"
      [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
   <div *ngFor="let drink of drinks">
-    <div *ngIf="themeObjectService.data.value.idChooseDrink === drink.id" class="snack-sheet-content">
-      <img [src]="url+drink.path" class="snack-card-image-content" style="height: 20%">
-      <div class="snack-sheet-content-text"
+    <div *ngIf="themeObjectService.data.value.idChooseDrink === drink.id"
+         class="drink-sheet-content">
+      <img [src]="url+drink.path" class="drink-card-image-content" style="height: 20%">
+      <div class="drink-sheet-content-text"
            [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black' : 'background-color: white;'">
         <h1>
           {{drink.name}}

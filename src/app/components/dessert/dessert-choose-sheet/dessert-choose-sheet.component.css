@@ -1,0 +1,21 @@
+.dessert-sheet{
+  width: 800px;
+
+}
+.dessert-card-image-content{
+  height: 20%;
+  margin: 10% 10% 10% 10%;
+  border-radius: 50%;
+}
+
+.dessert-sheet-content{
+  display: flex;
+  justify-content: space-around;
+}
+.dessert-sheet-content-text{
+  background-color: gainsboro;
+  width: 50%;
+}
+button:focus{
+  outline: 0;
+}

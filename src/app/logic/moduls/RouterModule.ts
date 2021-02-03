@@ -11,6 +11,7 @@ import {PizzaPageComponent} from '../../components/pizza/pizza-page/pizza-page.c
 import {PizzaCartPageComponent} from '../../components/pizza/pizza-cart-page/pizza-cart-page.component';
 import {DrinkPageComponent} from '../../components/drink/drink-page/drink-page.component';
 import {SnackPageComponent} from '../../components/snack/snack-page/snack-page.component';
+import {DessertPageComponent} from '../../components/dessert/dessert-page/dessert-page.component';
 
 export const routes: Routes = [
   {path: '', component: PizzaPageComponent},
@@ -23,5 +24,6 @@ export const routes: Routes = [
   {path: 'cart', component: PizzaCartPageComponent, canActivate: [UserGuardService]},
   {path: 'drinks', component: DrinkPageComponent},
   {path: 'snacks', component: SnackPageComponent},
+  {path: 'desserts', component: DessertPageComponent},
 ];
 

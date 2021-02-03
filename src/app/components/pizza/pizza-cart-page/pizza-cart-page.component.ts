@@ -2,13 +2,19 @@ import { Component, OnInit } from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Observable} from 'rxjs';
 import {Pizza} from '../../models/Pizza';
-import {AllPizzasSelector, DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {
+  AllPizzasSelector,
+  DessertSelector,
+  DrinksSelector,
+  SnacksSelector
+} from '../../../logic/store/selectors/PizzaSelector';
 import {Cart} from '../../models/Cart';
 import {selectCart, selectPrincipal} from '../../../logic/store/selectors/UserSelect';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {User} from '../../models/User';
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
+import {Dessert} from '../../models/Dessert';
 
 @Component({
   selector: 'app-pizza-cart-page',
@@ -21,6 +27,7 @@ export class PizzaCartPageComponent implements OnInit {
   principal: Observable<User> = this.store$.pipe(select(selectPrincipal));
   drinks: Observable<Drink[]> = this.store$.pipe(select(DrinksSelector));
   snacks: Observable<Snack[]> = this.store$.pipe(select(SnacksSelector));
+  desserts: Observable<Dessert[]> = this.store$.pipe(select(DessertSelector));
   constructor(private store$: Store,
               public themeObjectService: ThemeObjectService) { }
 

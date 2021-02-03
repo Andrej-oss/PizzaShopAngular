@@ -20,7 +20,8 @@
       <mat-slide-toggle (click)="onDark()">To Dark</mat-slide-toggle>
       <button mat-button>
       <span class="material-icons"
-            (mouseover)="showCart()"
+            (mouseleave)="hideCart(false)"
+            (mouseenter)="showCart(false)"
             (click)="onCartPage()"
             [matBadge]="themeSubjectService.data.value.sizeCart"
             matBadgePosition="before"
@@ -30,10 +31,15 @@
   </div>
 </div>
 <app-nav-bar></app-nav-bar>
-<div *ngIf="!isCartOpen && (cartElements | async).length !== 0">
-  <div class="header-content-buttons-cart" (mouseleave)="showCart()">
+<div *ngIf="isCartOpen && (cartElements | async).length !== 0" >
+  <div  [style]="themeSubjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'"
+    class="header-content-buttons-cart"
+        (mouseenter)="showCartNow(true)"
+        (mouseleave)="hideCart(false)">
         <app-pizza-cart-card [cartElements]="cartElements | async"
+                             [snacks]="snacks | async"
                              [drinks]="drinks | async"
+                             [desserts]="desserts | async"
                              [pizzas]="pizzas | async"></app-pizza-cart-card>
   </div>
 </div>

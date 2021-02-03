@@ -13,3 +13,4 @@ export const SizesPizzaSelector = createSelector(PizzaSelector, data => data.siz
 export const PromotionsSelector = createSelector(PizzaSelector, data => data.promotions);
 export const DrinksSelector = createSelector(PizzaSelector, data => data.drinks);
 export const SnacksSelector = createSelector(PizzaSelector, data => data.snacks);
+export const DessertSelector = createSelector(PizzaSelector, data => data.desserts);

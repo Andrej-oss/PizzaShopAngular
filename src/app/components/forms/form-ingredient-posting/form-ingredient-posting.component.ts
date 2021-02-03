@@ -3,6 +3,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../../models/Ingredient';
 import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
+import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
 
 @Component({
   selector: 'app-form-ingredient-posting',
@@ -19,6 +20,7 @@ export class FormIngredientPostingComponent implements OnInit {
   image: FormControl = new FormControl('', Validators.required);
   formData: FormData = new FormData();
   constructor(private ingredientService: IngredientService,
+              public themeObjectService: ThemeObjectService,
               private pizzaActionService: PizzaActionService) {
   }
 

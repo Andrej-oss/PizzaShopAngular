@@ -16,9 +16,6 @@
       </a>
       <button mat-button (click)="onOpenAvatarChange()">change avatar</button>
     </p>
-    <!--    <button (click)="showFiller = !showFiller" mat-raised-button style="width: 70%">-->
-    <!--      Toggle extra text-->
-    <!--    </button>-->
     <button mat-raised-button (click)="onUserUpdate()">
       Profile
     </button>
@@ -34,6 +31,9 @@
     <button mat-raised-button (click)="onDrinks()">
       Drinks
     </button>
+    <button mat-raised-button (click)="onDessert()">
+      Dessert
+    </button>
     <button mat-raised-button (click)="onSnacks()">
       Snacks
     </button>
@@ -46,18 +46,26 @@
   </div>
   <div *ngIf="isOpenPizzaOptions">
     <div class="example-sidenav-content">
-      <button mat-button (click)="onPizzaCreate()">Create new pizza</button>
+      <button mat-button (click)="onPizzaCreate()">
+        {{!isOpenPizzaCreator ? 'Create New Pizza': 'Hide pizza form'}}
+      </button>
       <app-pizza-admin-table></app-pizza-admin-table>
-      <div *ngIf="isOpenPizzaOptions && isOpenPizzaCreator">
-        <mat-accordion class="example-headers-align" style="padding: 10%">
-          <mat-expansion-panel [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
+      <div *ngIf="isOpenPizzaOptions && isOpenPizzaCreator"
+           [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
+        <mat-accordion class="example-headers-align"
+                       style="padding: 10%">
+          <mat-expansion-panel
+            [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'"
+            [expanded]="step === 0" (opened)="setStep(0)" hideToggle>
             <mat-expansion-panel-header>
-              <mat-panel-title>
+              <mat-panel-title
+                [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
                 Pizza
               </mat-panel-title>
-              <mat-panel-description>
+              <mat-panel-description
+                [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
                 Type your new pizza
-                <mat-icon>map</mat-icon>
+                <mat-icon>pizza</mat-icon>
               </mat-panel-description>
             </mat-expansion-panel-header>
             <app-form-pizza-posting></app-form-pizza-posting>
@@ -66,12 +74,16 @@
               <button mat-button color="primary" (click)="nextStep()">Next</button>
             </mat-action-row>
           </mat-expansion-panel>
-          <mat-expansion-panel [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
+          <mat-expansion-panel
+            [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'"
+            [expanded]="step === 1" (opened)="setStep(1)" hideToggle>
             <mat-expansion-panel-header>
-              <mat-panel-title>
+              <mat-panel-title
+                [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
                 Pizza Size
               </mat-panel-title>
-              <mat-panel-description>
+              <mat-panel-description
+                [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
                 Type your new Pizzas size
                 <mat-icon>date_range</mat-icon>
               </mat-panel-description>
@@ -105,7 +117,7 @@
   </div>
   <div *ngIf="isPromotionsOpen">
     <button mat-button (click)="onOpenPromoCreator()">
-      {{!isOpenIngredientCreator ? 'create new promotion' : 'hide promotion form'}}
+      {{!isPromotionCreator ? 'create new promotion' : 'hide promotion form'}}
     </button>
     <app-promotions-table></app-promotions-table>
     <div *ngIf="isOpenIngredientCreator">
@@ -114,7 +126,7 @@
   </div>
   <div *ngIf="isDrinksOpen">
     <button mat-button (click)="onOpenDrinkCreator()">
-      {{!isOpenIngredientCreator ? 'create new drink' : 'hide drink form'}}
+      {{!isOpenDrinkCreator ? 'create new drink' : 'hide drink form'}}
     </button>
     <p *ngIf="drinks && drinks.length">
       <app-drinks-table [drinks]="drinks"></app-drinks-table>
@@ -125,11 +137,20 @@
   </div>
   <div *ngIf="isOpenSnacks">
     <button mat-button (click)="onOpenSnackCreator()">
-      {{!isOpenIngredientCreator ? 'create new snack' : 'hide drink form'}}
+      {{!isOpenSnackCreator ? 'create new snack' : 'hide snack form'}}
     </button>
     <app-snacks-admin-table></app-snacks-admin-table>
     <p *ngIf="isOpenSnackCreator">
       <app-form-snack></app-form-snack>
+    </p>
+  </div>
+  <div *ngIf="isDessertOpen">
+    <button mat-button (click)="onOpenDessertCreator()">
+      {{!isOpenDessertCreator ? 'create new dessert' : 'hide dessert form'}}
+    </button>
+    <app-dessert-table></app-dessert-table>
+    <p *ngIf="isOpenDessertCreator">
+      <app-form-dessert></app-form-dessert>
     </p>
   </div>
 </div>

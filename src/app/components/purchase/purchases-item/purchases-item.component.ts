@@ -4,12 +4,13 @@ import {select, Store} from '@ngrx/store';
 import { Subscription} from 'rxjs';
 import {Pizza} from '../../models/Pizza';
 import {
-  AllPizzasSelector,
+  AllPizzasSelector, DessertSelector,
   DrinksSelector,
   SnacksSelector
 } from '../../../logic/store/selectors/PizzaSelector';
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
+import {Dessert} from '../../models/Dessert';
 
 @Component({
   selector: 'app-purchases-item',
@@ -17,19 +18,19 @@ import {Snack} from '../../models/Snack';
   styleUrls: ['./purchases-item.component.css']
 })
 export class PurchasesItemComponent implements OnInit {
-  @Input()
-  pizzaId: number;
-  @Input()
-  drinkId: number;
-  @Input()
-  snackId: number;
+  @Input() pizzaId: number;
+  @Input() drinkId: number;
+  @Input() snackId: number;
+  @Input() dessertId: number;
   url = 'http://localhost:8080/pizza/image/';
   urlDrink = 'http://localhost:8080/drink/';
   urlSnack = 'http://localhost:8080/snack/';
+  urlDessert = 'http://localhost:8080/dessert/';
   pizzas: Pizza[];
   drinks: Drink[];
   snacks: Snack[];
-  item: Pizza | Drink | Snack;
+  desserts: Dessert[];
+  item: Pizza | Drink | Snack | Dessert;
   sub: Subscription;
   constructor(public themeObjectService: ThemeObjectService,
               private store$: Store) { }
@@ -41,6 +42,8 @@ export class PurchasesItemComponent implements OnInit {
       .subscribe(data => this.drinks = data);
     this.sub = this.store$.pipe(select(SnacksSelector))
       .subscribe(data => this.snacks = data);
+    this.sub = this.store$.pipe(select(DessertSelector)).
+      subscribe(data => this.desserts = data);
     this.findItem();
   }
   findItem(): void{
@@ -52,6 +55,9 @@ export class PurchasesItemComponent implements OnInit {
     }
     else if (this.snackId !== 0){
       this.item = this.snacks.find(value => value.id === +this.snackId);
+    }
+    else if (this.dessertId !== 0){
+      this.item = this.desserts.find(value => this.dessertId === value.id);
     }
   }
 }

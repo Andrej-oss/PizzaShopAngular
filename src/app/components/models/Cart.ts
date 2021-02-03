@@ -4,6 +4,7 @@ export interface Cart {
   pizzaId?: number;
   drinkId?: number;
   snackId?: number;
+  dessertId?: number;
   price: number;
   amount: number;
   userId?: number;

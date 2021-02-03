@@ -8,6 +8,7 @@ import {IngredientService} from '../../../logic/services/ingredientDao/ingredien
 import {SizeService} from '../../../logic/services/sizeDao/size.service';
 import {Size} from '../../models/Size';
 import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
+import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
 
 @Component({
   selector: 'app-form-size-pizza-post',
@@ -34,6 +35,7 @@ export class FormSizePizzaPostComponent implements OnInit {
   weight: FormControl;
   constructor(private ingredientService: IngredientService,
               private pizzaService: PizzaService,
+              public themeObjectService: ThemeObjectService,
               private pizzaActionService: PizzaActionService,
               private sizeService: SizeService) {
   }

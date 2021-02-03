@@ -41,11 +41,12 @@ export class AdminPageComponent implements OnInit {
   isDrinksOpen: boolean;
   isOpenDrinkCreator: boolean;
   isOpenSnackCreator: boolean;
-
+  isDessertOpen: boolean;
+  isOpenDessertCreator: boolean;
   constructor(private userService: UserService,
               private pizzaActionService: PizzaActionService,
               private userActionsService: UserActionsService,
-              private themeObjectService: ThemeObjectService,
+              public themeObjectService: ThemeObjectService,
               private store$: Store) {
   }
 
@@ -82,6 +83,8 @@ export class AdminPageComponent implements OnInit {
     this.isOpenAllPurchases = false;
     this.isPromotionsOpen = false;
     this.isDrinksOpen = false;
+    this.isOpenSnacks = false;
+    this.isDessertOpen = false;
   }
 
   onUserUpdate(): void {
@@ -93,6 +96,7 @@ export class AdminPageComponent implements OnInit {
     this.isPromotionsOpen = false;
     this.isOpenSnacks = false;
     this.isDrinksOpen = false;
+    this.isDessertOpen = false;
   }
 
   onPizzaUpdate(): void {
@@ -104,6 +108,7 @@ export class AdminPageComponent implements OnInit {
     this.isPromotionsOpen = false;
     this.isDrinksOpen = false;
     this.isOpenSnacks = false;
+    this.isDessertOpen = false;
   }
 
   onIngredientPage(): void {
@@ -115,6 +120,7 @@ export class AdminPageComponent implements OnInit {
     this.isPromotionsOpen = false;
     this.isDrinksOpen = false;
     this.isOpenSnacks = false;
+    this.isDessertOpen = false;
   }
 
   onOpenIngredientCreator(): void {
@@ -131,6 +137,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenIngredientUpdate = false;
     this.isDrinksOpen = false;
     this.isOpenSnacks = false;
+    this.isDessertOpen = false;
   }
 
   uploadFile($event: Event): void {
@@ -161,6 +168,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenIngredientUpdate = false;
     this.isDrinksOpen = false;
     this.isOpenSnacks = false;
+    this.isDessertOpen = false;
   }
 
   onOpenPromoCreator(): void {
@@ -176,6 +184,7 @@ export class AdminPageComponent implements OnInit {
     this.isOpenUsersAdministrating = false;
     this.isOpenIngredientUpdate = false;
     this.isOpenSnacks = false;
+    this.isDessertOpen = false;
   }
 
   onOpenDrinkCreator(): void {
@@ -191,9 +200,26 @@ export class AdminPageComponent implements OnInit {
     this.isOpenPizzaOptions = false;
     this.isOpenUsersAdministrating = false;
     this.isOpenIngredientUpdate = false;
+    this.isDessertOpen = false;
   }
 
   onOpenSnackCreator(): void{
     this.isOpenSnackCreator = !this.isOpenSnackCreator;
+  }
+
+  onDessert(): void{
+    this.isPromotionsOpen = false;
+    this.isOpenAllPurchases = false;
+    this.isOpenUserUpdate = false;
+    this.isOpenPizzaOptions = false;
+    this.isOpenUsersAdministrating = false;
+    this.isOpenIngredientUpdate = false;
+    this.isDrinksOpen = false;
+    this.isOpenSnacks = false;
+    this.isDessertOpen = true;
+  }
+
+  onOpenDessertCreator(): void{
+    this.isOpenDessertCreator = !this.isOpenDessertCreator;
   }
 }

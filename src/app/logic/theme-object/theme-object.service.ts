@@ -12,6 +12,7 @@ export class ThemeObjectService {
     idChoosePizza: 0,
     idChooseDrink: 0,
     idChooseSnack: 0,
+    idChooseDessert: 0,
     ingredients: [],
     price: 0,
     userName: '',

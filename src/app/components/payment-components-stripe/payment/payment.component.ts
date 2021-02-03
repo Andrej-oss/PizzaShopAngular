@@ -21,6 +21,7 @@ export class PaymentComponent implements OnInit {
   @Input() allCart;
   @Input() drinkId;
   @Input() snackId;
+  @Input() dessertId;
   error: any;
   elements: StripeElements;
   card: StripeCardElement;
@@ -93,6 +94,7 @@ public StripeControl = new FormGroup({
     modalRef.componentInstance.pizzaId = this.pizzaId;
     modalRef.componentInstance.drinkId = this.drinkId;
     modalRef.componentInstance.snackId = this.snackId;
+    modalRef.componentInstance.dessertId = this.dessertId;
     modalRef.componentInstance.allCart = this.allCart;
   }
 }

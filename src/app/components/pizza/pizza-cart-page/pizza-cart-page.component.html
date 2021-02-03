@@ -1,4 +1,5 @@
-<div *ngIf="(cartElements | async)?.length"     [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
+<div *ngIf="(cartElements | async)?.length"
+     [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
   <mat-horizontal-stepper (animationDone)="onPayment()">
     <mat-step label="Cart" state="cart" (click)="onPayment()">
       <div class="pizza-cart-page"
@@ -9,6 +10,7 @@
         <app-pizza-cart-card [pizzas]="pizzas | async"
                              [drinks]="drinks | async"
                              [snacks]="snacks | async"
+                             [desserts]="desserts | async"
                              [cartElements]="cartElements | async">
 
         </app-pizza-cart-card>

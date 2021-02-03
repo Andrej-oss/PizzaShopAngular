@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import {Store} from '@ngrx/store';
 import {
-  CommentDeleteInState, CommentUpdateInState, DrinksLoaded,
+  CommentDeleteInState, CommentUpdateInState, DessertLoaded, DrinksLoaded,
   IngredientsLoad, PizzaCommentSaveLoad, PizzaCommentsLoad, PizzaDeleteLoaded, PizzaSaveLoaded, PizzaSizesLoaded,
   PizzasLoad, PromotionsLoaded, RatingLoad,
   SizePizzaLoad, SnacksLoaded
@@ -18,6 +18,7 @@ import {PromotionService} from '../../../services/PromotionDao/promotion.service
 import {DrinkService} from '../../../services/drinkDao/drink.service';
 import {SnackService} from '../../../services/snackDao/snack.service';
 import {Observable} from "rxjs";
+import {DessertService} from "../../../services/dessertDao/dessert.service";
 
 @Injectable({
   providedIn: 'root'
@@ -33,6 +34,7 @@ export class PizzaActionService {
               private commentService: CommentService,
               private drinkService: DrinkService,
               private snackService: SnackService,
+              private dessertService: DessertService,
               private store: Store) { }
   getAllPizzas(): | {}{
     return this.pizzaService.getAllPizza()
@@ -148,6 +150,22 @@ export class PizzaActionService {
   deleteSnack(id: number): | {}{
     return this.snackService.deleteSnack(id)
       .subscribe(data => this.store.dispatch(new SnacksLoaded(data)));
+  }
+  saveDessert(formData: FormData, append: void): | {}{
+    return this.dessertService.saveDessert(formData, append)
+      .subscribe(data => this.store.dispatch(new DessertLoaded(data)));
+  }
+  getAllDessert(): | {}{
+    return this.dessertService.getAllDessert()
+      .subscribe(data => this.store.dispatch(new DessertLoaded(data)));
+  }
+  updateDessert(id: number, formData: FormData, append: void): | {}{
+    return this.dessertService.updateDessert(id, formData, append)
+      .subscribe(data => this.store.dispatch(new DessertLoaded(data)));
+  }
+  deleteDessert(id: number): | {}{
+    return this.dessertService.deleteDessert(id)
+      .subscribe(data => this.store.dispatch(new DessertLoaded(data)));
   }
 }
 

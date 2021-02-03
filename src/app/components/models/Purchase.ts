@@ -7,6 +7,7 @@ export interface Purchase {
   pizzaId?: number;
   drinkId?: number;
   snackId?: number;
+  dessertId?: number;
   date?: any;
   amount?: number;
 }

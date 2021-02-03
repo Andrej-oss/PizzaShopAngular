@@ -6,6 +6,7 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {CartService} from '../../../logic/services/cartDao/cart.service';
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
+import {Dessert} from "../../models/Dessert";
 
 
 @Component({
@@ -14,23 +15,19 @@ import {Snack} from '../../models/Snack';
   styleUrls: ['./pizza-card-cart-item.component.css']
 })
 export class PizzaCardCartItemComponent implements OnInit {
-  @Input()
-  cartElement: Cart;
-  @Input()
-  pizza: Pizza;
-  @Input()
-  totalPrice: number;
-  @Input()
-  drink: Drink;
-  @Input()
-  snack: Snack;
+  @Input() cartElement: Cart;
+  @Input() pizza: Pizza;
+  @Input() totalPrice: number;
+  @Input() drink: Drink;
+  @Input() snack: Snack;
+  @Input() dessert: Dessert;
   url = 'http://localhost:8080/pizza/image/';
   count: number;
   price: number;
   cart: Cart;
   urlDrink = 'http://localhost:8080/drink/';
   urlSnack = 'http://localhost:8080/snack/';
-
+  urlDessert = 'http://localhost:8080/dessert/';
   constructor(private themeObjectService: ThemeObjectService,
               private userService: UserActionsService,
               private cartService: CartService) {
@@ -82,6 +79,18 @@ export class PizzaCardCartItemComponent implements OnInit {
         this.price = this.price + this.snack.price;
         this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.snack.price;
       }
+      else if (this.dessert) {
+        this.cart = {
+          id: this.cartElement.id,
+          description: this.cartElement.description,
+          dessertId: this.cartElement.dessertId,
+          price: this.cartElement.price + this.dessert.price,
+          amount: this.cartElement.amount + 1,
+        };
+        this.cartService.addAmountPizzaCart(this.cartElement.id, this.dessert.price).subscribe(data => console.log(data));
+        this.price = this.price + this.dessert.price;
+        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.dessert.price;
+      }
       this.userService.incAmountPizzaCartInStore(this.cartElement.id, this.cart);
       this.count = this.count + 1;
     } catch (e) {
@@ -128,6 +137,18 @@ export class PizzaCardCartItemComponent implements OnInit {
         this.cartService.removeAmountPizzaCart(this.cartElement.id, this.snack.price).subscribe(data => console.log(data));
         this.price = this.price - this.snack.price;
         this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.snack.price;
+      }
+      else if (this.dessert) {
+        this.cart = {
+          id: this.cartElement.id,
+          description: this.cartElement.description,
+          dessertId: this.cartElement.dessertId,
+          price: this.cartElement.price - this.dessert.price,
+          amount: this.cartElement.amount - 1,
+        };
+        this.cartService.removeAmountPizzaCart(this.cartElement.id, this.dessert.price).subscribe(data => console.log(data));
+        this.price = this.price - this.dessert.price;
+        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.dessert.price;
       }
       this.userService.decAmountPizzaCartInStore(this.cartElement.id, this.cart);
       this.count = this.count - 1;

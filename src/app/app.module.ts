@@ -64,6 +64,11 @@ import { SnacksAdminTableComponent } from './components/admin-tables/snacks-admi
 import { SnackPageComponent } from './components/snack/snack-page/snack-page.component';
 import { SnackCardComponent } from './components/snack/snack-card/snack-card.component';
 import { SnackChooseSheetComponent } from './components/snack/snack-choose-sheet/snack-choose-sheet.component';
+import { DessertTableComponent } from './components/admin-tables/dessert-table/dessert-table.component';
+import { FormDessertComponent } from './components/forms/form-dessert/form-dessert.component';
+import { DessertCardComponent } from './components/dessert/dessert-card/dessert-card.component';
+import {DessertPageComponent} from './components/dessert/dessert-page/dessert-page.component';
+import { DessertChooseSheetComponent } from './components/dessert/dessert-choose-sheet/dessert-choose-sheet.component';
 
 
 
@@ -118,6 +123,11 @@ import { SnackChooseSheetComponent } from './components/snack/snack-choose-sheet
     SnackPageComponent,
     SnackCardComponent,
     SnackChooseSheetComponent,
+    DessertTableComponent,
+    FormDessertComponent,
+    DessertCardComponent,
+    DessertPageComponent,
+    DessertChooseSheetComponent,
   ],
     imports: [
         BrowserModule,

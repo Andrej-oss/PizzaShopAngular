@@ -7,13 +7,17 @@
     <form [formGroup]="firstFormGroup" [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'">
       <ng-template matStepLabel style="color: white;">Fill out your name</ng-template>
       <mat-form-field style="width: 100%">
-        <mat-label>Login</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Login
+        </mat-label>
         <input matInput placeholder="Login"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                [formControl]="login" required>
       </mat-form-field>
         <mat-form-field appearance="fill" style="width: 100%">
-          <mat-label>Enter your password</mat-label>
+          <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+            Enter your password
+          </mat-label>
           <input matInput [type]="hide ? 'password' : 'text'"
                  [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                  [formControl]="password">
@@ -23,7 +27,9 @@
           </button>
         </mat-form-field>
       <mat-form-field appearance="fill" style="width: 100%">
-        <mat-label>Confirm your password</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Confirm your password
+        </mat-label>
         <input matInput [type]="hide ? 'password' : 'text'"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                [formControl]="confirmPassword">
@@ -43,13 +49,17 @@
     <form [formGroup]="secondFormGroup">
       <ng-template matStepLabel>Fill out your address</ng-template>
       <mat-form-field style="width: 100%">
-        <mat-label>Name</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Name
+        </mat-label>
         <input matInput placeholder="Name"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                [formControl]="name" required>
       </mat-form-field>
       <mat-form-field style="width: 100%">
-        <mat-label>Last Name</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Last Name
+        </mat-label>
         <input matInput placeholder="Last Name"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                [formControl]="lastName" required>
@@ -62,27 +72,35 @@
                required>
       </mat-form-field>
       <mat-form-field style="width: 100%">
-        <mat-label>Address</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Address
+        </mat-label>
         <input matInput [formControl]="address"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                placeholder="Ex. 1 Main St"
                required>
       </mat-form-field>
       <mat-form-field style="width: 100%">
-        <mat-label>Post Code</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Post Code
+        </mat-label>
         <input matInput [formControl]="postCode" placeholder="80100"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                required>
       </mat-form-field>
       <mat-form-field style="width: 100%">
-        <mat-label>Email</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Email
+        </mat-label>
         <input matInput [formControl]="email"
                placeholder="Example@gmail.com"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                required>
       </mat-form-field>
       <mat-form-field appearance="fill" style="width: 100%">
-        <mat-label>Phone number</mat-label>
+        <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
+          Phone number
+        </mat-label>
         <input matInput [formControl]="phone"
                [style]="themeObjectService.data.value.isDarkTheme ? 'width: 100%;box-shadow: 0 1px 0;' :'width: 100%'"
                placeholder="866-457-4757"

@@ -6,6 +6,7 @@ import {Comment} from './Comment';
 import {Promotion} from './Promotion';
 import {Drink} from './Drink';
 import {Snack} from './Snack';
+import {Dessert} from "./Dessert";
 
 export interface DefaultPizzaState {
   pizzas: Pizza[];
@@ -17,6 +18,7 @@ export interface DefaultPizzaState {
   promotions: Promotion[];
   drinks: Drink[];
   snacks: Snack[];
+  desserts: Dessert[];
 }
 
 export const InitialPizzaState: DefaultPizzaState = {
@@ -29,5 +31,6 @@ export const InitialPizzaState: DefaultPizzaState = {
   promotions: [],
   drinks: [],
   snacks: [],
+  desserts: [],
 };
 

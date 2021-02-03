@@ -24,6 +24,7 @@ export class PaymentModalComponent implements OnInit {
   @Input() allCart;
   @Input() drinkId;
   @Input() snackId;
+  @Input() dessertId;
   purchase: Purchase;
   constructor(private paymentService: PaymentService,
               private userActionsService: UserActionsService,
@@ -47,6 +48,7 @@ export class PaymentModalComponent implements OnInit {
         pizzaId: this.pizzaId,
         drinkId: this.drinkId,
         snackId: this.snackId,
+        dessertId: this.dessertId,
         price: this.price,
         userId: this.themeObjectService.data.value.userId,
       };

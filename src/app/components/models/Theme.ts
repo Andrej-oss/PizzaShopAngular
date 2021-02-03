@@ -3,6 +3,7 @@ export interface Theme {
   isAuthLoad: boolean;
   idChoosePizza: number;
   idChooseDrink: number;
+  idChooseDessert: number;
   idChooseSnack: number;
   ingredients: number[];
   price: number;

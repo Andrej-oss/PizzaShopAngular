@@ -14,6 +14,7 @@ import {select, Store} from '@ngrx/store';
 import {DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
+import {Dessert} from "../../models/Dessert";
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -34,6 +35,8 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   whiteStyle: 'color: black';
   drinks: Drink[];
   snacks: Snack[];
+  desserts: Dessert[];
+
   constructor(private userService: UserService,
               private router: Router,
               private store$: Store,
@@ -65,12 +68,9 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     this.formCheck();
     this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
     this.store$.pipe(select(SnacksSelector)).subscribe(data => this.snacks = data);
-    if (!this.drinks.length){
-      this.pizzaActionService.getDrinks();
-    }
-    if (!this.snacks.length){
-      this.pizzaActionService.getAllSnacks();
-    }
+    this.pizzaActionService.getDrinks();
+    this.pizzaActionService.getAllSnacks();
+    this.pizzaActionService.getAllDessert();
   }
 
   onAuthenticate(authForm: FormGroup): void {

@@ -9,8 +9,9 @@ import {Cart} from '../../models/Cart';
 import {UserService} from '../../../logic/services/userDao/user.service';
 import {options} from '../../../constants/Constants';
 import {Drink} from '../../models/Drink';
-import {DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {DessertSelector, DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {Snack} from '../../models/Snack';
+import {Dessert} from "../../models/Dessert";
 
 @Component({
   selector: 'app-purchase',
@@ -23,6 +24,7 @@ export class PurchaseComponent implements OnInit {
   options: { name: string, value: string }[];
   drinks: Drink[];
   snacks: Snack[];
+  desserts: Dessert[];
   purchases$: Observable<Purchase[]> = this.store$.pipe(select(selectPurchases));
   displayedColumns: string[] = ['position', 'name', 'description', 'size', 'count', 'price', 'date', 'option'];
   blackTheme = 'purchase-item-black';
@@ -43,6 +45,7 @@ export class PurchaseComponent implements OnInit {
   ngOnInit(): void {
     this.isUser = this.userService.isUser();
     this.options = options;
+    this.store$.pipe(select(DessertSelector)).subscribe(data => this.desserts = data);
     this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
     this.store$.pipe(select(SnacksSelector)).subscribe(data => this.snacks = data);
   }
@@ -53,6 +56,7 @@ export class PurchaseComponent implements OnInit {
 
   saveInCart(id: number,
              drinkIdItem: number,
+             dessertIdItem: number,
              descriptionPurchase: string,
              name: string,
              amountItem: number,
@@ -77,6 +81,16 @@ export class PurchaseComponent implements OnInit {
         size: name,
       };
     }
+    if (dessertIdItem !== 0) {
+      this.cart = {
+        description: descriptionPurchase,
+        dessertId: dessertIdItem,
+        amount: amountItem,
+        price: priceItem,
+        userId: this.themeObjectService.data.value.userId,
+        size: name,
+      };
+    }
     console.log(this.cart);
     this.themeObjectService.data.value.message = 'Item added to cart';
     this.userActionsService.saveElementInCart(this.cart);
@@ -87,8 +101,13 @@ export class PurchaseComponent implements OnInit {
     this.userActionsService.getAllPurchases(0, optionsArray[0], optionsArray[1]);
   }
 
-  getVolume(path: string): string{
-    debugger;
-    return path.match(/[0-9]/g).join('');
+  findDessertVolume(dessertId: number): string{
+    const dessert = this.desserts.find(value => dessertId === value.id);
+    return dessert.volume;
+  }
+
+  findSnackVolume(snackId: number): string{
+    const snack = this.snacks.find(value => snackId === value.id);
+    return snack.volume ;
   }
 }

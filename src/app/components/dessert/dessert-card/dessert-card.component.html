@@ -1,0 +1,17 @@
+<div class="dessert-card">
+  <img [src]="url+dessert.path" class="dessert-card-image">
+  <div class="pizza-card-text">
+    <h2 style="text-align: center">
+      {{dessert.name}}
+    </h2>
+  </div>
+  <div class="drink-card-price">
+    <h2>
+      {{dessert.price}}
+    </h2>
+    <button mat-button (click)="onChooseDrink(dessert.id)" >choose</button>
+  </div>
+</div>
+<router-outlet></router-outlet>
+
+
