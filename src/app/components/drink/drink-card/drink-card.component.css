@@ -1,7 +1,6 @@
 .drink-card{
-  border: 1px solid black;
-  max-width: 300px;
-  max-height: 500px;
+  width: 300px;
+  height: 500px;
   border-radius: 5px;
   font-family: "Comic Sans MS";
 }
@@ -11,6 +10,7 @@
   margin: 10% 10% 10% 10%;
   left: 25%;
   transition: 1000ms;
+  cursor: pointer;
 }
 .drink-card-text{
   margin: 5% 5% 5% 5%;

@@ -4,6 +4,8 @@ import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {Router} from '@angular/router';
 import {DrinkChooseSheetComponent} from '../drink-choose-sheet/drink-choose-sheet.component';
+import {Cart} from '../../models/Cart';
+import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 
 @Component({
   selector: 'app-drink-card',
@@ -13,9 +15,10 @@ import {DrinkChooseSheetComponent} from '../drink-choose-sheet/drink-choose-shee
 export class DrinkCardComponent implements OnInit {
   @Input()
   drink: Drink;
+  cart: Cart;
   url = 'http://localhost:8080/drink/';
   constructor(private bottomSheet: MatBottomSheet,
-              private router: Router,
+              private userActionsService: UserActionsService,
               public themeObjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
@@ -24,5 +27,18 @@ export class DrinkCardComponent implements OnInit {
   onChooseDrink(id: number): void{
     this.themeObjectService.data.value.idChooseDrink = id;
     this.bottomSheet.open(DrinkChooseSheetComponent);
+  }
+
+  onToCartDrink(drink: Drink): void{
+    this.cart = {
+      description: drink.name,
+      drinkId: drink.id,
+      amount: 1,
+      price: drink.price,
+      userId: this.themeObjectService.data.value.userId,
+      volume: drink.volume,
+    };
+    this.themeObjectService.data.value.message = 'Drink added to cart';
+    this.userActionsService.saveElementInCart(this.cart);
   }
 }

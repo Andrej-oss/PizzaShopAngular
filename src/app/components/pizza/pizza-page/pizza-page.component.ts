@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {Pizza} from '../../models/Pizza';
 import {select, Store} from '@ngrx/store';
 import {Observable, Subscription} from 'rxjs';
@@ -15,6 +15,8 @@ import {Promotion} from '../../models/Promotion';
   styleUrls: ['./pizza-page.component.css']
 })
 export class PizzaPageComponent implements OnInit {
+  @Input()
+  count: number;
   pizzas: Pizza[];
   sub: Subscription;
   avatars: Avatar[];

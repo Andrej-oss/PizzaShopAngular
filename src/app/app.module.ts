@@ -69,6 +69,7 @@ import { FormDessertComponent } from './components/forms/form-dessert/form-desse
 import { DessertCardComponent } from './components/dessert/dessert-card/dessert-card.component';
 import {DessertPageComponent} from './components/dessert/dessert-page/dessert-page.component';
 import { DessertChooseSheetComponent } from './components/dessert/dessert-choose-sheet/dessert-choose-sheet.component';
+import { HomePageComponent } from './components/home-page/home-page.component';
 
 
 
@@ -128,6 +129,7 @@ import { DessertChooseSheetComponent } from './components/dessert/dessert-choose
     DessertCardComponent,
     DessertPageComponent,
     DessertChooseSheetComponent,
+    HomePageComponent,
   ],
     imports: [
         BrowserModule,

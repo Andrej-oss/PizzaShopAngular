@@ -29,7 +29,7 @@ export class PizzaAdminTableComponent implements OnInit {
   ngOnInit(): void {
   }
   getRating(rating: Rating[]): number{
-    return rating.length > 0 ? rating
+    return rating && rating.length > 0 ? rating
       .reduce((previousValue, currentValue) => previousValue + currentValue.value, 0) / rating.length
       : 0;
   }

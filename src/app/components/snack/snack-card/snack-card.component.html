@@ -1,5 +1,5 @@
 <div class="snack-card">
-  <img [src]="url+snack.path" class="snack-card-image">
+  <img [src]="url+snack.path" class="snack-card-image" (click)="onChooseSnack(snack.id)">
   <div class="snack-card-text">
     <h2 style="text-align: center">
       {{snack.name}}
@@ -13,7 +13,9 @@
       {{snack.price}}
     </h2>
     <div style="left: -70%">
-      <button mat-button (click)="onChooseSnack(snack.id)">choose</button>
+      <button mat-button
+              [disabled]="!themeObjectService.data.value.userName.length"
+              (click)="onToCart(snack)">to Cart</button>
     </div>
   </div>
 </div>

@@ -12,9 +12,11 @@ import {PizzaCartPageComponent} from '../../components/pizza/pizza-cart-page/piz
 import {DrinkPageComponent} from '../../components/drink/drink-page/drink-page.component';
 import {SnackPageComponent} from '../../components/snack/snack-page/snack-page.component';
 import {DessertPageComponent} from '../../components/dessert/dessert-page/dessert-page.component';
+import {HomePageComponent} from '../../components/home-page/home-page.component';
 
 export const routes: Routes = [
-  {path: '', component: PizzaPageComponent},
+  {path: '', component: HomePageComponent},
+  {path: 'pizza', component: PizzaPageComponent},
   {path: 'ingredient_post', component: FormIngredientPostingComponent},
   {path: 'pizza_post', component: FormPizzaPostingComponent},
   {path: 'authenticate', component: FormUserAuthenticationComponent},

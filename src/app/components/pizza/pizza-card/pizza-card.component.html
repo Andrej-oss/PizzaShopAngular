@@ -1,5 +1,7 @@
 <div class="pizza-card">
-  <img [src]="url+pizza.path" class="pizza-card-image">
+  <img [src]="url+pizza.path"
+       class="pizza-card-image"
+       (click)="onChoosePizza(pizza.id)">
   <div class="pizza-card-text">
     <h2>
       {{pizza.name}}

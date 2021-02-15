@@ -3,7 +3,10 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {Ingredient} from '../../models/Ingredient';
 import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
-import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {Observable} from 'rxjs';
+import {select, Store} from '@ngrx/store';
+import {IngredientsSelector} from '../../../logic/store/selectors/PizzaSelector';
 
 @Component({
   selector: 'app-form-ingredient-posting',
@@ -13,13 +16,14 @@ import {ThemeObjectService} from "../../../logic/theme-object/theme-object.servi
 export class FormIngredientPostingComponent implements OnInit {
   @Input()
   ingredient: Ingredient;
-  ingredients: Ingredient[];
+  ingredients: Observable<Ingredient[]> = this.store$.pipe(select(IngredientsSelector));
   ingredientFormGroup: FormGroup;
   name: FormControl;
   price: FormControl;
   image: FormControl = new FormControl('', Validators.required);
   formData: FormData = new FormData();
   constructor(private ingredientService: IngredientService,
+              private store$: Store,
               public themeObjectService: ThemeObjectService,
               private pizzaActionService: PizzaActionService) {
   }
@@ -35,8 +39,8 @@ export class FormIngredientPostingComponent implements OnInit {
   saveIngredient(ingredientFormGroup: FormGroup): void{
     this.formData.append('name', ingredientFormGroup.controls.name.value);
     this.formData.append('price', ingredientFormGroup.controls.price.value);
-    this.ingredientService.saveIngredient(this.formData,
-      this.formData.append('image', ingredientFormGroup.controls.image.value)).subscribe(data => console.log(data));
+    this.pizzaActionService.saveIngredient(this.formData,
+      this.formData.append('image', ingredientFormGroup.controls.image.value));
     this.ingredientFormGroup.reset();
     this.clearFormData();
   }

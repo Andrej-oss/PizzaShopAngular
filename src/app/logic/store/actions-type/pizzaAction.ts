@@ -7,7 +7,7 @@ import {Comment} from '../../../components/models/Comment';
 import {Promotion} from '../../../components/models/Promotion';
 import {Drink} from '../../../components/models/Drink';
 import {Snack} from '../../../components/models/Snack';
-import {Dessert} from "../../../components/models/Dessert";
+import {Dessert} from '../../../components/models/Dessert';
 
 export enum PizzaActionType {
   pizzaAllLoaded = '[PIZZA] all loaded',

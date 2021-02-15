@@ -42,6 +42,10 @@ export class PizzaActionService {
         this.store.dispatch(new PizzasLoad(data));
       });
   }
+  savePizza(formData: FormData, append: void): | {}{
+    return this.pizzaService.savePizza(formData, append)
+      .subscribe(data => this.store.dispatch(new PizzasLoad(data)));
+  }
   updatePizza(id: number, formData: FormData, append: void): |{}{
     return this.pizzaService.upDatePizza(id, formData, append)
       .subscribe(data => this.store.dispatch(new PizzaSaveLoaded(data)));
@@ -49,6 +53,10 @@ export class PizzaActionService {
   deletePizza(id: number): | {}{
     return this.pizzaService.deletePizza(id)
       .subscribe(data => this.store.dispatch(new PizzaDeleteLoaded(data)));
+  }
+  saveIngredient(formData: FormData, append: void): | {}{
+    return this.ingredientService.saveIngredient(formData, append)
+      .subscribe(data => this.store.dispatch(new IngredientsLoad(data)));
   }
   getIngredients(): | {}{
     return this.ingredientService.getAllIngredients()

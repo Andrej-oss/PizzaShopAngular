@@ -72,5 +72,8 @@
     </form>
   </mat-step>
 </mat-vertical-stepper>
-
+<div *ngIf="pizza">
+  <h1>{{pizza.name}} sizes</h1>
+  <app-pizza-size-admin-table [pizzaName]="pizza.name"></app-pizza-size-admin-table>
+</div>
 

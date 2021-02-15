@@ -7,8 +7,11 @@ import {PizzaService} from '../../../logic/services/pizzaDao/pizza.service';
 import {IngredientService} from '../../../logic/services/ingredientDao/ingredient.service';
 import {SizeService} from '../../../logic/services/sizeDao/size.service';
 import {Size} from '../../models/Size';
-import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
-import {ThemeObjectService} from "../../../logic/theme-object/theme-object.service";
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
+import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {select, Store} from '@ngrx/store';
+import {Observable} from 'rxjs';
+import {AllPizzasSelector} from '../../../logic/store/selectors/PizzaSelector';
 
 @Component({
   selector: 'app-form-size-pizza-post',
@@ -22,7 +25,7 @@ export class FormSizePizzaPostComponent implements OnInit {
   pizzaName: string;
   url = 'http://localhost:8080/pizza/image/';
   sizes = sizes;
-  pizzas: Pizza[];
+  pizzas: Observable<Pizza[]> = this.store$.pipe(select(AllPizzasSelector));
   ingredients: Ingredient[];
   arrayIngredients: number[] = [];
   pizzaSizeForm: FormGroup;
@@ -35,18 +38,19 @@ export class FormSizePizzaPostComponent implements OnInit {
   weight: FormControl;
   constructor(private ingredientService: IngredientService,
               private pizzaService: PizzaService,
+              private store$: Store,
               public themeObjectService: ThemeObjectService,
               private pizzaActionService: PizzaActionService,
               private sizeService: SizeService) {
   }
 
   ngOnInit(): void {
-    this.pizzaService.getAllPizza().subscribe(data => this.pizzas = data);
+    this.pizzaActionService.getAllPizzas();
     this.ingredientService.getAllIngredients().subscribe(data => this.ingredients = data);
     this.pizzaSizeForm = new FormGroup({
-      sizePizza: this.sizePizza  = new FormControl(this.size ? this.size.size : '', Validators.required),
+      sizePizza: this.sizePizza  = new FormControl(this.size ? this.size.size : ''),
       priceSize: this.priceSize = new FormControl(this.size ? this.size.price : '', Validators.required),
-      pizzaId: this.pizzaId = new FormControl(this.size ? this.size.pizza_id : '', Validators.required),
+      pizzaId: this.pizzaId = new FormControl(this.size ? this.size.pizza_id : ''),
       diameter: this.diameter = new FormControl(this.size ? this.size.diameter : '', Validators.required),
       weight: this.weight = new FormControl(this.size ? this.size.weight : '', Validators.required),
       file: this.file

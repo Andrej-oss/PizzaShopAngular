@@ -15,10 +15,9 @@
     <mat-label [style]="themeObjectService.data.value.isDarkTheme ? 'color: white' : 'color: black'">
       {{size ? pizzaName : 'Choose pizza name'}}</mat-label>
     <mat-select name="pizza" [formControl]="pizzaId" [disabled]="size">
-      <mat-option *ngFor="let pizza of pizzas"
+      <mat-option *ngFor="let pizza of pizzas | async"
                   [style]="themeObjectService.data.value.isDarkTheme ? 'background-color: black; color: white' : 'background-color: white; color: black'"
-                  value="{{pizza.id}}"
-                  [formControl]="pizzaId">{{pizza.name}}</mat-option>
+                  [value]="pizza.id">{{pizza.name}}</mat-option>
     </mat-select>
   </mat-form-field>
 

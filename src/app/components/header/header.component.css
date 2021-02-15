@@ -13,7 +13,7 @@
   width: 30%;
   height: 60%;
   border-radius: 2%;
-  transition: top 1s ease-out 0.5s;
+  z-index: 9999 !important;
   margin: 0% 0% 0% 70%;
   box-shadow:0 0 15px;
   position: absolute;
