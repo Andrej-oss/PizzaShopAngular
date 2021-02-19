@@ -9,7 +9,8 @@ import {ThemeObjectService} from '../../logic/theme-object/theme-object.service'
 import {Avatar} from '../models/Avatar';
 import {Drink} from '../models/Drink';
 import {PizzaActionService} from '../../logic/store/actions/pizza/pizza-action.service';
-import {DrinksSelector} from '../../logic/store/selectors/PizzaSelector';
+import {AllPizzasSelector, DrinksSelector} from '../../logic/store/selectors/PizzaSelector';
+import {Pizza} from "../models/Pizza";
 
 @Component({
   selector: 'app-admin-page',
@@ -34,6 +35,7 @@ export class AdminPageComponent implements OnInit {
   isOpenSnacks: boolean;
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
   drinks: Drink[];
+  pizzas: Pizza[];
   avatarUrl = 'http://localhost:8080/avatar/image/';
   isAvatarOpen: boolean;
   isUpdateInfoOpen: boolean;
@@ -51,6 +53,10 @@ export class AdminPageComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.store$.pipe(select(AllPizzasSelector)).subscribe(data => this.pizzas = data);
+    if (this.pizzas.length < 21){
+      this.pizzaActionService.getAllPizzas();
+    }
     this.userActionsService.getUsers();
     this.userActionsService.getPrincipal(this.userService.getUserName());
     this.store$.pipe(select(selectPrincipal)).subscribe(data => this.admin = data);

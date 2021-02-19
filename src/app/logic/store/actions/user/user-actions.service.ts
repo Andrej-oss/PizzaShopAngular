@@ -93,6 +93,8 @@ export class UserActionsService {
       .subscribe(data => {
         this.themeObjectService.data.value.firstPage = data.number + 1;
         this.themeObjectService.data.value.lastPage = data.totalPages;
+        this.themeObjectService.data.value.sort = sort;
+        this.themeObjectService.data.value.type = type;
         return this.store.dispatch(new PurchasesAllLoad(data));
       });
   }

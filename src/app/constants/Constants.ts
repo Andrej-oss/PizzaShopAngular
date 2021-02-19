@@ -15,3 +15,13 @@ export const options = [
   {name: 'purchase name descent', value: 'name, desc'},
   {name: 'purchase name ascent', value: 'name, asc'},
 ];
+export const pizzaOptions = [
+  {name: 'pizza orders descent', value: 'ordersCount, desc'},
+  {name: 'pizza orders ascent', value: 'ordersCount, asc'},
+  {name: 'pizza new descent', value: 'newPizza, desc'},
+  {name: 'pizza new  ascent', value: 'newPizza, asc'},
+  {name: 'pizza price descent', value: 'price, desc'},
+  {name: 'pizza price ascent', value: 'price, asc'},
+  {name: 'pizza name descent', value: 'name, desc'},
+  {name: 'pizza name ascent', value: 'name, asc'},
+];

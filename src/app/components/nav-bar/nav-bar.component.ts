@@ -14,7 +14,7 @@ export class NavBarComponent implements OnInit {
   }
 
   toPizza(): void{
-    this.router.navigateByUrl('/').then(data => console.log(data));
+    this.router.navigateByUrl('/pizza').then(data => console.log(data));
   }
 
   toDrinkPage(): void{

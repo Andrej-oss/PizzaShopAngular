@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {UserActionsService} from '../../logic/store/actions/user/user-actions.service';
+import {PizzaActionService} from '../../logic/store/actions/pizza/pizza-action.service';
 
 @Component({
   selector: 'app-pagination',
@@ -8,9 +9,13 @@ import {UserActionsService} from '../../logic/store/actions/user/user-actions.se
   styleUrls: ['./pagination.component.css']
 })
 export class PaginationComponent implements OnInit {
+  @Input()
+  source: string;
 pages: {id: number}[];
+@Input()
 activePage: number;
   constructor(public themeObjectService: ThemeObjectService,
+              private pizzaActionService: PizzaActionService,
               private userActionsService: UserActionsService) { }
 
   ngOnInit(): void {
@@ -21,8 +26,12 @@ activePage: number;
   }
 
   onChangePage(id: number): void{
-    if (this.activePage !== id) {
-      this.userActionsService.getAllPurchases(id - 1, 'amount', 'desc');
+    debugger;
+    if (this.activePage !== id && this.source === 'purchase') {
+      this.userActionsService.getAllPurchases(id - 1, this.themeObjectService.data.value.sort, this.themeObjectService.data.value.type);
+    }
+    else if (this.source === 'pizza' && this.activePage !== id){
+      this.pizzaActionService.getSortedPizzas(id - 1, this.themeObjectService.data.value.type, this.themeObjectService.data.value.sort);
     }
     this.activePage = id;
   }

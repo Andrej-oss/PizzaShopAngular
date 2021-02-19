@@ -8,6 +8,7 @@ import {Promotion} from '../../../components/models/Promotion';
 import {Drink} from '../../../components/models/Drink';
 import {Snack} from '../../../components/models/Snack';
 import {Dessert} from '../../../components/models/Dessert';
+import {PizzaPage} from "../../../components/models/PizzaPage";
 
 export enum PizzaActionType {
   pizzaAllLoaded = '[PIZZA] all loaded',
@@ -30,7 +31,7 @@ export enum PizzaActionType {
 export class PizzasLoad implements Action {
   readonly type = PizzaActionType.pizzaAllLoaded;
 
-  constructor(public payload: Pizza[]) {
+  constructor(public payload: Pizza[] | PizzaPage) {
   }
 }
 

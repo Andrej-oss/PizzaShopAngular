@@ -17,8 +17,7 @@ import {SizeService} from '../../../services/sizeDao/size.service';
 import {PromotionService} from '../../../services/PromotionDao/promotion.service';
 import {DrinkService} from '../../../services/drinkDao/drink.service';
 import {SnackService} from '../../../services/snackDao/snack.service';
-import {Observable} from "rxjs";
-import {DessertService} from "../../../services/dessertDao/dessert.service";
+import {DessertService} from '../../../services/dessertDao/dessert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -40,6 +39,16 @@ export class PizzaActionService {
     return this.pizzaService.getAllPizza()
       .subscribe(data => {
         this.store.dispatch(new PizzasLoad(data));
+      });
+  }
+  getSortedPizzas(page: number, type: string, sort: string): |{}{
+    return this.pizzaService.getSortedPizzas(page, type, sort)
+      .subscribe(data => {
+        this.themeService.data.value.sort = sort;
+        this.themeService.data.value.firstPage = data.number + 1;
+        this.themeService.data.value.lastPage = data.totalPages;
+        this.themeService.data.value.type = type;
+        this.store.dispatch(new PizzasLoad(data.pizzas));
       });
   }
   savePizza(formData: FormData, append: void): | {}{

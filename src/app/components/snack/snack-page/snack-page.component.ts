@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {select, Store} from '@ngrx/store';
 import {Snack} from '../../models/Snack';
 import {SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
@@ -10,6 +10,8 @@ import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-actio
   styleUrls: ['./snack-page.component.css']
 })
 export class SnackPageComponent implements OnInit {
+  @Input()
+  count: number;
   snacks: Snack[];
 
   constructor(private store$: Store,

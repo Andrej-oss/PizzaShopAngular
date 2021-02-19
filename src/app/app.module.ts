@@ -70,6 +70,8 @@ import { DessertCardComponent } from './components/dessert/dessert-card/dessert-
 import {DessertPageComponent} from './components/dessert/dessert-page/dessert-page.component';
 import { DessertChooseSheetComponent } from './components/dessert/dessert-choose-sheet/dessert-choose-sheet.component';
 import { HomePageComponent } from './components/home-page/home-page.component';
+import { FooterComponent } from './components/footer/footer.component';
+import { PasswordLoginReminderComponent } from './components/forms/password-login-reminder/password-login-reminder.component';
 
 
 
@@ -130,6 +132,8 @@ import { HomePageComponent } from './components/home-page/home-page.component';
     DessertPageComponent,
     DessertChooseSheetComponent,
     HomePageComponent,
+    FooterComponent,
+    PasswordLoginReminderComponent,
   ],
     imports: [
         BrowserModule,

@@ -11,7 +11,7 @@ import {options} from '../../../constants/Constants';
 import {Drink} from '../../models/Drink';
 import {DessertSelector, DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {Snack} from '../../models/Snack';
-import {Dessert} from "../../models/Dessert";
+import {Dessert} from '../../models/Dessert';
 
 @Component({
   selector: 'app-purchase',
@@ -25,6 +25,7 @@ export class PurchaseComponent implements OnInit {
   drinks: Drink[];
   snacks: Snack[];
   desserts: Dessert[];
+  source: string;
   purchases$: Observable<Purchase[]> = this.store$.pipe(select(selectPurchases));
   displayedColumns: string[] = ['position', 'name', 'description', 'size', 'count', 'price', 'date', 'option'];
   blackTheme = 'purchase-item-black';
@@ -43,6 +44,7 @@ export class PurchaseComponent implements OnInit {
   }
 
   ngOnInit(): void {
+    this.source = 'purchase';
     this.isUser = this.userService.isUser();
     this.options = options;
     this.store$.pipe(select(DessertSelector)).subscribe(data => this.desserts = data);

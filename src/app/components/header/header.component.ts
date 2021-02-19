@@ -98,4 +98,8 @@ export class HeaderComponent implements OnInit {
     this.isCartOpen = true;
     this.isCartOpened = true;
   }
+
+  onHome(): void{
+    this.router.navigate(['/']).then(data => console.log(data));
+  }
 }

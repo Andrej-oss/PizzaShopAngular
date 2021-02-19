@@ -23,6 +23,8 @@ export class ThemeObjectService {
     isOpenPayment: false,
     lastPage: 0,
     firstPage: 0,
+    sort: '',
+    type: '',
   });
   constructor() { }
 }

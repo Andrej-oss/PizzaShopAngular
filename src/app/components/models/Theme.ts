@@ -15,4 +15,6 @@ export interface Theme {
   isOpenPayment: boolean;
   lastPage: number;
   firstPage: number;
+  sort: string;
+  type: string;
 }

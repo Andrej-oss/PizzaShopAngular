@@ -1,0 +1,11 @@
+.footer{
+  display: flex;
+  justify-content: space-around;
+  height: 20%;
+
+  /*background-color: #d0191e;*/
+  box-shadow:4px 5px 6px 6px black;
+}
+.footer-image{
+
+}
