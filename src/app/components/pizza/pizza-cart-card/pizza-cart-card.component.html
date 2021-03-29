@@ -4,9 +4,11 @@
   <div *ngFor="let element of cartElements">
     <div *ngIf="element.pizzaId !== 0">
     <div *ngFor="let pizza of pizzas ">
-        <div *ngIf="pizza.id == element.pizzaId" class="pizza-cart-cart-element">
-          <app-pizza-card-cart-item [pizza]="pizza" [cartElement]="element"></app-pizza-card-cart-item>
+      <div *ngFor="let price of pizzasPrise">
+        <div *ngIf="pizza.id === element.pizzaId && element.id === price.id" class="pizza-cart-cart-element">
+          <app-pizza-card-cart-item [pizza]="pizza" [cartElement]="element" [pizzaPrice]="price.price"></app-pizza-card-cart-item>
         </div>
+      </div>
     </div>
     </div>
     <div *ngIf="element.drinkId !== 0">

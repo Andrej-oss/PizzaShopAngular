@@ -3,6 +3,7 @@
   height: 500px;
   border-radius: 5px;
   font-family: "Comic Sans MS";
+  margin-right: 20px;
 }
 .pizza-card-image{
   width: 80%;

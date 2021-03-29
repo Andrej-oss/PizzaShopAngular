@@ -10,7 +10,7 @@ import {Avatar} from '../models/Avatar';
 import {Drink} from '../models/Drink';
 import {PizzaActionService} from '../../logic/store/actions/pizza/pizza-action.service';
 import {AllPizzasSelector, DrinksSelector} from '../../logic/store/selectors/PizzaSelector';
-import {Pizza} from "../models/Pizza";
+import {Pizza} from '../models/Pizza';
 
 @Component({
   selector: 'app-admin-page',

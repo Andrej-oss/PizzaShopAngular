@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PaymentService} from '../../../logic/services/post.service/payment/payment.service';
+import {PaymentService} from '../../../logic/services/paymentDao/payment.service';
 import {StripeService,  } from 'ngx-stripe';
 import {StripeCardElement, StripeElementsOptions, StripeElements} from '@stripe/stripe-js';
 import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
@@ -22,6 +22,7 @@ export class PaymentComponent implements OnInit {
   @Input() drinkId;
   @Input() snackId;
   @Input() dessertId;
+  @Input() volume;
   error: any;
   elements: StripeElements;
   card: StripeCardElement;
@@ -69,7 +70,7 @@ public StripeControl = new FormGroup({
         if (data.token) {
           const payment: Payment = {
             token: data.token.id,
-            amount: this.price,
+            amount: this.price * 10,
             currency: 'eur',
             description: this.description
           };
@@ -90,11 +91,12 @@ public StripeControl = new FormGroup({
     modalRef.componentInstance.id = id;
     modalRef.componentInstance.tittle = tittle;
     modalRef.componentInstance.description = description;
-    modalRef.componentInstance.price = price;
+    modalRef.componentInstance.price = price / 100;
     modalRef.componentInstance.pizzaId = this.pizzaId;
     modalRef.componentInstance.drinkId = this.drinkId;
     modalRef.componentInstance.snackId = this.snackId;
     modalRef.componentInstance.dessertId = this.dessertId;
     modalRef.componentInstance.allCart = this.allCart;
+    modalRef.componentInstance.volume = this.volume;
   }
 }

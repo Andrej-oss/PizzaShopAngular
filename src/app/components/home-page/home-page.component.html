@@ -1,6 +1,5 @@
 <div>
-  <div class="home-page-posts-content"
-       style="width: 800px; margin: 0% 0% 0% 20%; z-index: -1">
+  <div class="home-page-posts-content">
     <h2 >Promotions</h2>
     <mat-carousel
       timings="250ms ease-in"
@@ -25,16 +24,16 @@
       </mat-carousel-slide>
     </mat-carousel>
   </div>
-  <h1>Pizzas</h1>
+  <h1 style="margin-left: 20%;">Pizzas</h1>
   <app-pizza-page count="8"></app-pizza-page>
-  <button mat-button (click)="onPizzas()" style="margin: -40% 10% 0% 80%">Show more...</button>
-  <h1>Drinks</h1>
+  <button mat-button (click)="onPizzas()" style=" margin: -40% 10% 0% 80%">Show more...</button>
+  <h1 style="margin-left: 20%;">Drinks</h1>
   <app-drink-page count="5"></app-drink-page>
   <button mat-button (click)="onDrinks()" style="margin: -40% 10% 0% 80%">Show more...</button>
-  <h1>Snacks</h1>
+  <h1 style="margin-left: 20%;">Snacks</h1>
   <app-snack-page count="5"></app-snack-page>
   <button mat-button (click)="onSnacks()" style="margin: -40% 10% 0% 80%">Show more...</button>
-  <h1>Desserts</h1>
+  <h1 style="margin-left: 20%;">Desserts</h1>
   <app-dessert-page count="5"></app-dessert-page>
   <button mat-button (click)="onDesserts()" style="margin: -40% 10% 0% 80%">Show more...</button>
 </div>

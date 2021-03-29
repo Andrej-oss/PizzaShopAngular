@@ -22,7 +22,8 @@ import {PurchaseService} from '../../../services/purchaseDao/purchase.service';
 import {CartService} from '../../../services/cartDao/cart.service';
 import {CommentService} from '../../../services/commentDao/comment.service';
 import {UserService} from '../../../services/userDao/user.service';
-import {AvatarService} from "../../../services/avatarDao/avatar.service";
+import {AvatarService} from '../../../services/avatarDao/avatar.service';
+import {User} from '../../../../components/models/User';
 
 
 
@@ -53,8 +54,28 @@ export class UserActionsService {
       return this.store.dispatch(new PrincipalLoad(data));
      });
    }
-   getAllCart(id): | {}{
-    return this.cartService.getAllCartsElements(this.themeObjectService.data.value.userId)
+   upDatePrincipal(id: number, user: User): | {}{
+    return this.userService.updateUser(id, user)
+      .subscribe(data => {
+        this.themeObjectService.data.value.message = 'User updated';
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+        });
+        return this.store.dispatch(new PrincipalLoad(data));
+      });
+   }
+   deleteUser(id: number): | {}{
+    return this.userService.deleteUser(id)
+      .subscribe(data => {
+        this.themeObjectService.data.value.message = 'User deleted';
+        this.snackBar.openFromComponent(SnackBarComponent, {
+          duration: 2000,
+        });
+        return this.store.dispatch(new UsersLoad(data));
+      });
+   }
+   getAllCart(id: number): | {}{
+    return this.cartService.getAllCartsElements(id)
       .subscribe(data => {
         this.themeObjectService.data.value.sizeCart = data.length;
         return this.store.dispatch(new CartLoad(data));

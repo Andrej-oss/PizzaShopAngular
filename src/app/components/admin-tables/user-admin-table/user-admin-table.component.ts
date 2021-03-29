@@ -34,6 +34,7 @@ export class UserAdminTableComponent implements OnInit {
   }
 
   onDelete(id: any): void{
+    this.userActionsService.deleteUser(id);
   }
   getRole(role: string): string{
     return role.substring(role.split('').findIndex(value => value === '_') + 1, role.length);

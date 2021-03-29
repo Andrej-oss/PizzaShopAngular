@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Rating} from '../../../../components/models/Rating';
+import {Rating} from '../../../components/models/Rating';
 import {Observable} from 'rxjs';
 
 @Injectable({

@@ -26,8 +26,14 @@ export class UserService {
     return this.httpClient.get<User[]>(this.baseUrl);
   }
   saveUser(user: User): Observable<User[]>{
-    console.log(user)
     return  this.httpClient.post<User[]>(this.baseUrl, user);
+  }
+  updateUser(id: number, user: User): Observable<User>{
+    console.log(id);
+    return this.httpClient.put<User>(this.baseUrl + `/${id}`, user);
+  }
+  passwordReminder(email: string): Observable<string>{
+    return this.httpClient.get<string>(this.baseUrl + `/remind/${email}`);
   }
   authenticateUser(authUser: AuthUser): Observable<{token: string, role: string, username: string}>{
     return this.httpClient

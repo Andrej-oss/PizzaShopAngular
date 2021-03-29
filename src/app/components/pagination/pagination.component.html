@@ -20,7 +20,7 @@
         </a>
       </a>
     </li>
-    <li class="page-item" *ngIf="pages[pages.length - 1].id <= themeObjectService.data.value.lastPage">
+    <li class="page-item" *ngIf="pages[pages.length - 1].id < themeObjectService.data.value.lastPage">
       <a class="page-link" (click)="onNext(pages)">
         Next
       </a>

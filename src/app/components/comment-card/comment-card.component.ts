@@ -29,6 +29,7 @@ export class CommentCardComponent implements OnInit {
   voiceSum: number;
   voiceId: number;
   avatarUrl = 'http://localhost:8080/avatar/image/';
+
   constructor(private pizzaService: PizzaActionService,
               private commentService: CommentService,
               private voiceService: VoiceService,
@@ -71,16 +72,19 @@ export class CommentCardComponent implements OnInit {
       duration: 2000,
     });
   }
-  voiceSummary(): void{
-    debugger;
-    this.voiceSum = this.comment.voice.reduce((previousValue, currentValue) => previousValue + currentValue.voice, 0);
+
+  voiceSummary(): void {
+
+      this.voiceSum = this.comment.voice.reduce((previousValue, currentValue) => previousValue + currentValue.voice, 0);
   }
-  checkIsUserVoted(): void{
-    const user = this.comment.voice.find(value => value.userId === this.themeObjectService.data.value.userId);
-    console.log(user);
-    user && user.userId !== 0 ? this.isLiked = true : this.isLiked = false;
+
+  checkIsUserVoted(): void {
+      const user = this.comment.voice.find(value => value.userId === this.themeObjectService.data.value.userId);
+      console.log(user);
+      user && user.userId !== 0 ? this.isLiked = true : this.isLiked = false;
   }
-  onDeleteVoice(id: number): void{
+
+  onDeleteVoice(id: number): void {
     debugger;
     const voice = this.comment.voice.find(value => {
       return value.userId === this.themeObjectService.data.value.userId;

@@ -26,7 +26,6 @@ activePage: number;
   }
 
   onChangePage(id: number): void{
-    debugger;
     if (this.activePage !== id && this.source === 'purchase') {
       this.userActionsService.getAllPurchases(id - 1, this.themeObjectService.data.value.sort, this.themeObjectService.data.value.type);
     }

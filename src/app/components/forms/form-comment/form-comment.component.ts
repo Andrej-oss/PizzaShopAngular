@@ -54,7 +54,6 @@ export class FormCommentComponent implements OnInit {
       voice: this.commentUser.voice,
       userId: this.themeObjectService.data.value.userId,
     };
-    debugger;
     this.commentService.editComment(this.commentUser.id, this.pizzaComment)
       .subscribe(data => console.log(data));
     this.pizzaService.updateComment(this.commentUser.id, this.pizzaComment);

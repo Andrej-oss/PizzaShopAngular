@@ -36,6 +36,7 @@
   <div *ngIf="isPaymentOpen">
     <app-payment [drinkId]="drinkChoose.id"
                  [price]="drinkChoose.price"
+                 [volume]="drinkChoose.volume"
                  [tittle]="drinkChoose.name"
                  [description]="drinkChoose.path"></app-payment>
   </div>

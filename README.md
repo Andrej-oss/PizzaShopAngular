@@ -1,5 +1,29 @@
 # PizzaShop
 
+## From author
+
+This is not my first pet project, but I think the best. Written as a graduation
+ project for programming courses and for an interview with an employer to
+  demonstrate my practical skills. 
+## Description
+This project was written using the **Angular** framework version 10 on **typescript** version 4.
+Registration with validation logic is provided. A registered user has his own account and can buy products, add to the cart,
+ write (delete and update) comments, rate users' comments and pizza product, manage their comments, purchases in their account, change their data, change and upload an avatar. It is possible to change the password if the user has forgotten it.
+The administrator can manage (save, update, delete) all kinds of products. Manage users and their comments. Authentication on back-end side by jwt.<br>
+Successfully studied and applied technology in this application.<br>
+- Angular basic
+  - creating basic structural elements: Component, service, pipe, module, guard, enum, interface
+  - routers
+  - react forms
+  - rxjs 6
+  - web token interceptor
+- NGRX store 10, ngrx dev-tools
+- stripe payment service
+- angular material library 10
+- bootstrap library 4.5
+- REST API
+- optimisation (pagination, sorting )
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 10.2.0.
 
 ## Development server

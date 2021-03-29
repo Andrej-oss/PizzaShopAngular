@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {PaymentService} from '../../../logic/services/post.service/payment/payment.service';
+import {PaymentService} from '../../../logic/services/paymentDao/payment.service';
 import {ToastrService} from 'ngx-toastr';
 import {NgbActiveModal} from '@ng-bootstrap/ng-bootstrap';
 import {Purchase} from '../../models/Purchase';
@@ -22,6 +22,7 @@ export class PaymentModalComponent implements OnInit {
   @Input() price;
   @Input() pizzaId;
   @Input() allCart;
+  @Input() volume;
   @Input() drinkId;
   @Input() snackId;
   @Input() dessertId;
@@ -51,6 +52,7 @@ export class PaymentModalComponent implements OnInit {
         dessertId: this.dessertId,
         price: this.price,
         userId: this.themeObjectService.data.value.userId,
+        volume: typeof this.volume === 'string' ? +this.volume.match(/[0-9]/gi).join('') : this.volume,
       };
       console.log(this.purchase);
       this.paymentService.confirm(id, this.purchase).subscribe(data => {

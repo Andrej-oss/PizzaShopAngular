@@ -1,9 +1,9 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
-import {Payment} from '../../../../components/models/Payment';
+import {Payment} from '../../../components/models/Payment';
 import {Observable} from 'rxjs';
-import {Purchase} from '../../../../components/models/Purchase';
-import {Cart} from "../../../../components/models/Cart";
+import {Purchase} from '../../../components/models/Purchase';
+import {Cart} from '../../../components/models/Cart';
 
 
 

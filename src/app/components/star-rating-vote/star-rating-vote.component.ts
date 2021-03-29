@@ -43,6 +43,7 @@ export class StarRatingVoteComponent implements OnInit {
     this.snackBar.openFromComponent(SnackBarComponent, {
       duration: 2000,
     });
+    this.averageRating = this.averageRating + star;
     this.isRated = true;
   }
   isVoted(): void{
@@ -52,6 +53,8 @@ export class StarRatingVoteComponent implements OnInit {
   }
   getAverageRating(): void{
     this.averageRating = this.pizzaRating.reduce((previousValue, currentValue) => previousValue + currentValue.value, 0);
-    this.averageRating = this.averageRating / this.pizzaRating.length;
+    if (this.pizzaRating.length){
+      this.averageRating = Math.round(this.averageRating / this.pizzaRating.length);
+    }
   }
 }

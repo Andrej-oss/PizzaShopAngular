@@ -8,7 +8,7 @@ import {
 } from '../../actions-type/pizzaAction';
 import {ThemeObjectService} from '../../../theme-object/theme-object.service';
 import {Rating} from '../../../../components/models/Rating';
-import {RatingService} from '../../../services/post.service/rating/rating.service';
+import {RatingService} from '../../../services/ratingDao/rating.service';
 import {Comment} from '../../../../components/models/Comment';
 import {CommentService} from '../../../services/commentDao/comment.service';
 import {PizzaService} from '../../../services/pizzaDao/pizza.service';

@@ -4,6 +4,7 @@ export interface Purchase {
   description: string;
   price: number;
   userId: number;
+  volume: string;
   pizzaId?: number;
   drinkId?: number;
   snackId?: number;

@@ -34,6 +34,7 @@ export class PizzaChooseSheetComponent implements OnInit {
   comments: Observable<Comment[]> = this.store$.pipe(select(CommentSelector));
   ingredients: Observable<Ingredient[]> = this.store$.pipe(select(IngredientsSelector));
   pizzaSize: string;
+  currentSize: Size;
   pizzas: Pizza[];
   pizza: Pizza;
   subscription: Subscription;
@@ -65,6 +66,7 @@ export class PizzaChooseSheetComponent implements OnInit {
     this.isAddPrice2 = false;
     this.isAddPrice3 = false;
     this.pizzaSize = 'small';
+    this.store$.pipe(select(SizePizzaSelector)).subscribe(data => this.currentSize = data);
   }
 
   onAdd(price: number, name: string, i: number): void {
@@ -107,6 +109,7 @@ export class PizzaChooseSheetComponent implements OnInit {
     this.isAddPrice3 = false;
     this.pizzaName = this.pizza.description.split(',');
     this.pizzaSize = 'large';
+    this.store$.pipe(select(SizePizzaSelector)).subscribe(data => this.currentSize = data);
   }
 
   onMediumPizza(id: number): void {
@@ -117,6 +120,7 @@ export class PizzaChooseSheetComponent implements OnInit {
     this.isAddPrice3 = false;
     this.pizzaName = this.pizza.description.split(',');
     this.pizzaSize = 'medium';
+    this.store$.pipe(select(SizePizzaSelector)).subscribe(data => this.currentSize = data);
   }
 
   onSmallPizza(id: number): void {
@@ -127,6 +131,7 @@ export class PizzaChooseSheetComponent implements OnInit {
     this.isAddPrice3 = false;
     this.pizzaName = this.pizza.description.split(',');
     this.pizzaSize = 'small';
+    this.store$.pipe(select(SizePizzaSelector)).subscribe(data => this.currentSize = data);
   }
 
   savePizzaInCart(id: number): void {
@@ -135,6 +140,7 @@ export class PizzaChooseSheetComponent implements OnInit {
       pizzaId: id,
       amount: 1,
       price: this.themeObjectService.data.value.price,
+      volume: this.currentSize.weight,
       userId: this.themeObjectService.data.value.userId,
       size: this.pizzaSize,
     };

@@ -7,6 +7,7 @@ import {selectPrincipal, selectUserAvatar} from '../../logic/store/selectors/Use
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {UserService} from '../../logic/services/userDao/user.service';
 import {Avatar} from '../models/Avatar';
+import {Purchase} from "../models/Purchase";
 
 
 @Component({
@@ -23,7 +24,6 @@ export class UserPageComponent implements OnInit {
   image: File;
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
   avatarUrl = 'http://localhost:8080/avatar/image/';
-  // @ts-ignore
   user: User;
 
   constructor(private userService: UserService,

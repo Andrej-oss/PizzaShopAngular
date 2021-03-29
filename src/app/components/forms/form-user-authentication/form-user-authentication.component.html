@@ -33,7 +33,14 @@
   <div *ngIf="error" class="card-auth-error">
     <a>{{error}}</a>
   </div>
-  <div class="card-auth-link">
-    <a (click)="onRegistration()">Don't registered?</a>
+  <div class="card-auth-link-reg">
+    <a (click)="onRegistration()">
+      Don't registered?
+    </a>
+  </div>
+  <div class="card-auth-link-rem">
+    <a (click)="onReminder()">
+      Forget your password or login?
+    </a>
   </div>
 </mat-card>

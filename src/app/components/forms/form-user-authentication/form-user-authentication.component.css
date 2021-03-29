@@ -14,12 +14,12 @@
   color: white;
   background-color: black;
 }
-.card-auth-link{
+.card-auth-link-reg{
   cursor: pointer;
   font-size: 12px;
   font-family: Candara;
 }
-.card-auth-link:hover{
+.card-auth-link-reg:hover{
   color: gray;
 }
 .card-auth-error{
@@ -27,4 +27,12 @@
 }
 button:focus{
   outline: none;
+}
+.card-auth-link-rem{
+  cursor: pointer;
+  font-size: 12px;
+  font-family: Candara;
+}
+.card-auth-link-rem:hover{
+  color: gray;
 }

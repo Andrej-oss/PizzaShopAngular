@@ -27,6 +27,7 @@ export class PurchaseComponent implements OnInit {
   desserts: Dessert[];
   source: string;
   purchases$: Observable<Purchase[]> = this.store$.pipe(select(selectPurchases));
+  purchasesUser: Purchase[];
   displayedColumns: string[] = ['position', 'name', 'description', 'size', 'count', 'price', 'date', 'option'];
   blackTheme = 'purchase-item-black';
   whiteTheme = 'purchase-item';
@@ -50,6 +51,10 @@ export class PurchaseComponent implements OnInit {
     this.store$.pipe(select(DessertSelector)).subscribe(data => this.desserts = data);
     this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
     this.store$.pipe(select(SnacksSelector)).subscribe(data => this.snacks = data);
+    this.store$.pipe(select(selectPurchases)).subscribe(data => this.purchasesUser = data);
+    if (!this.purchasesUser.length){
+      this.userActionsService.getPurchasesByUser(this.themeObjectService.data.value.userId);
+    }
   }
 
   onDelete(id: any): void {
@@ -62,7 +67,8 @@ export class PurchaseComponent implements OnInit {
              descriptionPurchase: string,
              name: string,
              amountItem: number,
-             priceItem: number): void {
+             priceItem: number,
+             volumeItem: number): void {
     if (id !== 0) {
       this.cart = {
         description: descriptionPurchase,
@@ -71,6 +77,7 @@ export class PurchaseComponent implements OnInit {
         price: priceItem,
         userId: this.themeObjectService.data.value.userId,
         size: name,
+        volume: volumeItem
       };
     }
     if (drinkIdItem !== 0) {
@@ -81,6 +88,7 @@ export class PurchaseComponent implements OnInit {
         price: priceItem,
         userId: this.themeObjectService.data.value.userId,
         size: name,
+        volume: volumeItem
       };
     }
     if (dessertIdItem !== 0) {
@@ -91,6 +99,7 @@ export class PurchaseComponent implements OnInit {
         price: priceItem,
         userId: this.themeObjectService.data.value.userId,
         size: name,
+        volume: volumeItem
       };
     }
     console.log(this.cart);

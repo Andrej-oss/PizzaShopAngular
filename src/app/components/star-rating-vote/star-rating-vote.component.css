@@ -8,6 +8,7 @@
 .rating-list li:hover,
 .rating-list li:hover ~ li, .rating-list li.selected {
   color: #ffd700;
+  cursor: pointer;
 }
 
 .rating-list {

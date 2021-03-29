@@ -1,4 +1,4 @@
-<div class="row" *ngIf="!isRated && themeObjectService.data.value.userId > 0 ">
+<div class="row" *ngIf="!isRated && themeObjectService.data.value.userId > 0" style="margin: 0% 0% 0% 15%">
   <div class="col-sm-12">
     <ul class="list-inline rating-list" *ngFor="let star of stars" style="display: inline-block">
       <li (click)="countStar(star)" [ngClass]="{'selected': (star <= selectedValue)}">
@@ -7,8 +7,8 @@
     </ul>
   </div>
 </div>
-<div class="row" *ngIf="isRated && themeObjectService.data.value.userId > 0 ">
-  <app-star-rating [averageRating]="averageRating" style="margin: 0% 0% 0% 15%"></app-star-rating>
+<div class="row" *ngIf="isRated && themeObjectService.data.value.userId > 0 " style="margin: 0% 0% 0% 15%">
+  <app-star-rating [averageRating]="averageRating"></app-star-rating>
 </div>
 <p *ngIf="userRating" style="text-align: center">
   (You voted. Your rating {{ userRating.value}})

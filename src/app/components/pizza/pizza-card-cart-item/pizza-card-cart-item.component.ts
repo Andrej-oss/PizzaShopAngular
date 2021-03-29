@@ -21,6 +21,7 @@ export class PizzaCardCartItemComponent implements OnInit {
   @Input() drink: Drink;
   @Input() snack: Snack;
   @Input() dessert: Dessert;
+  @Input() pizzaPrice: number;
   url = 'http://localhost:8080/pizza/image/';
   count: number;
   price: number;
@@ -37,6 +38,7 @@ export class PizzaCardCartItemComponent implements OnInit {
     // tslint:disable-next-line:no-unused-expression
     this.cartElement.amount !== null ? this.count = this.cartElement.amount : this.count = 1;
     this.price = this.cartElement.price;
+    this.pizzaPrice = this.cartElement.price / this.cartElement.amount;
   }
 
   onInc(): void {
@@ -47,13 +49,13 @@ export class PizzaCardCartItemComponent implements OnInit {
           id: this.cartElement.id,
           description: this.cartElement.description,
           pizzaId: this.cartElement.pizzaId,
-          price: this.cartElement.price + this.pizza.price,
+          price: this.cartElement.price + this.pizzaPrice,
           amount: this.cartElement.amount + 1,
           size: this.cartElement.size
         };
         this.cartService.addAmountPizzaCart(this.cartElement.id, this.pizza.price).subscribe(data => console.log(data));
-        this.price = this.price + this.pizza.price;
-        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.pizza.price;
+        this.price = this.price + this.pizzaPrice;
+        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice + this.pizzaPrice;
       } else if (this.drink) {
         this.cart = {
           id: this.cartElement.id,
@@ -106,13 +108,13 @@ export class PizzaCardCartItemComponent implements OnInit {
           id: this.cartElement.id,
           description: this.cartElement.description,
           pizzaId: this.cartElement.pizzaId,
-          price: this.cartElement.price - this.pizza.price,
+          price: this.cartElement.price - this.pizzaPrice,
           amount: this.cartElement.amount - 1,
           size: this.cartElement.size
         };
         this.cartService.removeAmountPizzaCart(this.cartElement.id, this.pizza.price).subscribe(data => console.log(data));
         this.price = this.price - this.pizza.price;
-        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.pizza.price;
+        this.themeObjectService.data.value.totalPrice = this.themeObjectService.data.value.totalPrice - this.pizzaPrice;
       } else if (this.drink) {
         this.cart = {
           id: this.cartElement.id,
