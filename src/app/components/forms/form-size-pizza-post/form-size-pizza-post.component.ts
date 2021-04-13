@@ -62,6 +62,7 @@ export class FormSizePizzaPostComponent implements OnInit {
     this.sizeFormData.delete('diameter');
     this.sizeFormData.delete('weight');
     this.sizeFormData.delete('file');
+    this.pizzaSizeForm.reset();
   }
 
   upLoadFileSize(event): void{

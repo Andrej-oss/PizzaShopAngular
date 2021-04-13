@@ -28,7 +28,7 @@ export class CommentCardComponent implements OnInit {
   isLiked: boolean;
   voiceSum: number;
   voiceId: number;
-  avatarUrl = 'http://localhost:8080/avatar/image/';
+  avatarUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/avatar/image/';
 
   constructor(private pizzaService: PizzaActionService,
               private commentService: CommentService,

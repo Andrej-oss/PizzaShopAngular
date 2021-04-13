@@ -8,7 +8,7 @@ import {PurchasePage} from '../../../components/models/PurchasePage';
   providedIn: 'root'
 })
 export class PurchaseService {
-  private baseUrl = 'http://localhost:8080/purchase/';
+  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/purchase/';
 
   constructor(private httpClient: HttpClient) { }
   getPurchasesByUser(userId: number): Observable<Purchase[]>{

@@ -16,7 +16,7 @@ export class DrinksTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://localhost:8080/drink/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink/';
   isOpenDrinkUpdate: boolean;
   drink: Drink;
   constructor(public themeObjectService: ThemeObjectService,

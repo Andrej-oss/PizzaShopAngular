@@ -8,7 +8,7 @@ import {PizzaPage} from "../../../components/models/PizzaPage";
   providedIn: 'root'
 })
 export class PizzaService {
-  private baseUrl = 'http://localhost:8080/pizza';
+  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/pizza';
 
   constructor(private httpClient: HttpClient) {
   }

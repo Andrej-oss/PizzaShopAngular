@@ -7,7 +7,7 @@ import {Dessert} from '../../../components/models/Dessert';
   providedIn: 'root'
 })
 export class DessertService {
-  private baseUrl = 'http://localhost:8080/dessert';
+  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert';
 
   constructor(private httpClient: HttpClient) { }
   saveDessert(formData: FormData, append: void): Observable<Dessert[]>{

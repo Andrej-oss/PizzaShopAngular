@@ -32,10 +32,8 @@ error: string;
     this.userService.passwordReminder(authForm.controls.email.value)
       .subscribe(data => {
         this.error = null;
-        console.log(data);
       },
         (error => {
-          console.log(error);
           if (error.status === 200){
             this.router.navigate(['/']).then(data1 => console.log(data1));
             this.themeObjectService.data.value.message = 'Sending! Check your email';

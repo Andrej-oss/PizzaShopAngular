@@ -14,7 +14,7 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 })
 export class DrinkChooseSheetComponent implements OnInit {
   drinks: Drink[];
-  url = 'http://localhost:8080/drink/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink/';
   isPaymentOpen: boolean;
   cart: Cart;
   drinkChoose: Drink;

@@ -36,7 +36,7 @@ export class AdminPageComponent implements OnInit {
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
   drinks: Drink[];
   pizzas: Pizza[];
-  avatarUrl = 'http://localhost:8080/avatar/image/';
+  avatarUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/avatar/image/';
   isAvatarOpen: boolean;
   isUpdateInfoOpen: boolean;
   isPromotionsOpen: boolean;

@@ -12,7 +12,7 @@ export class IngredientCardComponent implements OnInit {
 ingredient: Ingredient;
 @Input()
 isActive: boolean;
-  url = 'http://localhost:8080/ingredient/image/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/ingredient/image/';
 
   constructor(public themeObjectService: ThemeObjectService) { }
 

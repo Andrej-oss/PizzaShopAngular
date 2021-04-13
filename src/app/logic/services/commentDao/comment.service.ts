@@ -8,7 +8,7 @@ import {strict} from "assert";
   providedIn: 'root'
 })
 export class CommentService {
-  private baseUrl = 'http://localhost:8080/comment/';
+  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/comment/';
   constructor(private httpClient: HttpClient) { }
   getComments(pizzaId: number): Observable<Comment[]>{
     return this.httpClient.get<Comment[]>(this.baseUrl + `${pizzaId}`);

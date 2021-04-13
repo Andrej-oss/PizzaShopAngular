@@ -4,7 +4,7 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {Snack} from '../../models/Snack';
 import {Observable} from 'rxjs';
 import {SnacksSelector} from '../../../logic/store/selectors/PizzaSelector';
-import {PizzaActionService} from "../../../logic/store/actions/pizza/pizza-action.service";
+import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
 
 
 @Component({
@@ -19,7 +19,7 @@ export class SnacksAdminTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://localhost:8080/snack/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/snack/';
   isOpenSnackUpdate: boolean;
   snack: Snack;
   constructor(private store$: Store,
