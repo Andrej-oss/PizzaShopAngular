@@ -63,7 +63,6 @@ export class HeaderComponent implements OnInit {
 
   showCart(b: boolean): void {
     this.isCartOpened = b;
-    console.log(this.isCartOpened)
     if (this.themeSubjectService.data.value.sizeCart !== 0 && !this.isCartOpened) {
       setTimeout(() => {
         this.isCartOpen = true;
@@ -73,7 +72,6 @@ export class HeaderComponent implements OnInit {
 
   hideCart(b: boolean): void {
     this.isCartOpened = b;
-    console.log(this.isCartOpened)
     if (this.themeSubjectService.data.value.sizeCart !== 0) {
       setTimeout(() => {
         if (!this.isCartOpened){
@@ -101,5 +99,9 @@ export class HeaderComponent implements OnInit {
 
   onHome(): void{
     this.router.navigate(['/']).then(data => console.log(data));
+  }
+
+  isMobile(): boolean{
+    return window.screen.width < 700 ? true : false;
   }
 }

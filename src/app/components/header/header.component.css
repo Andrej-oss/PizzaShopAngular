@@ -22,12 +22,21 @@
   position: absolute;
   background-color: white;
 }
+.header-content-buttons-group{
+margin: 2% 5px 5px 5px;
+}
 .header-content-buttons{
   color: cornsilk;
   font-size: 1.2vw;
   margin: 2% 5px 5px 5px;
 }
+a{
+  text-decoration: none;
+}
 button:focus{outline:0}
+button{
+  width: 20%;
+}
 .header-content-search{
   display: flex;
   justify-content: flex-start;
@@ -37,4 +46,10 @@ button:focus{outline:0}
   vertical-align: center;
   margin: 1% -20% 0 -5%;
   font-size: 1.2vw;
+}
+@media only screen and (max-width: 600px) {
+  .header-content-buttons-group {
+    display: flex;
+    flex-direction: column;
+  }
 }

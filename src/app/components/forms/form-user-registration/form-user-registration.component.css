@@ -12,3 +12,9 @@ button:focus{
 background-color: black;
   color: white;
 }
+@media only screen and (max-width: 600px) {
+  .registration-card {
+    width: 90%;
+    left: 0%;
+  }
+}
