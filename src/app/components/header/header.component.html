@@ -18,15 +18,15 @@
       <a class="header-content-buttons">
         <button mat-button (click)="onLogin()" *ngIf="!userService.isAuthenticated()">Sing in</button>
         <button mat-button (click)="userService.logOut()" *ngIf="userService.isAuthenticated()">Sing out</button>
-        <button mat-button (click)="onRegistration()">Sing up</button>
-      </a>
-      <a class="header-content-buttons">
+        <button mat-button (click)="onRegistration()" *ngIf="!userService.isAuthenticated()">Sing up</button>
         <button mat-button (click)="onAdmin()" *ngIf="userService.isAdmin()">
           ADMIN: {{userService.getUserName()}}
         </button>
         <button mat-button (click)="onUserPage()" *ngIf="userService.isUser()">
           USER: {{userService.getUserName()}}
         </button>
+      </a>
+      <a class="header-content-buttons">
         <mat-slide-toggle (click)="onDark()">To Dark</mat-slide-toggle>
         <button mat-button>
       <span class="material-icons"
