@@ -81,7 +81,6 @@ passwordLengthValidator(form: FormGroup): null | object{
     const {value: phone} = form.controls.phone;
     const regexp = /[A-Z]/gi;
     const matches = phone.match(regexp);
-    console.log(matches);
     if (matches && matches.length) {
       return {phoneError: true};
     } else {
@@ -91,7 +90,6 @@ passwordLengthValidator(form: FormGroup): null | object{
   emailValidator(form: FormGroup): null | object{
     const {value: email} = form.controls.email;
     const regExpMatchArray = email.match(/['.']/g);
-    console.log(regExpMatchArray);
     if (regExpMatchArray && regExpMatchArray.length){
       return null;
     }
@@ -100,7 +98,6 @@ passwordLengthValidator(form: FormGroup): null | object{
     }
   }
   onSave(firstFormGroup: FormGroup, secondFormGroup: FormGroup): void {
-    console.log(firstFormGroup.controls, secondFormGroup.controls);
     const user = {
       username: (`${firstFormGroup.controls.login.value}`).trim().toLowerCase(),
       password: `${firstFormGroup.controls.password.value}`.trim(),
@@ -145,7 +142,6 @@ passwordLengthValidator(form: FormGroup): null | object{
     this.firstFormGroup.disable();
     this.secondFormGroup.disable();
     this.userService.updateUser(+this.user.id, user).subscribe(data => {
-      console.log(data);
       this.snackBar.openFromComponent(SnackBarRegistrationComponent, {
         duration: 2000
       });

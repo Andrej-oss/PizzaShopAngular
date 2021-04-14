@@ -52,4 +52,8 @@ button{
     display: flex;
     flex-direction: column;
   }
+  .header-content-buttons-cart{
+    width: 60%;
+    margin: 0 0 0 40%;
+  }
 }

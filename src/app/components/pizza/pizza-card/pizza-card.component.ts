@@ -24,7 +24,6 @@ pizza: Pizza;
 
   ngOnInit(): void {
     this.ingredients = this.pizza.ingredients.split(',');
-    console.log(this.ingredients);
     // tslint:disable-next-line:radix
     this.themeObjectService.data.value.ingredients = this.ingredients.map(data => parseInt(data));
   }

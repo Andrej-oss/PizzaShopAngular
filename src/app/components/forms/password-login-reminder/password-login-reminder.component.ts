@@ -32,7 +32,6 @@ error: string;
     this.userService.passwordReminder(authForm.controls.email.value)
       .subscribe(data => {
         this.error = null;
-        console.log(data);
       },
         (error => {
           console.log(error);

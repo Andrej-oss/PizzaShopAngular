@@ -10,3 +10,8 @@
   color: grey;
   cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+  .pizza-table {
+    font-size: 1vw;
+  }
+}

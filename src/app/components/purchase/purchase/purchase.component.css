@@ -14,3 +14,8 @@
   color: grey;
   cursor: pointer;
 }
+@media only screen and (max-width: 600px) {
+  .purchases-table {
+    font-size: 1vw;
+  }
+}

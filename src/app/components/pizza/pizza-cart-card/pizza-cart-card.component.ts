@@ -35,7 +35,6 @@ export class PizzaCartCardComponent implements OnInit {
         this.pizzasPrise.push(pizzaPrice);
       }
     });
-    this.pizzasPrise.forEach(value => console.log(value));
   }
   getTotalPrice(): void{
     this.totalPrice = +this.cartElements.reduce((previousValue, currentValue) => {

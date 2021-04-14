@@ -60,7 +60,6 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   ngOnInit(): void {
     this.activatedRoute.queryParams.subscribe((params) => {
       if (params.accessDenied) {
-        console.log(params);
         this.error = 'Please log in to Pizza shop first';
       }
       console.log(params);
@@ -74,7 +73,6 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   }
   getAuthenticateUser(user: {username: string, password: string}): any{
     return new Promise(resolve => {
-      console.log(user);
       return this.userService.authenticateUser(user).subscribe(data => resolve(data));
     });
   }

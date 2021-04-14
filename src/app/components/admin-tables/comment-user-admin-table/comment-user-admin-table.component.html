@@ -1,4 +1,5 @@
 <table mat-table [dataSource]="comments$ | async"
+       class="comment-table"
        [style]="this.themeObjectService.data.value.isDarkTheme ? black : white">
   <ng-container matColumnDef="position" style="margin: 10px 10px 10px 10px">
     <th mat-header-cell *matHeaderCellDef

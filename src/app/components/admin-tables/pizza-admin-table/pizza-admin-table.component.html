@@ -1,7 +1,10 @@
 <div class="mat-elevation-z8">
   <table mat-table [dataSource]="pizzas$ | async"
+         class="pizza-table"
          [style]="this.themeObjectService.data.value.isDarkTheme ? black : white">
-    <ng-container matColumnDef="position" style="margin: 10px 10px 10px 10px">
+    <ng-container matColumnDef="position"
+                  class="pizza-table"
+                  style="margin: 10px 10px 10px 10px">
       <th mat-header-cell *matHeaderCellDef
           [style]="this.themeObjectService.data.value.isDarkTheme ? blackColor : whiteColor">
         No.

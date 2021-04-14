@@ -1,6 +1,12 @@
 .pizza-sheet{
   width: 800px;
 }
+@media only screen and (max-width: 600px) {
+  .pizza-sheet {
+    width: 100%;
+  }
+}
+
 .pizza-card-image-content{
   width: 250px;
   border-radius: 50%;
@@ -19,6 +25,14 @@
 .pizza-sheet-content{
   display: flex;
   justify-content: space-around;
+}
+@media only screen and (max-width: 600px) {
+  .pizza-sheet-content {
+    flex-direction: column;
+  }
+  .pizza-sheet-content-text{
+    width: 100%;
+  }
 }
 .pizza-sheet-content-text{
   background-color: gainsboro;
