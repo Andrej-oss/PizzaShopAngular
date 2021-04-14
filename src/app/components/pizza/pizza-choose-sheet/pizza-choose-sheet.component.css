@@ -24,6 +24,17 @@
   background-color: gainsboro;
   width: 50%;
 }
+@media only screen and (max-width: 600px) {
+  .pizza-sheet-content {
+    flex-direction: column;
+  }
+  .pizza-sheet-content-text{
+    width: 100%;
+  }
+  .pizza-sheet {
+    width: 100%;
+  }
+}
 .pizza-sheet-content-text-ingredients{
   display: flex;
   flex-direction: row;

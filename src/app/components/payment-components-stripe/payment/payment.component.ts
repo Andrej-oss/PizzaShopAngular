@@ -40,7 +40,6 @@ public StripeControl = new FormGroup({
     this.stripeService.elements(this.elementsOptions)
       .subscribe(elements => {
         this.elements = elements;
-        console.log(this.elements);
         if (!this.card) {
           // @ts-ignore
           this.card = this.elements.create('card', {
@@ -66,7 +65,6 @@ public StripeControl = new FormGroup({
     const name = this.StripeControl.get('name').value;
     this.stripeService.createToken(this.card, {name})
       .subscribe(data => {
-        debugger;
         if (data.token) {
           const payment: Payment = {
             token: data.token.id,
@@ -76,7 +74,6 @@ public StripeControl = new FormGroup({
           };
           this.paymentService.buy(payment)
             .subscribe(data1 => {
-              console.log(data1);
               this.openModal(data1[`id`], this.tittle, data1[`description`], data1[`amount`]);
             });
           this.error = undefined;
@@ -86,7 +83,6 @@ public StripeControl = new FormGroup({
         });
       }
   openModal(id: string, tittle: string, description: string, price: number): void{
-    debugger;
     const modalRef = this.modalService.open(PaymentModalComponent);
     modalRef.componentInstance.id = id;
     modalRef.componentInstance.tittle = tittle;

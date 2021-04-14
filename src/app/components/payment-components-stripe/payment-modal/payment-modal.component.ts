@@ -37,11 +37,10 @@ export class PaymentModalComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    debugger;
+
   }
 
   confirm(id: string): void {
-    debugger;
     if (!(this.allCart && this.allCart.length)) {
       this.purchase = {
         description: this.description,
@@ -54,7 +53,6 @@ export class PaymentModalComponent implements OnInit {
         userId: this.themeObjectService.data.value.userId,
         volume: typeof this.volume === 'string' ? +this.volume.match(/[0-9]/gi).join('') : this.volume,
       };
-      console.log(this.purchase);
       this.paymentService.confirm(id, this.purchase).subscribe(data => {
           this.activeModal.close();
           // tslint:disable-next-line:no-shadowed-variable
@@ -95,7 +93,7 @@ export class PaymentModalComponent implements OnInit {
     this.paymentService.cancel(id).subscribe(
       data => {
         this.toastrService.show
-        ('pago cancelado', 'se ha cancelado el pago con id ' + data[`id`], {
+        ('page canceled', 'canceled page id is:' + data[`id`], {
           positionClass: 'toast-top-center',
           timeOut: 3000
         });

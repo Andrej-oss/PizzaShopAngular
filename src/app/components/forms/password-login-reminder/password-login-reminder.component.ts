@@ -4,7 +4,7 @@ import {FormControl, FormGroup, Validators} from '@angular/forms';
 import {UserService} from '../../../logic/services/userDao/user.service';
 import {SnackBarComponent} from '../../snack-bar/snack-bar-login/snack-bar.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-password-login-reminder',
@@ -35,7 +35,7 @@ error: string;
       },
         (error => {
           if (error.status === 200){
-            this.router.navigate(['/']).then(data1 => console.log(data1));
+            this.router.navigate(['/']);
             this.themeObjectService.data.value.message = 'Sending! Check your email';
             this.snackBar.openFromComponent(SnackBarComponent, {
               duration: 2000,

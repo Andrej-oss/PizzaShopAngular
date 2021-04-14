@@ -25,7 +25,6 @@ export class PizzaCartCardComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log(this.cartElements);
     this.totalPrice = 0;
     this.themeObjectService.data.value.totalPrice = 0;
     this.getTotalPrice();

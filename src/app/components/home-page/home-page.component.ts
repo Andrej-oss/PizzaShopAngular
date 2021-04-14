@@ -56,19 +56,19 @@ export class HomePageComponent implements OnInit {
   }
 
   onPizzas(): void{
-    this.router.navigate(['pizza']).then(data => console.log(data));
+    this.router.navigate(['pizza']);
   }
 
   onDrinks(): void{
-    this.router.navigate(['drinks']).then(data => console.log(data));
+    this.router.navigate(['drinks']);
   }
 
   onSnacks(): void{
-    this.router.navigate(['snacks']).then(data => console.log(data));
+    this.router.navigate(['snacks']);
   }
 
   onDesserts(): void{
-    this.router.navigate(['desserts']).then(data => console.log(data));
+    this.router.navigate(['desserts']);
   }
 
   onChangeProportoin(): boolean{

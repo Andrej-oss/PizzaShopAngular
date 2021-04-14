@@ -42,19 +42,19 @@ export class HeaderComponent implements OnInit {
   }
 
   onLogin(): void {
-    this.router.navigateByUrl('/authenticate').then(data => console.log(data));
+    this.router.navigateByUrl('/authenticate');
   }
 
   onRegistration(): void {
-    this.router.navigateByUrl('/registration').then(data => console.log(data));
+    this.router.navigateByUrl('/registration');
   }
 
   onAdmin(): void {
-    this.router.navigateByUrl('/admin').then(data => console.log(data));
+    this.router.navigateByUrl('/admin');
   }
 
   onUserPage(): void {
-    this.router.navigateByUrl('/user_page').then(data => console.log(data));
+    this.router.navigateByUrl('/user_page');
   }
 
   onDark(): void {

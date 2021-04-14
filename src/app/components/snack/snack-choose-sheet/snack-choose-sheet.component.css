@@ -2,6 +2,15 @@
   width: 800px;
 
 }
+@media only screen and (max-width: 600px) {
+  .snack-sheet-content {
+    flex-direction: column;
+  }
+  .snack-sheet{
+    width: 100%;
+  }
+}
+
 .snack-card-image-content{
   height: 20%;
   margin: 10% 10% 10% 10%;

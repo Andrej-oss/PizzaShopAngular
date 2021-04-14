@@ -70,7 +70,6 @@ export class PizzaChooseSheetComponent implements OnInit {
   }
 
   onAdd(price: number, name: string, i: number): void {
-    debugger;
     if (i === 0 && !this.isAddPrice1) {
       this.isAddPrice1 = !this.isAddPrice1;
       this.themeObjectService.data.value.price = this.themeObjectService.data.value.price + price;

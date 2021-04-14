@@ -36,7 +36,6 @@ export class PizzaCartPageComponent implements OnInit {
   }
 
   onPayment(): void{
-    debugger;
     this.themeObjectService.data.value.isOpenPayment = true;
   }
 }

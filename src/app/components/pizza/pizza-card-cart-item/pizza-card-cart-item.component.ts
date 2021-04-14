@@ -6,7 +6,7 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {CartService} from '../../../logic/services/cartDao/cart.service';
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
-import {Dessert} from "../../models/Dessert";
+import {Dessert} from '../../models/Dessert';
 
 
 @Component({
@@ -43,7 +43,6 @@ export class PizzaCardCartItemComponent implements OnInit {
 
   onInc(): void {
     try {
-      debugger;
       if (this.pizza) {
         this.cart = {
           id: this.cartElement.id,
@@ -102,7 +101,6 @@ export class PizzaCardCartItemComponent implements OnInit {
 
   onDec(): void {
     try {
-      debugger;
       if (this.pizza) {
         this.cart = {
           id: this.cartElement.id,
