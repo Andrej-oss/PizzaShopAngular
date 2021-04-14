@@ -22,10 +22,10 @@ export class PurchasesItemComponent implements OnInit {
   @Input() drinkId: number;
   @Input() snackId: number;
   @Input() dessertId: number;
-  url = 'http://localhost:8080/pizza/image/';
-  urlDrink = 'http://localhost:8080/drink/';
-  urlSnack = 'http://localhost:8080/snack/';
-  urlDessert = 'http://localhost:8080/dessert/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/pizza/image/';
+  urlDrink = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink/';
+  urlSnack = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/snack/';
+  urlDessert = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
   pizzas: Pizza[];
   drinks: Drink[];
   snacks: Snack[];

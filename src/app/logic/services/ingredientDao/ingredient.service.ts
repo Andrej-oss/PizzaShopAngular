@@ -7,7 +7,7 @@ import {Ingredient} from '../../../components/models/Ingredient';
   providedIn: 'root'
 })
 export class IngredientService {
-  private baseUrl = 'http://localhost:8080/ingredient';
+  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/ingredient';
 
   constructor(private httpClient: HttpClient) { }
 

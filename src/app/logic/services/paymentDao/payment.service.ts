@@ -11,7 +11,7 @@ import {Cart} from '../../../components/models/Cart';
   providedIn: 'root'
 })
 export class PaymentService {
-  baseURL = 'http://localhost:8080/stripe/';
+  baseURL = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/stripe/';
 
   constructor(private httpClient: HttpClient) { }
   buy(payment: Payment): Observable<string>{

@@ -6,7 +6,7 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {CartService} from '../../../logic/services/cartDao/cart.service';
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
-import {Dessert} from "../../models/Dessert";
+import {Dessert} from '../../models/Dessert';
 
 
 @Component({
@@ -22,13 +22,13 @@ export class PizzaCardCartItemComponent implements OnInit {
   @Input() snack: Snack;
   @Input() dessert: Dessert;
   @Input() pizzaPrice: number;
-  url = 'http://localhost:8080/pizza/image/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/pizza/image/';
   count: number;
   price: number;
   cart: Cart;
-  urlDrink = 'http://localhost:8080/drink/';
-  urlSnack = 'http://localhost:8080/snack/';
-  urlDessert = 'http://localhost:8080/dessert/';
+  urlDrink = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink/';
+  urlSnack = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/snack/';
+  urlDessert = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
   constructor(private themeObjectService: ThemeObjectService,
               private userService: UserActionsService,
               private cartService: CartService) {

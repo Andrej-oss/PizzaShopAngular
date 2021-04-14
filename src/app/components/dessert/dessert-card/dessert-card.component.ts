@@ -17,7 +17,7 @@ export class DessertCardComponent implements OnInit {
   @Input()
   dessert: Dessert;
   cart: Cart;
-  url = 'http://localhost:8080/dessert/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
   constructor(private bottomSheet: MatBottomSheet,
               private userActionsService: UserActionsService,
               public themeObjectService: ThemeObjectService) { }

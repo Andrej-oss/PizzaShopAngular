@@ -13,7 +13,7 @@ import {DessertSelector} from '../../../logic/store/selectors/PizzaSelector';
 })
 export class DessertChooseSheetComponent implements OnInit {
   desserts: Dessert[];
-  url = 'http://localhost:8080/dessert/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
   isPaymentOpen: boolean;
   cart: Cart;
   dessertChoose: Dessert;

@@ -26,7 +26,7 @@ export class HomePageComponent implements OnInit {
   drinks: Drink[];
   snacks: Snack[];
   desserts: Dessert[];
-  url = 'http://localhost:8080/promotion/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/promotion/';
   constructor(private pizzaActionService: PizzaActionService,
               private store$: Store,
               private router: Router,

@@ -19,7 +19,7 @@ export class SnacksAdminTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://localhost:8080/snack/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/snack/';
   isOpenSnackUpdate: boolean;
   snack: Snack;
   constructor(private store$: Store,

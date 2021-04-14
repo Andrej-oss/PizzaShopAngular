@@ -23,7 +23,7 @@ export class FormSizePizzaPostComponent implements OnInit {
   size: Size;
   @Input()
   pizzaName: string;
-  url = 'http://localhost:8080/pizza/image/';
+  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/pizza/image/';
   sizes = sizes;
   pizzas: Observable<Pizza[]> = this.store$.pipe(select(AllPizzasSelector));
   ingredients: Ingredient[];
