@@ -145,7 +145,7 @@ import { PasswordLoginReminderComponent } from './components/forms/password-logi
         ToastrModule.forRoot(),
         NgxStripeModule.forRoot('pk_test_51Hv6uTGmmCaqYLZpH2DedxpEXPGQFNx7eM4i' +
             'aTxkjowLq94xpVY5ORolZnmokcoiwQ51IAMCWsGC0B6cl6c7EbUg00Aefbn2rC'),
-        RouterModule.forRoot(routes),
+        RouterModule.forRoot(routes, { relativeLinkResolution: 'legacy' }),
         StoreModule.forRoot(reducers, {
             metaReducers,
             runtimeChecks: {

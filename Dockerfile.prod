@@ -4,8 +4,8 @@ WORKDIR /app/PizzaShopAngular
 
 COPY package*.json ./
 
-RUN npm i
+RUN npm i -g npm
 
-RUN npm install -g @angular/cli@10.2.0
+RUN npm install -g @angular
 
 COPY . .
