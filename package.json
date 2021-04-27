@@ -12,6 +12,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-devkit/build-angular": "^0.1102.10",
     "@angular/animations": "~11.2.11",
     "@angular/cdk": "^10.2.7",
     "@angular/common": "~11.2.11",
@@ -34,13 +35,13 @@
     "ngrx": "0.0.1-security",
     "ngx-stripe": "^10.1.2",
     "ngx-toastr": "^13.2.0",
+    "npm-check-updates": "^11.5.3",
     "rxjs": "~6.6.0",
     "serve": "^11.3.2",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.2"
   },
   "devDependencies": {
-    "@angular-devkit/build-angular": "~0.1002.0",
     "@angular/cli": "^11.2.10",
     "@angular/compiler-cli": "~11.2.11",
     "@types/jasmine": "~3.5.0",

@@ -1,11 +1,13 @@
 FROM node:13.12.0-alpine
 
+RUN mkdir -p /app/PizzaShopAngular
+
 WORKDIR /app/PizzaShopAngular
 
 COPY package*.json ./
 
-RUN npm i -g npm
+RUN npm i
 
-RUN npm install -g @angular
+RUN npm install -g @angular/cli
 
 COPY . .
