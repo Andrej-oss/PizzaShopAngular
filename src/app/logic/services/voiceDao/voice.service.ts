@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class VoiceService {
-  private baseURL = 'http://localhost:8080/voice/';
+  private baseURL = '/api/voice/';
   constructor(private httpClient: HttpClient) { }
   saveVoice(id: number, voice: Voice): Observable<Voice[]>{
     return this.httpClient.post<Voice[]>(this.baseURL + `${id}`, voice);

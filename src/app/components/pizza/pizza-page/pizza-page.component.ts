@@ -31,7 +31,7 @@ export class PizzaPageComponent implements OnInit {
   blackColor = 'color: white';
   whiteColor = 'color: black; ';
   activePage: number;
-  url = 'http://localhost:8080/promotion/';
+  url = '/api/promotion/';
   promotions: Observable<Promotion[]> = this.store$.pipe(select(PromotionsSelector));
   constructor(private pizzaActionService: PizzaActionService,
               public themeObjectService: ThemeObjectService,

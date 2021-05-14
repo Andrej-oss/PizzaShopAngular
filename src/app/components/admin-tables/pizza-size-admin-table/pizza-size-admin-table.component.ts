@@ -20,7 +20,7 @@ export class PizzaSizeAdminTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://localhost:8080/size/image/';
+  url = '/api/size/image/';
   isOpenSizeUpdate: boolean;
   size: Size;
   isOpenSizeCreator: boolean;

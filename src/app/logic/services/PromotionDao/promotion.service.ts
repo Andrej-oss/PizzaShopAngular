@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class PromotionService {
-  private baseUrl = 'http://localhost:8080/promotion';
+  private baseUrl = '/api/promotion';
 
   constructor(private httpClient: HttpClient) { }
   savePromotion(promotion: FormData, append: void): Observable<Promotion[]>{

@@ -1,13 +1,18 @@
-FROM node:13.12.0-alpine
+# node
+FROM node:13.12.0-alpine as buider
 
-RUN mkdir -p /app/PizzaShopAngular
-
-WORKDIR /app/PizzaShopAngular
-
+# copy
+RUN mkdir -p /app
+WORKDIR /app
+COPY . .
 COPY package*.json ./
 
+# angular
 RUN npm i
+RUN npm cache clean --force
+RUN npm install -g @angular/cli@11.2.11
+RUN node --max-old-space-size=8192 node_modules/@angular/cli/bin/ng build
 
-RUN npm install -g @angular/cli
+# nginx
+FROM nginx:alpine
 
-COPY . .

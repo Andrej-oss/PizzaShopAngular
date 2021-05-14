@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class AvatarService {
-  private baseUrl = 'http://localhost:8080/avatar';
+  private baseUrl = '/api/avatar';
   constructor(private httpClient: HttpClient) { }
   saveAvatar(userId: number, formData: FormData, append: void): Observable<Avatar>{
     return this.httpClient.post<Avatar>(this.baseUrl + `/${userId}`, formData, );

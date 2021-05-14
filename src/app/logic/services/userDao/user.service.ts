@@ -14,7 +14,7 @@ export class UserService {
   private token = null;
   private authority = null;
   private userName = null;
-  private baseUrl = 'http://localhost:8080/user';
+  private baseUrl = '/api/user';
 
   constructor(private httpClient: HttpClient,
               private themeObjectService: ThemeObjectService,

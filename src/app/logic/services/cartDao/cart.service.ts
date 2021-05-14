@@ -7,7 +7,7 @@ import {Cart} from '../../../components/models/Cart';
   providedIn: 'root'
 })
 export class CartService {
-  private baseUrl = 'http://localhost:8080/cart';
+  private baseUrl = '/api/cart';
 
   constructor(private httpClient: HttpClient) { }
   getAllCartsElements(id: number): Observable<Cart[]>{

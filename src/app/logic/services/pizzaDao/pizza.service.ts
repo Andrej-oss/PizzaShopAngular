@@ -8,12 +8,13 @@ import {PizzaPage} from "../../../components/models/PizzaPage";
   providedIn: 'root'
 })
 export class PizzaService {
-  private baseUrl = 'http://localhost:8080/pizza';
+  private baseUrl = '/api/pizza';
 
   constructor(private httpClient: HttpClient) {
   }
 
   getAllPizza(): Observable<Pizza[]> {
+    debugger;
     return this.httpClient.get<Pizza[]>(this.baseUrl);
   }
   getSortedPizzas(page: number, type: string, sort: string): Observable<PizzaPage>{

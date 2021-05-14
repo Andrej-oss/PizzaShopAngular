@@ -8,7 +8,7 @@ import {Snack} from '../../../components/models/Snack';
   providedIn: 'root'
 })
 export class SnackService {
-  private baseUrl = 'http://localhost:8080/snack';
+  private baseUrl = '/api/snack';
   constructor(private httpClient: HttpClient) { }
   saveSnack(formData: FormData, append: void): Observable<Snack[]>{
     return this.httpClient.post<Snack[]>(this.baseUrl, formData);

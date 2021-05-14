@@ -17,7 +17,7 @@ export class PromotionsTableComponent implements OnInit {
   black = 'background-color: black';
   white = 'background-color: white';
   displayedColumns: string[] = ['position', 'image', 'name', 'option'];
-  url = 'http://localhost:8080/promotion/';
+  url = '/api/promotion/';
   promotion: Promotion;
   isOpenPromotionUpdater: boolean;
   promotions: Observable<Promotion[]> = this.store$.pipe(select(PromotionsSelector));

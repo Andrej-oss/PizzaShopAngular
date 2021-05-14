@@ -15,7 +15,7 @@ import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-actio
 export class PizzaCardComponent implements OnInit {
 @Input()
 pizza: Pizza;
-  url = 'http://localhost:8080/pizza/image/';
+  url = '/api/pizza/image/';
   ingredients: string[];
 
   constructor(private bottomSheet: MatBottomSheet,

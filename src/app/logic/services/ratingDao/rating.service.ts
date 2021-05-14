@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class RatingService {
-  private baseUrl = 'http://localhost:8080';
+  private baseUrl = '/api';
 
   constructor(private httpClient: HttpClient) { }
   saveRating(rating: Rating, pizzaId: number): Observable<Rating[]>{

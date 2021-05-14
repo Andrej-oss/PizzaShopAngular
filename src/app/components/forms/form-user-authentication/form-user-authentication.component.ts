@@ -29,10 +29,6 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   username: FormControl = new FormControl('', Validators.required);
   password: FormControl = new FormControl('', Validators.required);
   authority: string;
-  blackTheme: 'card-auth-black';
-  whiteTheme: 'card-auth';
-  blackStyle: 'color: white';
-  whiteStyle: 'color: black';
   drinks: Drink[];
   snacks: Snack[];
   desserts: Dessert[];

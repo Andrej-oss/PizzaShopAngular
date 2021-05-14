@@ -13,7 +13,7 @@ import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-actio
 })
 export class DessertTableComponent implements OnInit {
   desserts: Observable<Dessert[]> = this.store$.pipe(select(DessertSelector));
-  url = 'http://localhost:8080/dessert/';
+  url = '/api/dessert/';
   displayedColumns: string[] = ['position', 'image', 'name', 'description', 'volume', 'price', 'option'];
   black = 'background-color: black';
   white = 'background-color: white';

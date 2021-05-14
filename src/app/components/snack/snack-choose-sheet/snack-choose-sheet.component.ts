@@ -13,7 +13,7 @@ import {Snack} from '../../models/Snack';
 })
 export class SnackChooseSheetComponent implements OnInit {
   snacks: Snack[];
-  url = 'http://localhost:8080/snack/';
+  url = '/api/snack/';
   isPaymentOpen: boolean;
   cart: Cart;
   snackChoose: Snack;

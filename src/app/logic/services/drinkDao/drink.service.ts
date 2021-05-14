@@ -7,7 +7,7 @@ import {Observable} from 'rxjs';
   providedIn: 'root'
 })
 export class DrinkService {
-  private baseUrl = 'http://localhost:8080/drink';
+  private baseUrl = '/api/drink';
 
   constructor(private httpClient: HttpClient) { }
   saveDrink(formData: FormData, append: void): Observable<Drink[]>{

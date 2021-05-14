@@ -26,9 +26,9 @@ export class PizzaCardCartItemComponent implements OnInit {
   count: number;
   price: number;
   cart: Cart;
-  urlDrink = 'http://localhost:8080/drink/';
-  urlSnack = 'http://localhost:8080/snack/';
-  urlDessert = 'http://localhost:8080/dessert/';
+  urlDrink = '/api/drink/';
+  urlSnack = '/api/snack/';
+  urlDessert = '/api/dessert/';
   constructor(private themeObjectService: ThemeObjectService,
               private userService: UserActionsService,
               private cartService: CartService) {

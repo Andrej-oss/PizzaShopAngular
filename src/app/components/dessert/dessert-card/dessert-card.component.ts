@@ -2,8 +2,6 @@ import {Component, Input, OnInit} from '@angular/core';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
 import {Dessert} from '../../models/Dessert';
 import {MatBottomSheet} from '@angular/material/bottom-sheet';
-import {Router} from '@angular/router';
-import {DrinkChooseSheetComponent} from '../../drink/drink-choose-sheet/drink-choose-sheet.component';
 import {DessertChooseSheetComponent} from '../dessert-choose-sheet/dessert-choose-sheet.component';
 import {Cart} from '../../models/Cart';
 import {UserActionsService} from "../../../logic/store/actions/user/user-actions.service";
@@ -17,7 +15,7 @@ export class DessertCardComponent implements OnInit {
   @Input()
   dessert: Dessert;
   cart: Cart;
-  url = 'http://localhost:8080/dessert/';
+  url = '/api/dessert/';
   constructor(private bottomSheet: MatBottomSheet,
               private userActionsService: UserActionsService,
               public themeObjectService: ThemeObjectService) { }

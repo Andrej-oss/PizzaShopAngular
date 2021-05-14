@@ -20,7 +20,7 @@ export class PizzaAdminTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://localhost:8080/pizza/image/';
+  url = '/api/pizza/image/';
   isOpenPizzaUpdater: boolean;
   constructor(private store$: Store,
               private pizzaActionService: PizzaActionService,

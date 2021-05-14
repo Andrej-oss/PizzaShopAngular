@@ -23,7 +23,7 @@ export class UserPageComponent implements OnInit {
   isAvatarOpen: boolean;
   image: File;
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
-  avatarUrl = 'http://localhost:8080/avatar/image/';
+  avatarUrl = '/api/avatar/image/';
   user: User;
 
   constructor(private userService: UserService,

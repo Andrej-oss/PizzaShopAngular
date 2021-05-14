@@ -17,7 +17,7 @@ export class UserAdminTableComponent implements OnInit {
   user: User;
   avatars: Observable<Avatar[]> = this.store$.pipe(select(selectAllAvatars));
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
-  avatarUrl = 'http://localhost:8080/avatar/image/';
+  avatarUrl = '/api/avatar/image/';
   displayedColumns: string[] = ['position', 'image', 'username', 'name', 'lastName', 'email', 'city', 'address',
     'postCode', 'phone', 'role', 'option'];
   black = 'background-color: black';

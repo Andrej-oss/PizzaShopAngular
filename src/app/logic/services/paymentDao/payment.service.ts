@@ -11,7 +11,7 @@ import {Cart} from '../../../components/models/Cart';
   providedIn: 'root'
 })
 export class PaymentService {
-  baseURL = 'http://localhost:8080/stripe/';
+  baseURL = '/api/stripe/';
 
   constructor(private httpClient: HttpClient) { }
   buy(payment: Payment): Observable<string>{

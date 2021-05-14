@@ -19,7 +19,7 @@ ingredients$: Observable<Ingredient[]> = this.store$.pipe(select(IngredientsSele
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://localhost:8080/ingredient/image/';
+  url = '/api/ingredient/image/';
   isOpenIngredientUpdater: boolean;
   constructor(private store$: Store,
               private pizzaActionService: PizzaActionService,

@@ -26,8 +26,8 @@ import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-actio
 })
 export class PizzaChooseSheetComponent implements OnInit {
   diameter: number;
-  url = 'http://localhost:8080/pizza/image/';
-  sizeUrl = 'http://localhost:8080/size/image/';
+  url = '/api/pizza/image/';
+  sizeUrl = '/api/size/image/';
   cart: Cart;
   classSize = 'pizza-card-image-content';
   size: Observable<Size> = this.store$.pipe(select(SizePizzaSelector));

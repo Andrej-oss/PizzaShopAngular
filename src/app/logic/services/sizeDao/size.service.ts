@@ -8,7 +8,7 @@ import {SizePizza} from '../../../components/models/SizePizza';
   providedIn: 'root'
 })
 export class SizeService {
-  private baseUrl = 'http://localhost:8080/size';
+  private baseUrl = '/api/size';
 
   constructor(private httpClient: HttpClient) { }
 
