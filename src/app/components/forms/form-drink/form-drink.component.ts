@@ -29,7 +29,6 @@ export class FormDrinkComponent implements OnInit {
       volume: this.volume = new FormControl(this.drink ? this.drink.volume : '', Validators.required),
       priceDrink: this.priceDrink = new FormControl(this.drink ? this.drink.price : '', Validators.required),
     });
-    console.log(this.drinkForm);
   }
 
   upLoadFileSize($event: Event): void {

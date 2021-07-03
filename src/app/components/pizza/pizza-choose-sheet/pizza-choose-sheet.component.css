@@ -34,6 +34,15 @@
   .pizza-sheet {
     width: 100%;
   }
+  .pizza-card-image-content-large{
+    margin-top: 5%;
+  }
+  .pizza-card-image-content-medium{
+    margin-top: 5%;
+  }
+  .pizza-card-image-content{
+    margin-top: 5%;
+  }
 }
 .pizza-sheet-content-text-ingredients{
   display: flex;

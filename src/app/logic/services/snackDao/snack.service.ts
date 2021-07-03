@@ -2,13 +2,14 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Snack} from '../../../components/models/Snack';
+import {APiURL} from '../../../config/urlConfig';
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class SnackService {
-  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/snack';
+  private baseUrl = APiURL.snackURL;
   constructor(private httpClient: HttpClient) { }
   saveSnack(formData: FormData, append: void): Observable<Snack[]>{
     return this.httpClient.post<Snack[]>(this.baseUrl, formData);

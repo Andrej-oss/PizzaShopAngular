@@ -15,6 +15,8 @@ import {DrinksSelector, SnacksSelector} from '../../../logic/store/selectors/Piz
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
 import {Dessert} from '../../models/Dessert';
+import {Cart} from '../../models/Cart';
+import {CartService} from '../../../logic/services/cartDao/cart.service';
 
 @Component({
   selector: 'app-form-user-authentication',
@@ -29,10 +31,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
   username: FormControl = new FormControl('', Validators.required);
   password: FormControl = new FormControl('', Validators.required);
   authority: string;
-  blackTheme: 'card-auth-black';
-  whiteTheme: 'card-auth';
-  blackStyle: 'color: white';
-  whiteStyle: 'color: black';
+  cartElements: Cart[];
   drinks: Drink[];
   snacks: Snack[];
   desserts: Dessert[];
@@ -43,6 +42,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
               private snackBar: MatSnackBar,
               private pizzaActionService: PizzaActionService,
               private activatedRoute: ActivatedRoute,
+              private cartService: CartService,
               private userActionsService: UserActionsService,
               public themeObjectService: ThemeObjectService, private pizzaService: PizzaService) {
     this.authForm = new FormGroup({
@@ -66,9 +66,9 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     this.formCheck();
     this.store$.pipe(select(DrinksSelector)).subscribe(data => this.drinks = data);
     this.store$.pipe(select(SnacksSelector)).subscribe(data => this.snacks = data);
-    this.pizzaActionService.getDrinks();
-    this.pizzaActionService.getAllSnacks();
-    this.pizzaActionService.getAllDessert();
+    if (!this.userService.isAuthenticated()) {
+      this.cartElements = this.cartService.getCartFromLocalStorage();
+    }
   }
   getAuthenticateUser(user: {username: string, password: string}): any{
     return new Promise(resolve => {
@@ -109,10 +109,20 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
     // @ts-ignore
     this.userService
       .authenticateUser({username: authForm.controls.username.value, password: authForm.controls.password.value})
-      .pipe(switchMap(data1 => {
-          this.userActionsService.getPrincipal(data1.username);
-          return this.userService.getUserByName(data1.username);
+      .pipe(switchMap(data => {
+          this.userActionsService.getPrincipal(data.username);
+          return this.userService.getUserByName(data.username);
         }),
+          tap(data1 => {
+            if (this.cartElements.length) {
+              this.themeObjectService.data.value.userId = data1.id;
+              this.cartElements.forEach(value => {
+                this.cartService.deleteCartElementFromLocalStorage(value.description);
+                value.userId = data1.id;
+                return this.cartService.savePizzaInCart(value).subscribe(value1 => console.log(value1));
+              });
+            }
+          }),
         tap(data2 =>  this.userActionsService.getAllCart(data2.id)))
       .subscribe((data) => {
           this.error = null;
@@ -121,7 +131,7 @@ export class FormUserAuthenticationComponent implements OnInit, OnDestroy {
             duration: 2000,
           });
           // tslint:disable-next-line:no-shadowed-variable
-          this.router.navigate(['/']).then(data => console.log(data));
+          this.router.navigate(['/']);
         },
         (error) => {
           if (error.status === 403) {

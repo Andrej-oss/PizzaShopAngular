@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Promotion} from '../../../components/models/Promotion';
 import {Observable} from 'rxjs';
+import {APiURL} from '../../../config/urlConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class PromotionService {
-  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/promotion';
+  private baseUrl = APiURL.promotionURL;
 
   constructor(private httpClient: HttpClient) { }
   savePromotion(promotion: FormData, append: void): Observable<Promotion[]>{
@@ -17,9 +18,9 @@ export class PromotionService {
     return this.httpClient.get<Promotion[]>(this.baseUrl);
   }
   deletePromotion(id: number): Observable<Promotion[]>{
-    return this.httpClient.delete<Promotion[]>(this.baseUrl + `/${id}`);
+    return this.httpClient.delete<Promotion[]>(this.baseUrl + `${id}`);
   }
   updatePromotion(id: number, promotion: FormData, append: void): Observable<Promotion[]>{
-   return this.httpClient.put<Promotion[]>(this.baseUrl + `/${id}`, promotion);
+   return this.httpClient.put<Promotion[]>(this.baseUrl + `${id}`, promotion);
   }
 }

@@ -5,6 +5,8 @@ import {MatBottomSheet} from '@angular/material/bottom-sheet';
 import {DessertChooseSheetComponent} from '../dessert-choose-sheet/dessert-choose-sheet.component';
 import {Cart} from '../../models/Cart';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
+import {APiURL} from '../../../config/urlConfig';
+import {UserService} from '../../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-dessert-card',
@@ -15,9 +17,10 @@ export class DessertCardComponent implements OnInit {
   @Input()
   dessert: Dessert;
   cart: Cart;
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
+  url = APiURL.dessertImage;
   constructor(private bottomSheet: MatBottomSheet,
               private userActionsService: UserActionsService,
+              private userService: UserService,
               public themeObjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
@@ -38,6 +41,9 @@ export class DessertCardComponent implements OnInit {
       volume: +dessert.volume.match(/[0-9]/gi).join('') + 0.00,
     };
     this.themeObjectService.data.value.message = 'Dessert added to cart';
-    this.userActionsService.saveElementInCart(this.cart);
-  }
+    if (this.userService.isAuthenticated()) {
+      this.userActionsService.saveElementInCart(this.cart);
+    } else {
+      this.userService.saveCartInLocalStorage(this.cart);
+    }  }
 }

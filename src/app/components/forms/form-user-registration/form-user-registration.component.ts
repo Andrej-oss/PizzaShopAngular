@@ -113,7 +113,6 @@ passwordLengthValidator(form: FormGroup): null | object{
     this.firstFormGroup.disable();
     this.secondFormGroup.disable();
     this.userService.saveUser(user).subscribe(data => {
-      console.log(data);
       this.snackBar.openFromComponent(SnackBarRegistrationComponent, {
         duration: 2000
       });
@@ -136,12 +135,10 @@ passwordLengthValidator(form: FormGroup): null | object{
       postCode: `${secondFormGroup.controls.postCode.value}`.trim(),
       phone: `${secondFormGroup.controls.phone.value}`.trim(),
       email: `${secondFormGroup.controls.email.value}`.trim().toLowerCase(),
-     // role: 'ROLE_USER'
     };
     this.firstFormGroup.disable();
     this.secondFormGroup.disable();
     this.userService.updateUser(+this.user.id, user).subscribe(data => {
-      console.log(data);
       this.snackBar.openFromComponent(SnackBarRegistrationComponent, {
         duration: 2000
       });

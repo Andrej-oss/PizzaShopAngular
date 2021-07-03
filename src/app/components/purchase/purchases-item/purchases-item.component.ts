@@ -11,6 +11,7 @@ import {
 import {Drink} from '../../models/Drink';
 import {Snack} from '../../models/Snack';
 import {Dessert} from '../../models/Dessert';
+import {APiURL} from '../../../config/urlConfig';
 
 @Component({
   selector: 'app-purchases-item',
@@ -22,10 +23,10 @@ export class PurchasesItemComponent implements OnInit {
   @Input() drinkId: number;
   @Input() snackId: number;
   @Input() dessertId: number;
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/pizza/image/';
-  urlDrink = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink/';
-  urlSnack = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/snack/';
-  urlDessert = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
+  url = APiURL.pizzaImage;
+  urlDrink = APiURL.drinkImage;
+  urlSnack = APiURL.snackImage;
+  urlDessert = APiURL.dessertImage;
   pizzas: Pizza[];
   drinks: Drink[];
   snacks: Snack[];

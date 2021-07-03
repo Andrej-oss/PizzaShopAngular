@@ -7,6 +7,7 @@ import {selectPrincipal, selectUserAvatar} from '../../logic/store/selectors/Use
 import {ThemeObjectService} from '../../logic/theme-object/theme-object.service';
 import {UserService} from '../../logic/services/userDao/user.service';
 import {Avatar} from '../models/Avatar';
+import {APiURL} from '../../config/urlConfig';
 
 
 @Component({
@@ -22,7 +23,7 @@ export class UserPageComponent implements OnInit {
   isAvatarOpen: boolean;
   image: File;
   avatar: Observable<Avatar> = this.store$.pipe(select(selectUserAvatar));
-  avatarUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/avatar/image/';
+  avatarUrl = APiURL.avatarImage;
   user: User;
 
   constructor(private userService: UserService,

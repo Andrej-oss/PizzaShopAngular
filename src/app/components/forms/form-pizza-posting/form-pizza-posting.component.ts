@@ -9,6 +9,7 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {Observable} from 'rxjs';
 import {select, Store} from '@ngrx/store';
 import {AllPizzasSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {APiURL} from "../../../config/urlConfig";
 
 @Component({
   selector: 'app-form-pizza-posting',
@@ -18,7 +19,7 @@ import {AllPizzasSelector} from '../../../logic/store/selectors/PizzaSelector';
 export class FormPizzaPostingComponent implements OnInit {
   @Input()
   pizza: Pizza;
-  url = 'http://localhost:8080/pizza/image/';
+  url = APiURL.pizzaImage;
   ingredients: Ingredient[];
   arrayIngredients: number[];
   pizzas: Observable<Pizza[]> = this.store$.pipe(select(AllPizzasSelector));
@@ -57,7 +58,6 @@ export class FormPizzaPostingComponent implements OnInit {
   upLoadFile(event): void {
     const file = (event.target as HTMLInputElement).files[0];
     this.file = file;
-    console.log(this.file);
     this.pizzaForm.patchValue({
       image: file
     });

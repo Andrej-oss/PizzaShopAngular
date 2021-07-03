@@ -6,6 +6,7 @@ import {AllPizzasSelector} from '../../../logic/store/selectors/PizzaSelector';
 import {Pizza} from '../../models/Pizza';
 import {Rating} from '../../models/Rating';
 import {PizzaActionService} from '../../../logic/store/actions/pizza/pizza-action.service';
+import {APiURL} from '../../../config/urlConfig';
 
 @Component({
   selector: 'app-pizza-admin-table',
@@ -20,7 +21,7 @@ export class PizzaAdminTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/pizza/image/';
+  url = APiURL.pizzaImage;
   isOpenPizzaUpdater: boolean;
   constructor(private store$: Store,
               private pizzaActionService: PizzaActionService,

@@ -4,6 +4,7 @@ import {Payment} from '../../../components/models/Payment';
 import {Observable} from 'rxjs';
 import {Purchase} from '../../../components/models/Purchase';
 import {Cart} from '../../../components/models/Cart';
+import {APiURL} from '../../../config/urlConfig';
 
 
 
@@ -11,7 +12,7 @@ import {Cart} from '../../../components/models/Cart';
   providedIn: 'root'
 })
 export class PaymentService {
-  baseURL = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/stripe/';
+  baseURL = APiURL.paymentURL;
 
   constructor(private httpClient: HttpClient) { }
   buy(payment: Payment): Observable<string>{
@@ -21,7 +22,6 @@ export class PaymentService {
     return  this.httpClient.post<string>(this.baseURL + `confirm/${id}/${purchase.userId}`, purchase);
   }
   confirmAllCart(id: string, userId: number, carts: Cart[]): Observable<string>{
-    debugger;
     return this.httpClient.post<string>(this.baseURL + `confirm/all_cart/${id}/${userId}`, carts);
 }
   cancel(id: string): Observable<string>{

@@ -6,6 +6,8 @@ import {Router} from '@angular/router';
 import {DrinkChooseSheetComponent} from '../drink-choose-sheet/drink-choose-sheet.component';
 import {Cart} from '../../models/Cart';
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
+import {APiURL} from '../../../config/urlConfig';
+import {UserService} from "../../../logic/services/userDao/user.service";
 
 @Component({
   selector: 'app-drink-card',
@@ -16,9 +18,10 @@ export class DrinkCardComponent implements OnInit {
   @Input()
   drink: Drink;
   cart: Cart;
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink/';
+  url = APiURL.drinkImage;
   constructor(private bottomSheet: MatBottomSheet,
               private userActionsService: UserActionsService,
+              private userService: UserService,
               public themeObjectService: ThemeObjectService) { }
 
   ngOnInit(): void {
@@ -39,6 +42,10 @@ export class DrinkCardComponent implements OnInit {
       volume: drink.volume,
     };
     this.themeObjectService.data.value.message = 'Drink added to cart';
-    this.userActionsService.saveElementInCart(this.cart);
+    if (this.userService.isAuthenticated()) {
+      this.userActionsService.saveElementInCart(this.cart);
+    } else {
+      this.userService.saveCartInLocalStorage(this.cart);
+    }
   }
 }

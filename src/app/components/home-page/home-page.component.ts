@@ -13,7 +13,8 @@ import {
   PromotionsSelector,
   SnacksSelector
 } from '../../logic/store/selectors/PizzaSelector';
-import {Router} from "@angular/router";
+import {Router} from '@angular/router';
+import {APiURL} from '../../config/urlConfig';
 
 @Component({
   selector: 'app-home-page',
@@ -26,7 +27,7 @@ export class HomePageComponent implements OnInit {
   drinks: Drink[];
   snacks: Snack[];
   desserts: Dessert[];
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/promotion/';
+  url = APiURL.promotionURL;
   constructor(private pizzaActionService: PizzaActionService,
               private store$: Store,
               private router: Router,

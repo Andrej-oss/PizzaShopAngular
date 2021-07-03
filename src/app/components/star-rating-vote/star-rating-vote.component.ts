@@ -6,7 +6,7 @@ import {Observable} from 'rxjs';
 import {RatingSelector} from '../../logic/store/selectors/PizzaSelector';
 import {SnackBarComponent} from '../snack-bar/snack-bar-login/snack-bar.component';
 import {MatSnackBar} from '@angular/material/snack-bar';
-import {PizzaActionService} from "../../logic/store/actions/pizza/pizza-action.service";
+import {PizzaActionService} from '../../logic/store/actions/pizza/pizza-action.service';
 
 @Component({
   selector: 'app-star-rating-vote',
@@ -48,7 +48,6 @@ export class StarRatingVoteComponent implements OnInit {
   }
   isVoted(): void{
     this.userRating = this.pizzaRating.find(value => value.userId === this.themeObjectService.data.value.userId);
-    debugger;
     !this.userRating ? this.isRated = false : this.isRated = true;
   }
   getAverageRating(): void{

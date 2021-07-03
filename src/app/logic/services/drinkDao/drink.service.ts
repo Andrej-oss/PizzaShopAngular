@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Drink} from '../../../components/models/Drink';
 import {Observable} from 'rxjs';
+import {APiURL} from '../../../config/urlConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DrinkService {
-  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/drink';
+  private baseUrl = APiURL.drinkURL;
 
   constructor(private httpClient: HttpClient) { }
   saveDrink(formData: FormData, append: void): Observable<Drink[]>{

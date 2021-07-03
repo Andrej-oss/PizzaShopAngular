@@ -2,17 +2,17 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Ingredient} from '../../../components/models/Ingredient';
+import {APiURL} from '../../../config/urlConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class IngredientService {
-  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/ingredient';
+  private baseUrl = APiURL.ingredientURL;
 
   constructor(private httpClient: HttpClient) { }
 
   saveIngredient(formData: FormData, append: void): Observable<Ingredient[]>{
-    console.log(formData);
     return this.httpClient.post<Ingredient[]>(this.baseUrl, formData);
   }
   getAllIngredients(): Observable<Ingredient[]>{

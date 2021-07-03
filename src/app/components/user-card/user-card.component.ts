@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {User} from '../models/User';
 import {Subscription} from 'rxjs';
-import {UserService} from "../../logic/services/userDao/user.service";
+import {UserService} from '../../logic/services/userDao/user.service';
 
 @Component({
   selector: 'app-user-card',

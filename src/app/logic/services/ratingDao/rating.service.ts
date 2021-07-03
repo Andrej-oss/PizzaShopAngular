@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Rating} from '../../../components/models/Rating';
 import {Observable} from 'rxjs';
+import {APiURL} from '../../../config/urlConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RatingService {
-  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080';
+  private baseUrl = APiURL.ratingURL;
 
   constructor(private httpClient: HttpClient) { }
   saveRating(rating: Rating, pizzaId: number): Observable<Rating[]>{

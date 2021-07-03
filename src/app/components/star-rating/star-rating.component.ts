@@ -12,6 +12,5 @@ export class StarRatingComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    console.log(this.averageRating);
   }
 }

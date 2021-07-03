@@ -2,12 +2,13 @@ import { Injectable } from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Avatar} from '../../../components/models/Avatar';
 import {Observable} from 'rxjs';
+import {APiURL} from '../../../config/urlConfig';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AvatarService {
-  private baseUrl = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/avatar';
+  private baseUrl = APiURL.avatarURL;
   constructor(private httpClient: HttpClient) { }
   saveAvatar(userId: number, formData: FormData, append: void): Observable<Avatar>{
     return this.httpClient.post<Avatar>(this.baseUrl + `/${userId}`, formData, );

@@ -5,6 +5,7 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {Observable} from 'rxjs';
 import {Size} from '../../models/Size';
 import {SizesPizzaSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {APiURL} from '../../../config/urlConfig';
 
 @Component({
   selector: 'app-pizza-size-admin-table',
@@ -20,7 +21,7 @@ export class PizzaSizeAdminTableComponent implements OnInit {
   white = 'background-color: white';
   blackColor = 'color: white';
   whiteColor = 'color: black';
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/size/image/';
+  url = APiURL.pizzaSizeImage;
   isOpenSizeUpdate: boolean;
   size: Size;
   isOpenSizeCreator: boolean;

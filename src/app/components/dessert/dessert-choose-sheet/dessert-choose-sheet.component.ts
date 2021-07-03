@@ -5,6 +5,9 @@ import {ThemeObjectService} from '../../../logic/theme-object/theme-object.servi
 import {UserActionsService} from '../../../logic/store/actions/user/user-actions.service';
 import {select, Store} from '@ngrx/store';
 import {DessertSelector} from '../../../logic/store/selectors/PizzaSelector';
+import {APiURL} from "../../../config/urlConfig";
+import {UserService} from "../../../logic/services/userDao/user.service";
+import {CartService} from "../../../logic/services/cartDao/cart.service";
 
 @Component({
   selector: 'app-dessert-choose-sheet',
@@ -13,12 +16,13 @@ import {DessertSelector} from '../../../logic/store/selectors/PizzaSelector';
 })
 export class DessertChooseSheetComponent implements OnInit {
   desserts: Dessert[];
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/dessert/';
+  url = APiURL.dessertImage;
   isPaymentOpen: boolean;
   cart: Cart;
   dessertChoose: Dessert;
   constructor(public themeObjectService: ThemeObjectService,
               private userActionsService: UserActionsService,
+              private userService: UserService,
               private store$: Store) { }
 
   ngOnInit(): void {
@@ -35,7 +39,11 @@ export class DessertChooseSheetComponent implements OnInit {
       volume: +dessert.volume.match(/[0-9]/gi).join('') + 0.00,
     };
     this.themeObjectService.data.value.message = 'Dessert added to cart';
-    this.userActionsService.saveElementInCart(this.cart);
+    if (this.userService.isAuthenticated()) {
+      this.userActionsService.saveElementInCart(this.cart);
+    } else {
+      this.userService.saveCartInLocalStorage(this.cart);
+    }
   }
 
   openPayment(dessert: Dessert): void{

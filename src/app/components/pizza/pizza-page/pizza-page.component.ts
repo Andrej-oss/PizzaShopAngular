@@ -10,50 +10,53 @@ import {UserActionsService} from '../../../logic/store/actions/user/user-actions
 import {Promotion} from '../../models/Promotion';
 import {pizzaOptions} from '../../../constants/Constants';
 import {ThemeObjectService} from '../../../logic/theme-object/theme-object.service';
+import {APiURL} from '../../../config/urlConfig';
 
 
 @Component({
-  selector: 'app-pizza-page',
-  templateUrl: './pizza-page.component.html',
-  styleUrls: ['./pizza-page.component.css']
+    selector: 'app-pizza-page',
+    templateUrl: './pizza-page.component.html',
+    styleUrls: ['./pizza-page.component.css']
 })
 export class PizzaPageComponent implements OnInit {
-  @Input()
-  count: number;
-  pizzas: Pizza[];
-  options = pizzaOptions;
-  sub: Subscription;
-  avatars: Avatar[];
-  blackTheme = 'purchase-item-black';
-  whiteTheme = 'purchase-item';
-  selectedValue: string;
-  source: string;
-  blackColor = 'color: white';
-  whiteColor = 'color: black; ';
-  activePage: number;
-  url = 'http://ec2-3-131-135-137.us-east-2.compute.amazonaws.com:8080/promotion/';
-  promotions: Observable<Promotion[]> = this.store$.pipe(select(PromotionsSelector));
-  constructor(private pizzaActionService: PizzaActionService,
-              public themeObjectService: ThemeObjectService,
-              private userService: UserActionsService,
-              private store$: Store) { }
+    @Input()
+    count: number;
+    pizzas: Pizza[];
+    options = pizzaOptions;
+    sub: Subscription;
+    avatars: Avatar[];
+    blackTheme = 'purchase-item-black';
+    whiteTheme = 'purchase-item';
+    selectedValue: string;
+    source: string;
+    blackColor = 'color: white';
+    whiteColor = 'color: black; ';
+    activePage: number;
+    url = APiURL.promotionURL;
+    promotions: Observable<Promotion[]> = this.store$.pipe(select(PromotionsSelector));
 
-  ngOnInit(): void {
-    this.sub = this.store$.pipe(select(AllPizzasSelector)).subscribe(data => this.pizzas = data);
-    this.sub = this.store$.pipe(select(selectAllAvatars)).subscribe(data => this.avatars = data);
-    if (this.pizzas.length === 0 || this.pizzas.length > 10) {
-      this.pizzaActionService.getSortedPizzas(0, 'asc', 'newPizza');
-      this.pizzaActionService.getIngredients();
+    constructor(private pizzaActionService: PizzaActionService,
+                public themeObjectService: ThemeObjectService,
+                private userService: UserActionsService,
+                private store$: Store) {
     }
-    if (!this.avatars.length){
-      this.userService.getAllAvatars();
-    }
-    this.source = 'pizza';
-  }
 
-  onSortPizza(value: string): void{
-    const optionsArray = value.split(', ');
-    this.pizzaActionService.getSortedPizzas(0, optionsArray[1], optionsArray[0]);
-    this.activePage = 1;
-  }
+    ngOnInit(): void {
+        this.sub = this.store$.pipe(select(AllPizzasSelector)).subscribe(data => this.pizzas = data);
+        this.sub = this.store$.pipe(select(selectAllAvatars)).subscribe(data => this.avatars = data);
+        if (this.pizzas.length === 0 || this.pizzas.length > 10) {
+            this.pizzaActionService.getSortedPizzas(0, 'asc', 'newPizza');
+            this.pizzaActionService.getIngredients();
+        }
+        if (!this.avatars.length) {
+            this.userService.getAllAvatars();
+        }
+        this.source = 'pizza';
+    }
+
+    onSortPizza(value: string): void {
+        const optionsArray = value.split(', ');
+        this.pizzaActionService.getSortedPizzas(0, optionsArray[1], optionsArray[0]);
+        this.activePage = 1;
+    }
 }
